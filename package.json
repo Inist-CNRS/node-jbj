@@ -1,0 +1,27 @@
+{
+  "name": "node-jbj",
+  "version": "0.0.0",
+  "author": "Nicolas Thouvenin <nthouvenin@gmail.com>",
+  "description": "",
+  "keywords": [],
+  "homepage": "http://github.com/touv/node-jbj",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/castorjs/castor-load.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": ">=1.8.1",
+    "istanbul": "^0.2.14"
+  },
+  "dependencies": {
+    "object-path": "^0.8.1"
+  }
+}
