@@ -17,6 +17,9 @@ describe('compute', function () {
 
   it('template #1', function() {
     var stylesheet = {
+      "$remote" : {
+          "fetch" : "/corpus?i1"
+      },
       "$g" : {
         "find": "a.b.c",
         "cast": "number"
