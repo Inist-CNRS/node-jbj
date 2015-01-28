@@ -83,11 +83,17 @@ Build a string with mustache template and *input*
 ### compute: expression
 Build a string with mustache template and *input*
 
+### capitalize:
+Capitalize the first letter of *input*
+
+### downcase:
+Downcase *input*
+
+### upcase:
+Uppercase *input*
+
 ### first:
 ### last:
-### capitalize:
-### downcase:
-### upcase:
 ### sort:
 ### sort_by:
 ### size:
