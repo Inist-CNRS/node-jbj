@@ -59,4 +59,51 @@ describe('misc', function () {
     assert(output.a instanceof Error);
   });
 
+  it('misc #5', function() {
+    var stylesheet = {
+      "extendWith": {
+        "a" : {
+          "b" : {
+            "cc" : "val1"
+          },
+          "d" : "val2"
+        }
+      },
+    };
+    var output = JBJ.render(stylesheet, "val");
+    assert.equal(output, "val");
+  });
+
+  it('misc #5b', function() {
+    var stylesheet = {
+      "extendWith": {
+        "a" : {
+          "b" : {
+            "cc" : "val1"
+          },
+          "d" : "val2"
+        }
+      },
+    };
+    var output = JBJ.render(stylesheet, input);
+    assert.equal(output.a.b.cc, "val1");
+    assert.equal(output.a.d, "val2");
+  });
+
+  it('misc #6', function() {
+    var stylesheet = {
+      "set": {
+        "a" : {
+          "b" : "val1",
+          "e" : "val2"
+        }
+      },
+    };
+    var output = JBJ.render(stylesheet, "val");
+    assert.equal(output.a.b, "val1");
+    assert.equal(output.a.d, undefined);
+    assert.equal(output.a.e, "val2");
+  });
+
+
 });
