@@ -1,4 +1,4 @@
-# JbJ : transfomr Json By Json
+# JbJ : transform Json By Json
 
 Parse and Stringify for CSV strings. It's like JSON object but for CSV. It can also work row by row.
 And, if can parse strings, it can be use to parse files or streams too.
