@@ -1,7 +1,6 @@
 # JBJ : transform Json By Json
 
-Parse and Stringify for CSV strings. It's like JSON object but for CSV. It can also work row by row.
-And, if can parse strings, it can be use to parse files or streams too.
+A new way to transform JSON object with a JSON stylesheet. It's like XSL/XML but only with JSON.
 
 ## Contributors
 
