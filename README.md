@@ -1,4 +1,4 @@
-# JbJ : transform Json By Json
+# JBJ : transform Json By Json
 
 Parse and Stringify for CSV strings. It's like JSON object but for CSV. It can also work row by row.
 And, if can parse strings, it can be use to parse files or streams too.
@@ -93,21 +93,61 @@ Downcase *input*
 Uppercase *input*
 
 ### first:
+Get the first element of *input*
+
 ### last:
+Get the last element of *input*
+
 ### sort:
-### sort_by:
+Sort *input* object
+
+### sortBy:
+*aliases : sort_by*
+Sort *input* object the given `prop` ascending.
+
 ### size:
-### plus:
-### minus:
-### times:
-### divided_by:
-### join:
-### truncate:
-### truncate_words:
-### replace:
-### prepend:
-### append:
+*aliases : length*
+Get the size or the length of *input*
+
+### plus: value
+Add *input* and *value*
+
+### minus: value
+Subtract *value* from *input*
+
+### times: value
+Multiply *input* by *value*"
+
+### dividedBy: value
+*aliases : divided_by*
+Divide *input* by *value*"
+
+### join: string = ', '
+*aliases : glue*
+Join *input* with the given *string*.
+
+### shift: n
+Shift *input* to the left by *n*
+
+### truncate: length
+Truncate *input* to *length*.
+
+### truncateWords: n
+*aliases : truncate_words*
+Truncate *input* to *n* words.
+
+### replace: [pattern, substitution] | pattern
+Replace *pattern* with *substitution* in *input*.
+
+### prepend: something
+Prepend *something* to *input*
+
+### append: something
+Append *something* to *input*
+
 ### reverse:
+Reverse items order of *input*
+
 
 
 # Also
