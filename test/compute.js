@@ -35,5 +35,24 @@ describe('compute', function () {
     assert.equal(output.e, 7);
   });
 
+  it('#3', function() {
+    var stylesheet = {
+      "$x" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+      },
+      "$y" : {
+        "path": "b",
+        "cast": "number"
+      },
+      "$z" : {
+        "compute": "x + y",
+      }
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.z, 10);
+  });
+
 
 });
