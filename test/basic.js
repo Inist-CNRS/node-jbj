@@ -199,8 +199,25 @@ describe('basic', function () {
     assert.equal(output, 'C|B|A');
   });
 
+  it('basic #20', function() {
+    var stylesheet = {
+      "get" : "a.b.c",
+      "mapping" : {
+        "value" : 1
+      }
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, 1);
+  });
 
-
+  it('basic #20', function() {
+    var stylesheet = {
+      "default" : 1,
+      "mapping" : ['a','b','c']
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 'b');
+  });
 
 
 });
