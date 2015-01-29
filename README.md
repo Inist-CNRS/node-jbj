@@ -121,7 +121,9 @@ Trim *input*, return string
 Build a string with mustache template and *input*
 
 ### compute: expression
-Build a string with mustache template and *input*
+*aliases : expr*
+Compute an expression with all variable of the *input*.
+Note : "this" variable contains *input*
 
 ### capitalize:
 Capitalize the first letter of *input*
