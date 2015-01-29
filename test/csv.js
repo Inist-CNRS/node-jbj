@@ -21,7 +21,7 @@ describe('csv', function () {
         "trim": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.e, "x,y,z");
   });
 

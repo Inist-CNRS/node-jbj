@@ -18,7 +18,7 @@ describe('find', function () {
     var stylesheet = {
       "find" : "a.b.c"
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'value');
   });
 
@@ -27,7 +27,7 @@ describe('find', function () {
       "find" : "a",
       "find#1" : "b.c"
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'value');
   });
 
@@ -37,7 +37,7 @@ describe('find', function () {
       "find#1" : "b",
       "find#2" : "c"
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'value');
   });
 
@@ -46,7 +46,7 @@ describe('find', function () {
       "find" : ["x", "x.y", "a.b.c"],
       "coalesce" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'value');
   });
 
@@ -62,7 +62,7 @@ describe('find', function () {
         "first" : null
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.x.z, 'VALUE');
   });
 });

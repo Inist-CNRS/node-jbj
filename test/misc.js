@@ -21,7 +21,7 @@ describe('misc', function () {
         "cast" : "number"
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a, 1234);
   });
 
@@ -32,7 +32,7 @@ describe('misc', function () {
         "default": "truc"
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a, "truc");
   });
 
@@ -44,7 +44,7 @@ describe('misc', function () {
         "unjson": null
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a[0], "truc");
   });
 
@@ -55,7 +55,7 @@ describe('misc', function () {
         "required": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert(output.a instanceof Error);
   });
 
@@ -70,7 +70,7 @@ describe('misc', function () {
         }
       },
     };
-    var output = JBJ.render(stylesheet, "val");
+    var output = JBJ.renderSync(stylesheet, "val");
     assert.equal(output, "val");
   });
 
@@ -85,7 +85,7 @@ describe('misc', function () {
         }
       },
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a.b.cc, "val1");
     assert.equal(output.a.d, "val2");
   });
@@ -99,7 +99,7 @@ describe('misc', function () {
         }
       },
     };
-    var output = JBJ.render(stylesheet, "val");
+    var output = JBJ.renderSync(stylesheet, "val");
     assert.equal(output.a.b, "val1");
     assert.equal(output.a.d, undefined);
     assert.equal(output.a.e, "val2");

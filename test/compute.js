@@ -40,7 +40,7 @@ describe('compute', function () {
         "compute": " g + h + i + j"
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.k, 15);
   });
 

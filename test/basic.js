@@ -20,7 +20,7 @@ describe('basic', function () {
       "get": "a.b.c",
       "capitalize" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'Value');
   });
 
@@ -29,7 +29,7 @@ describe('basic', function () {
       "get": "a.b.c",
       "upcase" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'VALUE');
   });
 
@@ -39,7 +39,7 @@ describe('basic', function () {
       "upcase" : null,
       "downcase" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'value');
   });
 
@@ -48,7 +48,7 @@ describe('basic', function () {
       "get": "a.d",
       "first" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C');
   });
 
@@ -57,7 +57,7 @@ describe('basic', function () {
       "get": "a.d",
       "last" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'A');
   });
 
@@ -67,7 +67,7 @@ describe('basic', function () {
       "sort" : null,
       "first" : null
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'A');
   });
 
@@ -76,7 +76,7 @@ describe('basic', function () {
       "get": "a.d",
       "length" : null,
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 3);
   });
 
@@ -85,7 +85,7 @@ describe('basic', function () {
       "get": "a.e",
       "plus" : 3,
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 6);
   });
 
@@ -94,7 +94,7 @@ describe('basic', function () {
       "get": "a.e",
       "minus" : 2,
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 1);
   });
 
@@ -103,7 +103,7 @@ describe('basic', function () {
       "get": "a.e",
       "times" : 2,
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 6);
   });
 
@@ -113,7 +113,7 @@ describe('basic', function () {
       "times" : 2,
       "dividedBy" : 3
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 2);
   });
 
@@ -122,7 +122,7 @@ describe('basic', function () {
       "get": "a.d",
       "join" : "/"
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C/B/A');
   });
 
@@ -132,7 +132,7 @@ describe('basic', function () {
       "join" : "/",
       "truncate": 3
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C/B');
   });
 
@@ -143,7 +143,7 @@ describe('basic', function () {
       "join" : " ",
       "truncateWords": 2
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C B');
   });
 
@@ -153,7 +153,7 @@ describe('basic', function () {
       "cast" : "string",
       "prepend": "#"
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, '#3');
   });
 
@@ -164,7 +164,7 @@ describe('basic', function () {
       "truncate": 3,
       "append": "..."
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C/B...');
   });
 
@@ -175,7 +175,7 @@ describe('basic', function () {
       "truncate": 3,
       "shift": 2,
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'B');
   });
 
@@ -185,7 +185,7 @@ describe('basic', function () {
       "join" : "/",
       "replace": "/",
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'CBA');
   });
 
@@ -195,7 +195,7 @@ describe('basic', function () {
       "join" : "/",
       "replace": ["/", "|"],
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, 'C|B|A');
   });
 

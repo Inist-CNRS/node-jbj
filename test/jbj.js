@@ -5,12 +5,13 @@ var assert = require('assert')
 
 describe('JBJ', function () {
   it('send string', function() {
-    var output = JBJ.render({}, 'test');
+    var output = JBJ.renderSync({}, 'test');
     assert.equal(output, 'test');
   });
   it('with no stylesheet', function() {
-    var output = JBJ.render(null, 'test');
-    assert.equal(output, 'test');
+    assert.throws(function() {
+      JBJ.renderSync(null, 'test');
+    });
   })
   /* */
 });

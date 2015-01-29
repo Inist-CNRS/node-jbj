@@ -19,7 +19,7 @@ describe('select', function () {
         "first": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -29,7 +29,7 @@ describe('select', function () {
       "select" : ".a > .b > .c",
       "first": true
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -41,7 +41,7 @@ describe('select', function () {
         "first": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output.d.e.f, 'value');
   });
@@ -56,7 +56,7 @@ describe('select', function () {
         "first#1": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -68,7 +68,7 @@ describe('select', function () {
       "select#1" : ".b > .c",
       "first#1": true
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -82,7 +82,7 @@ describe('select', function () {
         "first#1": true
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output.d.e, 'value');
   });
@@ -98,7 +98,7 @@ describe('select', function () {
         "first#2": true
       }
     }
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -112,7 +112,7 @@ describe('select', function () {
       "select#2" : ".c",
       "first#2": true
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output, 'value');
   });
@@ -128,7 +128,7 @@ describe('select', function () {
         "first#2": true
       }
     }
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.ifError(!output)
     assert.equal(output.d, 'value');
   });

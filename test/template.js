@@ -22,7 +22,7 @@ describe('template', function () {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a, "X1X2X4X8");
   });
 

@@ -30,7 +30,6 @@
     "transtype": "^1.0.0",
     "JSONSelect": "https://github.com/touv/JSONSelect/archive/master.tar.gz",
     "extend": "^2.0.0",
-    "needle": "^0.7.10",
-    "async": "^0.9.0"
+    "needle": "^0.7.10"
   }
 }

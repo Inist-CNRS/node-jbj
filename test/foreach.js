@@ -20,7 +20,7 @@ describe('foreach', function () {
         "upcase" : null
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.b, 'X');
     assert.equal(output.c, 'Y');
     assert.equal(output.d, 'Z');
@@ -42,7 +42,7 @@ describe('foreach', function () {
         "upcase" : null
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output[0], 'X');
     assert.equal(output[1], 'Y');
     assert.equal(output[2], 'Z');
@@ -65,7 +65,7 @@ describe('foreach', function () {
         }
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output[0].b, 'X');
     assert.equal(output[1].b, 'Y');
     assert.equal(output[2].b, 'Z');

@@ -22,6 +22,23 @@ Use [mocha](https://github.com/visionmedia/mocha) to run the tests.
 
 # Documentation
 
+## API
+
+### renderSync(stylesheet : Object, input : Mixed) : Object
+
+Render `input` with `stylesheet`.
+```javascript
+	var JBJ = require('jbj'),
+	out = JBJ.renderSync({ "truncate" : 3 }, "1234");
+
+	console.log(out);
+```
+Output:
+
+	123
+
+If separator parameter is not provided, it is automatically detected.
+
 ## Actions
 
 ### get: path | [path,path, ...]

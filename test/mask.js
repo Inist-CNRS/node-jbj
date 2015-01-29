@@ -21,7 +21,7 @@ describe('mask', function () {
         "mask" : "b"
       }
     };
-    var output = JBJ.render(stylesheet, input);
+    var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.a.b.c, 'value');
     assert.equal(output.a.d, undefined);
   });

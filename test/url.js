@@ -1,10 +1,8 @@
-
 /* global describe, it */
 'use strict';
 var assert = require('assert')
   , JBJ = require('..');
-
-describe('needle', function () {
+describe('url', function () {
 
   it('no input', function(done) {
     var stylesheet = {
@@ -85,7 +83,7 @@ describe('needle', function () {
     };
     var output = JBJ.render(stylesheet, function(error, output) {
       assert.equal(error, null);
-      assert.equal(output.name, "NODE-JBJ");
+      assert.equal(output.name, "JBJ");
       assert.equal(output.main, "INDEX.JS");
       done();
     });
