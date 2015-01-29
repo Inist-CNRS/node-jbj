@@ -1,3 +1,4 @@
+
 /* global describe, it */
 'use strict';
 var assert = require('assert')
@@ -5,43 +6,33 @@ var assert = require('assert')
 
 describe('compute', function () {
   var input = {
-    "a" : {
-      "b" : {
-        "c" : "1"
-      },
-      "d" : "2",
-      "e" : "4"
-    },
-    "f": "8"
+    "a" : 20,
+    "b" : 3,
+    "c" : 5,
+    "d" : 8
   };
 
-  it('template #1', function() {
+  it('#1', function() {
     var stylesheet = {
-      "$remote" : {
-          "fetch" : "/corpus?i1"
-      },
-      "$g" : {
-        "find": "a.b.c",
+      "$e" : {
+        "compute": "round(a / b)",
         "cast": "number"
-      },
-      "$h" : {
-        "find": "a.d",
-        "cast": "number"
-      },
-      "$i" : {
-        "find": "a.e",
-        "cast": "number"
-      },
-      "$j" : {
-        "find": "f",
-        "cast": "number"
-      },
-      "$k": {
-        "compute": " g + h + i + j"
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.k, 15);
+    assert.equal(output.e, 7);
+  });
+
+  it('#2', function() {
+    var stylesheet = {
+      "$e" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+      }
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.e, 7);
   });
 
 
