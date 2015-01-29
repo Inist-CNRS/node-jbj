@@ -133,5 +133,25 @@ describe('select', function () {
     assert.equal(output.d, 'value');
   });
 
+  it('select #4', function() {
+    var stylesheet = {
+      "default" : {
+        "a" : {
+          "b" : [
+            { "#text" : "1" },
+            { "#text" : "2" },
+            { "#text" : "3" }
+          ]
+        }
+      },
+      "select" : ".a > .b .#text"
+    }
+    var output = JBJ.renderSync(stylesheet);
+    assert.ifError(!output)
+    assert.equal(output[0], '1');
+    assert.equal(output[1], '2');
+    assert.equal(output[2], '3');
+  });
+
 /**/
 });
