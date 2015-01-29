@@ -52,9 +52,58 @@ Output:
 	123
 
 
+## Source
+
+Stylesheet can contains an reference to data source. Source can be a file or URL.
+
+
+```javascript
+	var stylesheet_1 = {
+      "$?" : "https://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
+      "$name" : {
+        "upcase": true
+      },
+      "$main": {
+        "upcase": true
+      }
+    };
+	var stylesheet_2 = {
+      "$name" : {
+        "$?" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
+        "parseJSON" : true,
+        "path": "name"
+      },
+      "$main": {
+        "$?" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
+        "parseJSON" : true,
+        "path": "main",
+      }
+    };
+
+
+```
+
+
+
+## Variables
+
+Variable can be set using $ plus an dot notation path.
+
+```javascript
+	var stylesheet = {
+		"$x" : {
+			"get": "a.b.c",
+		},
+		"$y.y1.y2" : {
+			"get": "a.d"
+		}
+	}
+
+```
 
 
 ## Actions
+
 
 ### get: path | [path,path, ...]
 *aliases : find , path*
@@ -190,7 +239,41 @@ Append *something* to *input*
 ### reverse:
 Reverse items order of *input*
 
+## FAQ
 
+### How to chain the same action
+
+just add #
+
+```javascript
+	var styleshhet = {
+		"default":  "123456789",
+		"truncate#1": 8,
+		"truncate#2": 4,
+		"truncate#3": 2
+	};
+
+```
+
+### How to use input as variable in an expression
+
+just use this
+
+```javascript
+	var stylesheet = {
+      "$e" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+      }
+    }
+
+```
+
+### How to find more examples
+
+
+see unit tests : https://github.com/castorjs/node-jbj/tree/master/test
 
 # Also
 
@@ -202,6 +285,6 @@ Reverse items order of *input*
 
 # License
 
-[MIT/X11](https://github.com/castorjs/node-jbj/blob/master/LICENSE)
+[MIT](https://github.com/castorjs/node-jbj/blob/master/LICENSE)
 
 
