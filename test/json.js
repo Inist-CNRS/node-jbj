@@ -3,7 +3,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('csv', function () {
+describe('json', function () {
   var input = {
     "a" : {
       "b" : ["x","y","z"],
@@ -11,25 +11,24 @@ describe('csv', function () {
     }
   };
 
-  it('csv #1', function() {
+  it('json #1', function() {
     var stylesheet = {
       "$e" : {
         "find#0": "a",
         "mask": "b",
         "find#1": "b",
-        "csv" : ",",
-        "trim": true
+        "json" : ",",
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.e, "x,y,z");
+    assert.equal(output.e, "[\"x\",\"y\",\"z\"]");
   });
 
- it('csv #2', function() {
+ it('json #2', function() {
     var stylesheet = {
       "find": "a.b",
-      "csv" : ",",
-      "parseCSV": ","
+      "json" : true,
+      "parseJSON": true
     };
     var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output[0], "x");

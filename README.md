@@ -24,6 +24,20 @@ Use [mocha](https://github.com/visionmedia/mocha) to run the tests.
 
 ## API
 
+### render(stylesheet : Object, input : Mixed, callback : Function) : None
+
+Render `input` with `stylesheet`.
+```javascript
+	var JBJ = require('jbj'),
+	JBJ.render({ "truncate" : 3 }, "1234", function(err, out) {
+			console.log(out);
+	});
+
+```
+Output:
+
+	123
+
 ### renderSync(stylesheet : Object, input : Mixed) : Object
 
 Render `input` with `stylesheet`.
@@ -37,7 +51,8 @@ Output:
 
 	123
 
-If separator parameter is not provided, it is automatically detected.
+
+
 
 ## Actions
 
@@ -74,16 +89,25 @@ Selecting specific parts of *input*, hiding the rest, return object
 ### csv: separator
 Packs *input* to CSV, return string
 
-### json: none
-Packs *input* to JSON, return string
-
 ### parseCSV: separator
 *aliases : fromCSV, uncsv*
 Parse *input* as CSV string, return array
 
-### parsejSON:
+### json: none
+Packs *input* to JSON, return string
+
+### parseJSON:
 *aliases : fromJSON, unjson*
 Parse *input* as JSON string, return object
+
+### xml: options
+Packs *input* to XML, return string
+*options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options-1) documentation
+
+### parseXML: options
+*aliases : fromXML, unxml*
+Parse *input* as XML string, return object
+*options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options) documentation
 
 ### coalesce:
 

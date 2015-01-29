@@ -5,7 +5,6 @@ var assert = require('assert')
   , JBJ = require('..');
 
 describe('foreach', function () {
-
   it('foreach object', function() {
     var input = {
       "a" : {
@@ -48,7 +47,7 @@ describe('foreach', function () {
     assert.equal(output[2], 'Z');
   });
 
-  it('foreach& apply in array', function() {
+  it('foreach & apply in array', function() {
     var input = {
       "a" : [
         { "b" : "x", "c" : 0 },
@@ -74,6 +73,5 @@ describe('foreach', function () {
     assert.equal(output[1].c, 1);
     assert.equal(output[2].c, 2);
   });
-
 
 });
