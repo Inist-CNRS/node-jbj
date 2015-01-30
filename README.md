@@ -123,6 +123,7 @@ Set value and ignore *input*
 
 ### get: path | [path,path, ...]
 *aliases : find , path*
+
 Get value in *input* with some paths (with dot notation style)
 ```javascript
 	var stylesheet1 = {
@@ -146,7 +147,7 @@ Get value in *input* with some paths (with dot notation style)
 		},
 		"get": ["a.b", "a.c", "a.d"]
 	};
-	// output : [1, 2, 3]
+// output : [1, 2, 3]
 ```
 
 ### default: value
@@ -207,6 +208,7 @@ Apply stylesheet on all elements of *input*
 
 ### extend: object
 *aliases : extendWith*
+
 Extend *input* with another object
 ```javascript
 	var stylesheet = {
@@ -281,6 +283,7 @@ Packs *input* to CSV, return string
 
 ### parseCSV: separator
 *aliases : fromCSV, uncsv*
+
 Parse *input* as CSV string, return array
 ```javascript
 	var stylesheet = {
@@ -302,6 +305,7 @@ Packs *input* to JSON, return string
 
 ### parseJSON:
 *aliases : fromJSON, unjson*
+
 Parse *input* as JSON string, return object
 ```javascript
 	var stylesheet = {
@@ -334,6 +338,7 @@ Packs *input* to XML, return string
 
 ### parseXML: options
 *aliases : fromXML, unxml*
+
 Parse *input* as XML string, return object
 *options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options) documentation
 ```javascript
@@ -387,6 +392,7 @@ Build a string with mustache template and *input*
 
 ### compute: expression
 *aliases : expr*
+
 Compute an expression with all variable of the *input*.
 Note : "this" variable contains *input*
 ```javascript
@@ -468,10 +474,12 @@ Sort *input* object
 
 ### sortBy:
 *aliases : sort_by*
+
 Sort *input* object the given `prop` ascending.
 
 ### size:
 *aliases : length*
+
 Get the size or the length of *input*
 ```javascript
 	var stylesheet1 = {
@@ -517,6 +525,7 @@ Multiply *input* by *value*"
 
 ### dividedBy: value
 *aliases : divided_by*
+
 Divide *input* by *value*"
 ```javascript
 	var stylesheet = {
@@ -528,6 +537,7 @@ Divide *input* by *value*"
 
 ### join: string = ', '
 *aliases : glue*
+
 Join *input* with the given *string*.
 ```javascript
 	var stylesheet = {
@@ -559,6 +569,7 @@ Truncate *input* to *length*.
 
 ### truncateWords: n
 *aliases : truncate_words*
+
 Truncate *input* to *n* words.
 
 ### replace: [pattern, substitution] | pattern
