@@ -104,19 +104,6 @@ Variable can be set using $ plus an dot notation path.
 
 ## Actions
 
-
-### get: path | [path,path, ...]
-*aliases : find , path*
-Get value in *input* with some paths (with dot notation style)
-```javascript
-	var stylesheet1 = {
-		"get": "a.b.c"
-	};
-	var stylesheet2 = {
-		"get": ["a.b", "a.c", "a.d"]
-	};
-```
-
 ### set: value
 Set value and ignore *input*
 ```javascript
@@ -134,12 +121,40 @@ Set value and ignore *input*
 	};
 ```
 
+### get: path | [path,path, ...]
+*aliases : find , path*
+Get value in *input* with some paths (with dot notation style)
+```javascript
+	var stylesheet1 = {
+		"set": {
+			"a" : {
+				"b" : {
+					"c" : "Yo"
+				}
+			}
+		},
+		"get": "a.b.c"
+	};
+	// output : Yo
+	var stylesheet2 = {
+		"set" : {
+			"a" : {
+				"b" : 1,
+				"c" : 2,
+				"d" : 3
+			}
+		},
+		"get": ["a.b", "a.c", "a.d"]
+	};
+	// output : [1, 2, 3]
+```
+
 ### default: value
 Fix value if *input* is not set
 ```javascript
 	var stylesheet = {
 		var stylesheet = {
-			"set": "value"
+			"default": "value"
 		};
 	};
 ```
