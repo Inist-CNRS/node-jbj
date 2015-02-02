@@ -33,10 +33,9 @@ Render `input` with `stylesheet`.
 			console.log(out);
 	});
 
-```
-Output:
+	// Output : 123
 
-	123
+```
 
 ### renderSync(stylesheet : Object, input : Mixed) : Object
 
@@ -46,16 +45,37 @@ Render `input` with `stylesheet`.
 	out = JBJ.renderSync({ "truncate" : 3 }, "1234");
 
 	console.log(out);
-```
-Output:
 
-	123
+	// Output : 123
+```
+
+### register(protocol : String, callback : Function) : None
+Add a function to fetch data for a specfic protocol
+```javascript
+	JBJ.register('http:', function request(urlObj, callback) {
+		var buf = ''
+	      , req = require('http').get(urlObj, function(res) {
+			if (res.statusCode !== 200) {
+				return callback(new Error('HTTP Error ' + res.statusCode));
+			}
+			res.setEncoding('utf8');
+			res.on('data', function (chunk) {
+			  buf += chunk.toString();
+			});
+			res.on('error', callback);
+			res.on('end', function() {
+			  callback(null, buf);
+			});
+		});
+		req.on('error', callback);
+	});
+```
 
 
 ## Source
 
 Stylesheet can contains an reference to data source. Source can be a file or URL.
-
+By default, only the *file:* protocol is supported. Add you own protocol with *register*
 
 ```javascript
 	var stylesheet_1 = {
@@ -122,6 +142,7 @@ Set value and ignore *input*
 ```
 
 ### get: path | [path,path, ...]
+
 *aliases : find , path*
 
 Get value in *input* with some paths (with dot notation style)
@@ -207,6 +228,7 @@ Apply stylesheet on all elements of *input*
 ```
 
 ### extend: object
+
 *aliases : extendWith*
 
 Extend *input* with another object
@@ -282,6 +304,7 @@ Packs *input* to CSV, return string
 ```
 
 ### parseCSV: separator
+
 *aliases : fromCSV, uncsv*
 
 Parse *input* as CSV string, return array
@@ -304,6 +327,7 @@ Packs *input* to JSON, return string
 ```
 
 ### parseJSON:
+
 *aliases : fromJSON, unjson*
 
 Parse *input* as JSON string, return object
@@ -337,6 +361,7 @@ Packs *input* to XML, return string
 ```
 
 ### parseXML: options
+
 *aliases : fromXML, unxml*
 
 Parse *input* as XML string, return object
@@ -375,7 +400,7 @@ Trim *input*, return string
 	// output : "xxx"
 ```
 
-### template:  mustache_templatee
+### template:  mustacheTemplate | [mustacheTemplate, mustacheTemplate, ...]
 Build a string with mustache template and *input*
 ```javascript
 	var stylesheet = {
@@ -391,6 +416,7 @@ Build a string with mustache template and *input*
 ```
 
 ### compute: expression
+
 *aliases : expr*
 
 Compute an expression with all variable of the *input*.
@@ -472,12 +498,14 @@ Get the last element of *input*
 ### sort:
 Sort *input* object
 
-### sortBy:
+### sortBy: prop | [prop, prop, ...]
+
 *aliases : sort_by*
 
 Sort *input* object the given `prop` ascending.
 
 ### size:
+
 *aliases : length*
 
 Get the size or the length of *input*
@@ -493,7 +521,7 @@ Get the size or the length of *input*
 	// output : 5
 ```
 
-### plus: value
+### plus: value | [value, value, ...]
 Add *input* and *value*
 ```javascript
 	var stylesheet = {
@@ -503,7 +531,7 @@ Add *input* and *value*
 	// output : 7
 ```
 
-### minus: value
+### minus: value | [value, value, ...]
 Subtract *value* from *input*
 ```javascript
 	var stylesheet = {
@@ -513,7 +541,7 @@ Subtract *value* from *input*
 	// output : 1
 ```
 
-### times: value
+### times: value | [value, value, ...]
 Multiply *input* by *value*"
 ```javascript
 	var stylesheet = {
@@ -523,7 +551,8 @@ Multiply *input* by *value*"
 	// output : 25
 ```
 
-### dividedBy: value
+### dividedBy: value | [value, value, ...]
+
 *aliases : divided_by*
 
 Divide *input* by *value*"
@@ -536,6 +565,7 @@ Divide *input* by *value*"
 ```
 
 ### join: string = ', '
+
 *aliases : glue*
 
 Join *input* with the given *string*.
@@ -547,7 +577,7 @@ Join *input* with the given *string*.
 	// output : "a | b | c"
 ```
 
-### shift: n
+### shift: n | [n, n, ...]
 Shift *input* to the left by *n*
 ```javascript
 	var stylesheet = {
@@ -557,7 +587,7 @@ Shift *input* to the left by *n*
 	// output : "world"
 ```
 
-### truncate: length
+### truncate: length | [length, length, ...]
 Truncate *input* to *length*.
 ```javascript
 	var stylesheet = {
@@ -567,7 +597,8 @@ Truncate *input* to *length*.
 	// output : "hello"
 ```
 
-### truncateWords: n
+### truncateWords: n | [n, n, ...]
+
 *aliases : truncate_words*
 
 Truncate *input* to *n* words.
@@ -582,7 +613,7 @@ Replace *pattern* with *substitution* in *input*.
 	// output :  X.X.X.X
 ```
 
-### prepend: something
+### prepend: something | [something, something, ...]
 Prepend *something* to *input*
 ```javascript
 	var stylesheet = {
@@ -592,7 +623,7 @@ Prepend *something* to *input*
 	// output : "hello world"
 ```
 
-### append: something
+### append: something | [something, something, ...]
 Append *something* to *input*
 ```javascript
 	var stylesheet = {
