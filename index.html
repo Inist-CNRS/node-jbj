@@ -5,11 +5,29 @@
   <script src="assets/js/bundle.js" type="text/javascript"></script>
 </head>
 <body>
-  <textarea id="input" cols="30" rows="10"></textarea>
-  <textarea id="stylesheet" cols="30" rows="10"></textarea>
+  <textarea id="input" cols="30" rows="10">{"test":1}</textarea>
+  <textarea id="stylesheet" cols="30" rows="10">{"get":"test"}</textarea>
   <textarea id="output" cols="30" rows="10"></textarea>
+  <button>Apply</button>
   <script type="text/javascript">
 var JBJ = require('jbj');
+
+var applyStylesheet = function applyStylesheet() {
+  var input      = JSON.parse(document.getElementById('input').value);
+  var stylesheet = JSON.parse(document.getElementById('stylesheet').value);
+  JBJ.render(stylesheet,input, function afterRender(err, out) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    var output = document.getElementById('output');
+    output.value = out;
+  });
+}
+
+var button = document.getElementsByTagName('button')[0];
+button.addEventListener('click', applyStylesheet);
+
   </script>
 </body>
 </html>
