@@ -575,7 +575,7 @@ Divide *input* by *value*"
 ```javascript
 	var stylesheet = {
 		"set" : 10,
-		"dividedBy: 2
+		"dividedBy": 2
 	};
 	// output : 5
 	var stylesheet = {
