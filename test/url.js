@@ -2,6 +2,26 @@
 'use strict';
 var assert = require('assert')
   , JBJ = require('..');
+
+function request(urlObj, callback) {
+  var buf = '', req = require('http').get(urlObj, function(res) {
+    if (res.statusCode !== 200) {
+      return callback(new Error('HTTP Error ' + res.statusCode));
+    }
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+      buf += chunk.toString();
+    });
+    res.on('error', callback);
+    res.on('end', function() {
+      callback(null, buf);
+    });
+  });
+
+  req.on('error', callback);
+}
+JBJ.register('http:', request);
+
 describe('url', function () {
 
   it('no input', function(done) {
@@ -37,7 +57,7 @@ describe('url', function () {
 
   it('wrong input', function(done) {
     var stylesheet = {
-      "$?" : "https://raw.githubusercontent.com/castorjs/node-jbj/master/package.jso",
+      "$?" : "http://registry.npmjs.com/jbjj",
       "$name" : {
         "upcase": null
       },
@@ -68,23 +88,17 @@ describe('url', function () {
   });
 
 
-  it('#1', function(done) {
+  it('good input', function(done) {
     var stylesheet = {
-      "$?" : "https://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
+      "$?" : "http://registry.npmjs.com/jbj",
       "parseJSON" : true,
       "$name" : {
         "path": "name",
         "upcase": null
-      },
-      "$main": {
-        "path": "main",
-        "upcase": null
-      }
-    };
+      }    };
     var output = JBJ.render(stylesheet, function(error, output) {
       assert.equal(error, null);
       assert.equal(output.name, "JBJ");
-      assert.equal(output.main, "INDEX.JS");
       done();
     });
   });
