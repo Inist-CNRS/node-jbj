@@ -11,19 +11,36 @@
   <button>Apply</button>
   <script type="text/javascript">
 var JBJ = require('jbj');
+var output = document.getElementById('output');
+
+var getValue = function getValue(id) {
+  var value = {};
+  try {
+    value = JSON.parse(document.getElementById(id).value);
+    return value;
+  }
+  catch(e) {
+    console.error(e);
+    value.err = e;
+    output.value = "Error in " + id + ":\n" + e;
+    return value;
+  }
+};
 
 var applyStylesheet = function applyStylesheet() {
-  var input      = JSON.parse(document.getElementById('input').value);
-  var stylesheet = JSON.parse(document.getElementById('stylesheet').value);
+  var input = getValue('input');
+  if (input.err) return;
+  var stylesheet = getValue('stylesheet');
+  if (stylesheet.err) return;
   JBJ.render(stylesheet,input, function afterRender(err, out) {
     if (err) {
       console.error(err);
+      output.value = err;
       return;
     }
-    var output = document.getElementById('output');
     output.value = out;
   });
-}
+};
 
 var button = document.getElementsByTagName('button')[0];
 button.addEventListener('click', applyStylesheet);
