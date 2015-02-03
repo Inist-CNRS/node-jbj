@@ -70,7 +70,15 @@ Add a function to fetch data for a specfic protocol
 		req.on('error', callback);
 	});
 ```
+### Adding filters/actions
 
+To add a filter simply add a method to the .filters object:
+
+```javascript
+	jbj.filters.concatx = function(obj, args) {
+		return String(obj) + String(args) + 'X;
+	};
+```
 
 ## Source
 
@@ -519,6 +527,35 @@ Get the size or the length of *input*
 		"size": true
 	};
 	// output : 5
+```
+### max:
+Add *input* and *value*
+```javascript
+	var stylesheet1 = {
+		"set" : [2, 4, 1, 7, 9, 3],
+		"max" : true
+	};
+	// output : 9
+	var stylesheet2 = {
+		"set" : {a: 9, b: 4, c: 3, d: 5},
+		"max" : true
+	};
+	// output : 9 
+```
+
+### min:
+Subtract *value* from *input*
+```javascript
+	var stylesheet1 = {
+		"set" : [2, 4, 1, 7, 9, 3],
+		"min" : true
+	};
+	// output : 1
+	var stylesheet2 = {
+		"set" : {a: 9, b: 4, c: 3, d: 5},
+		"min" : true
+	};
+	// output : 3
 ```
 
 ### plus: value | [value, value, ...]

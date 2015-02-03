@@ -218,6 +218,29 @@ describe('basic', function () {
     var output = JBJ.renderSync(stylesheet);
     assert.equal(output, 'b');
   });
-
+  it('basic #21', function() {
+    var stylesheet = {
+      "set" : [2, 4,1,7, 9,3],
+      "min" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 1);
+  });
+  it('basic #22', function() {
+    var stylesheet = {
+      "set" : [2, 4, 1, 7, 9, 3],
+      "max" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 9);
+  });
+  it('basic #23', function() {
+    var stylesheet = {
+      "set" : {a: 9, b: 4, c: 3, d: 5},
+      "min" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 3);
+  });
 
 });
