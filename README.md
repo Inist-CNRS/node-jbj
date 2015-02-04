@@ -49,7 +49,7 @@ Render `input` with `stylesheet`.
 	// Output : 123
 ```
 
-### register(protocol : String, callback : Function) : None 
+### register(protocol : String, callback : Function) : None
 Add a function to fetch data for a specific protocol
 ```javascript
 	JBJ.register('http:', function request(urlObj, callback) {
@@ -130,7 +130,7 @@ Variable can be set using $ plus a dot notation path.
 
 ## Actions
 
-<a id="action-set"></a> 
+<a id="set"></a>
 ### set: value
 Set value and ignore *input*
 ```javascript
@@ -148,6 +148,7 @@ Set value and ignore *input*
 	};
 ```
 
+<a id="get"></a>
 ### get: path | [path,path, ...]
 
 *aliases : find , path*
@@ -178,6 +179,7 @@ Get value in *input* with some paths (with dot notation style)
 // output : [1, 2, 3]
 ```
 
+<a id="default"></a>
 ### default: value
 Fix value if *input* is not set
 ```javascript
@@ -188,6 +190,7 @@ Fix value if *input* is not set
 	};
 ```
 
+<a id="debug"></a>
 ### debug: none
 Print *input* with console.log
 ```javascript
@@ -198,6 +201,7 @@ Print *input* with console.log
 	// output: value
 ```
 
+<a id=""></a>
 ### foreach: stylesheet
 Apply stylesheet on all elements of *input*
 ```javascript
@@ -234,6 +238,7 @@ Apply stylesheet on all elements of *input*
 	// output : [ { "b" : "X" }, { "b" : "Y" } ]
 ```
 
+<a id="extend"></a>
 ### extend: object
 
 *aliases : extendWith*
@@ -251,6 +256,7 @@ Extend *input* with another object
 	// output : { a: 1, b: 2}
 ```
 
+<a id="select"></a>
 ### select: path | [path, path, ...]
 Peck element(s) in *input* with "CSS selector"
 ```javascript
@@ -269,6 +275,7 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
+<a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 Convert *input* to specific type
 ```javascript
@@ -285,6 +292,7 @@ Convert *input* to specific type
 for syntax see [transtype](https://github.com/touv/transtype)
 
 
+<a id="mask"></a>
 ### mask: pattern
 Selecting specific parts of *input*, hiding the rest, return object
 ```javascript
@@ -300,6 +308,7 @@ Selecting specific parts of *input*, hiding the rest, return object
 ```
 for syntax see [json-mask](https://github.com/nemtsov/json-mask)
 
+<a id="csv"></a>
 ### csv: separator
 Pack *input* to CSV, return string
 ```javascript
@@ -310,6 +319,7 @@ Pack *input* to CSV, return string
 	// output : "x,y,z"\r\n
 ```
 
+<a id="parseCSV"></a>
 ### parseCSV: separator
 
 *aliases : fromCSV, uncsv*
@@ -323,6 +333,7 @@ Parse *input* as CSV string, return array
 	// output : ["x","y","z"]
 ```
 
+<a id="json"></a>
 ### json: none
 
 *alias : toJSON*
@@ -336,6 +347,7 @@ Pack *input* to JSON, return string
 	// output : "[\"x\",\"y\",\"z\"]"
 ```
 
+<a id="parseJSON"></a>
 ### parseJSON:
 
 *aliases : fromJSON, unjson*
@@ -349,6 +361,7 @@ Parse *input* as JSON string, return object
 	// output : ["x","y","z"]
 ```
 
+<a id="xml"></a>
 ### xml: options
 Pack *input* to XML, return string
 
@@ -371,6 +384,7 @@ Pack *input* to XML, return string
 	// output : <root><item index="1">A</item><item index="2">B</item><item index="3">C</item></root>
 ```
 
+<a id="parseXML"></a>
 ### parseXML: options
 
 *aliases : fromXML, unxml*
@@ -389,6 +403,7 @@ Parse *input* as XML string, return object
 	// output : { root : { item : [ { xml#id: 1, #text: A }, { xml#id: 2, #text: B }, { xml#id: 3, #text: C } ] } }
 ```
 
+<a id="coalesce"></a>
 ### coalesce: none
 Get the first non-undefined value
 ```javascript
@@ -399,9 +414,11 @@ Get the first non-undefined value
 	// output : "a"
 ```
 
+<a id="required"></a>
 ### required: none
 If *input* is not set, return Error
 
+<a id="trim"></a>
 ### trim: none
 Trim *input*, return string
 ```javascript
@@ -412,6 +429,7 @@ Trim *input*, return string
 	// output : "xxx"
 ```
 
+<a id="template"></a>
 ### template:  mustacheTemplate | [mustacheTemplate, mustacheTemplate, ...]
 Build a string with mustache template and *input*
 ```javascript
@@ -427,6 +445,7 @@ Build a string with mustache template and *input*
 	// output : I say hello to the world
 ```
 
+<a id="compute"></a>
 ### compute: expression
 
 Compute an expression with all variables of the *input*.
@@ -455,6 +474,7 @@ Note : `this` variable contains *input*
 	// output : 10
 ```
 
+<a id="capitalize"></a>
 ### capitalize:
 Capitalize the first letter of *input*
 ```javascript
@@ -465,6 +485,7 @@ Capitalize the first letter of *input*
 	// output : "Xyz"
 ```
 
+<a id="downcase"></a>
 ### downcase:
 Downcase *input*
 ```javascript
@@ -475,6 +496,7 @@ Downcase *input*
 	// output : "xyz"
 ```
 
+<a id="upcase"></a>
 ### upcase:
 Uppercase *input*
 ```javascript
@@ -485,6 +507,7 @@ Uppercase *input*
 	// output : "XYZ"
 ```
 
+<a id="first"></a>
 ### first:
 Get the first element of *input*
 ```javascript
@@ -495,6 +518,7 @@ Get the first element of *input*
 	// output : "a"
 ```
 
+<a id="last"></a>
 ### last:
 Get the last element of *input*
 ```javascript
@@ -505,15 +529,18 @@ Get the last element of *input*
 	// output : "c"
 ```
 
+<a id="sort"></a>
 ### sort:
 Sort *input* object
 
+<a id="sortBy"></a>
 ### sortBy: prop | [prop, prop, ...]
 
 *aliases : sort_by*
 
 Sort *input* object the given `prop` ascending.
 
+<a id="size"></a>
 ### size:
 
 *aliases : length*
@@ -530,6 +557,7 @@ Get the size or the length of *input*
 	};
 	// output : 5
 ```
+<a id="max"></a>
 ### max:
 Add *input* and *value*
 ```javascript
@@ -542,9 +570,10 @@ Add *input* and *value*
 		"set" : {a: 9, b: 4, c: 3, d: 5},
 		"max" : true
 	};
-	// output : 9 
+	// output : 9
 ```
 
+<a id="min"></a>
 ### min:
 Subtract *value* from *input*
 ```javascript
@@ -560,6 +589,7 @@ Subtract *value* from *input*
 	// output : 3
 ```
 
+<a id="plus"></a>
 ### plus: value | [value, value, ...]
 Add *input* and *value*
 ```javascript
@@ -575,6 +605,7 @@ Add *input* and *value*
 	// output : [5,6,7]
 ```
 
+<a id="minus"></a>
 ### minus: value | [value, value, ...]
 Subtract *value* from *input*
 ```javascript
@@ -590,6 +621,7 @@ Subtract *value* from *input*
 	// output : [3,2,1]
 ```
 
+<a id="times"></a>
 ### times: value | [value, value, ...]
 Multiply *input* by *value*"
 ```javascript
@@ -605,6 +637,7 @@ Multiply *input* by *value*"
 	// output : [4,8,12]
 ```
 
+<a id="dividedBy"></a>
 ### dividedBy: value | [value, value, ...]
 
 *aliases : divided_by*
@@ -623,6 +656,7 @@ Divide *input* by *value*"
 	// output : [4,2]
 ```
 
+<a id="join"></a>
 ### join: string = ', '
 
 *aliases : glue*
@@ -636,6 +670,7 @@ Join *input* with the given *string*.
 	// output : "a | b | c"
 ```
 
+<a id="shift"></a>
 ### shift: n | [n, n, ...]
 Shift *input* to the left by *n*
 ```javascript
@@ -656,6 +691,7 @@ Shift *input* to the left by *n*
 	// output : [[3,4,5],[4,5]]
 ```
 
+<a id="truncate"></a>
 ### truncate: length | [length, length, ...]
 Truncate *input* to *length*.
 ```javascript
@@ -666,6 +702,7 @@ Truncate *input* to *length*.
 	// output : "hello"
 ```
 
+<a id="truncateWords"></a>
 ### truncateWords: n | [n, n, ...]
 
 *aliases : truncate_words*
@@ -683,8 +720,9 @@ Truncate *input* to *n* words (separator: space).
 		"truncateWords": [1,2]
 	}
 	// output ["This","This is"]
-```	
+```
 
+<a id="replace"></a>
 ### replace: [pattern, substitution] | pattern
 Replace *pattern* with *substitution* in *input*.
 ```javascript
@@ -700,6 +738,7 @@ Replace *pattern* with *substitution* in *input*.
 	// output :  XXXX
 ```
 
+<a id="prepend"></a>
 ### prepend: something | [something, something, ...]
 Prepend *something* to *input*
 ```javascript
@@ -712,9 +751,10 @@ Prepend *something* to *input*
 		"set" : "h"
 		"prepend": ["a","e","i","o","u"]
 	};
-	// output : ["ah","eh","ih","oh","uh"]	
+	// output : ["ah","eh","ih","oh","uh"]
 ```
 
+<a id="append"></a>
 ### append: something | [something, something, ...]
 Append *something* to *input*
 ```javascript
@@ -730,6 +770,7 @@ Append *something* to *input*
 	// output : ["cool!","cool?","cool."]
 ```
 
+<a id="reverse"></a>
 ### reverse:
 Reverse items order of *input*
 ```javascript
