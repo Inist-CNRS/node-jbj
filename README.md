@@ -49,7 +49,7 @@ Render `input` with `stylesheet`.
 	// Output : 123
 ```
 
-### register(protocol : String, callback : Function) : None
+### register(protocol : String, callback : Function) : None 
 Add a function to fetch data for a specific protocol
 ```javascript
 	JBJ.register('http:', function request(urlObj, callback) {
@@ -130,7 +130,7 @@ Variable can be set using $ plus a dot notation path.
 
 ## Actions
 
-### set: value
+### set: value [action-set]
 Set value and ignore *input*
 ```javascript
 	var stylesheet1 = {
