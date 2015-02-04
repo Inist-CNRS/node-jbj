@@ -130,8 +130,9 @@ Variable can be set using $ plus a dot notation path.
 
 ## Actions
 
+<a id="action-set"></a> 
 ### set: value
- <a id="action-set"></a> Set value and ignore *input*
+Set value and ignore *input*
 ```javascript
 	var stylesheet1 = {
 		"set": "value"
