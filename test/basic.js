@@ -1,4 +1,4 @@
-
+/*jshint node:true */
 /* global describe, it */
 'use strict';
 var assert = require('assert')
@@ -241,6 +241,33 @@ describe('basic', function () {
     };
     var output = JBJ.renderSync(stylesheet);
     assert.equal(output, 3);
+  });
+
+  it('basic #24', function() {
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["a","b","c","d","e"]');
+  });
+
+  it('basic #25', function() {
+    var stylesheet = {
+      "set"     : { 'a': 1, 'b': [2, 3]},
+      "flatten" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '{"a":1,"b":[2,3]}');
+  });
+
+  it('basic #26', function() {
+    var stylesheet = {
+      "set"         : [ 1, 2, 3, 1, 2],
+      "deduplicate" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '[1,2,3]');
   });
 
 });

@@ -201,7 +201,7 @@ Print *input* with console.log
 	// output: value
 ```
 
-<a id=""></a>
+<a id="foreach"></a>
 ### foreach: stylesheet
 Apply stylesheet on all elements of *input*
 ```javascript
@@ -778,6 +778,31 @@ Reverse items order of *input*
 		"set" : [1,2,3]
 	};
 	// output : [3,2,1]
+```
+
+<a id="flatten"></a>
+## flatten:
+Flatten an array.
+```javascript
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+	// output : ["a","b","c","d","e"]
+```
+
+<a id="deduplicate"></a>
+## deduplicate:
+*aliases : dedupe , unique*
+
+Deduplicate values in an array.
+
+```javascript
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+	// output : ["a","b","c","d","e"]
 ```
 
 ## FAQ
