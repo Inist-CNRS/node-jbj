@@ -80,6 +80,66 @@ var examples = {
       "join" : "/",
       "truncate": 3,
       "append": "..."
+    },
+    "shift": {
+      "get": "a.d",
+      "join" : "/",
+      "truncate": 3,
+      "shift": 2
+    },
+    "replace": {
+      "get": "a.d",
+      "join" : "/",
+      "replace": "/"
+    },
+    "replace 2": {
+      "get": "a.d",
+      "join" : "/",
+      "replace": ["/", "|"]
+    },
+    "mapping": {
+      "get" : "a.b.c",
+      "mapping" : {
+        "value" : 1
+      }
+    },
+    "mapping 2": {
+      "set" : 1,
+      "mapping" : ['a','b','c']
+    },
+    "min": {
+      "set" : [2, 4,1,7, 9,3],
+      "min" : true
+    },
+    "max": {
+      "set" : [2, 4, 1, 7, 9, 3],
+      "max" : true
+    },
+    "min obj": {
+      "set" : {a: 9, b: 4, c: 3, d: 5},
+      "min" : true
+    },
+    "flatten": {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    },
+    "deduplicate": {
+      "set"         : [ 1, 2, 3, 1, 2],
+      "deduplicate" : true
+    }
+  },
+  "Compute": {
+    "input": {
+      "a" : 20,
+      "b" : 3,
+      "c" : 5,
+      "d" : 8
+    },
+    "round": {
+      "$e" : {
+        "compute": "round(a / b)",
+        "cast": "number"
+      }
     }
   }
 };
@@ -94,9 +154,9 @@ var showExample = function showExample(e) {
   var subName     = exampleName.split(':')[1].trim();
   var input       = examples[difficulty].input;
   var stylesheet  = examples[difficulty][subName];
-  var result      = JBJ.renderSync(stylesheet, input);
   inputArea.value = JSON.stringify(input,null,"\t");
   stylesheetArea.value = JSON.stringify(stylesheet,null,"\t");
+  var result      = JBJ.renderSync(stylesheet, input);
   outputArea.value = JSON.stringify(result,null,"\t");
 };
 
