@@ -642,6 +642,29 @@ Reverse items order of *input*
 	// output : [3,2,1]
 ```
 
+## flatten:
+Flatten an array.
+```javascript
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+	// output : ["a","b","c","d","e"]
+```
+
+## deduplicate:
+*aliases : dedupe , unique*
+
+Deduplicate values in an array.
+
+```javascript
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+	// output : ["a","b","c","d","e"]
+```
+
 ## FAQ
 
 ### How to chain the same action

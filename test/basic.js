@@ -1,4 +1,4 @@
-
+/*jshint node:true */
 /* global describe, it */
 'use strict';
 var assert = require('assert')
@@ -219,5 +219,31 @@ describe('basic', function () {
     assert.equal(output, 'b');
   });
 
+  it('basic #21', function() {
+    var stylesheet = {
+      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
+      "flatten" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["a","b","c","d","e"]');
+  });
+
+  it('basic #22', function() {
+    var stylesheet = {
+      "set"     : { 'a': 1, 'b': [2, 3]},
+      "flatten" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '{"a":1,"b":[2,3]}');
+  });
+
+  it('basic #23', function() {
+    var stylesheet = {
+      "set"         : [ 1, 2, 3, 1, 2],
+      "deduplicate" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '[1,2,3]');
+  });
 
 });
