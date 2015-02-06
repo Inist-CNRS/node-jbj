@@ -446,6 +446,46 @@ var examples = {
       },
       "select" : ".a > .b .#text"
     }
+  },
+  "Template": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1"
+        },
+        "d" : "2",
+        "e" : "4"
+      },
+      "f": "8"
+    },
+    "mustache": {
+      "$a" : {
+        "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
+      }
+    }
+  },
+  "Xml": {
+    "parseXML": {
+      "default": "<root><item xml:id=\"1\">A</item><item xml:id=\"2\">B</item><item xml:id=\"3\">C</item></root>",
+      "parseXML" : {
+        "specialChar": "#",
+        "longTag" : true
+      }
+    },
+    "output": {
+      "default": {
+        "root" : {
+          "item" : [
+            { "index" : "1", "$t" : "A"},
+            { "index" : "2", "$t" : "B"},
+            { "index" : "3", "$t" : "C"}
+          ]
+        }
+      },
+      "xml" : {
+        "indent": false
+      }
+    }
   }
 };
 
