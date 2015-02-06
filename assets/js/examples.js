@@ -291,6 +291,22 @@ var examples = {
       "json" : true,
       "parseJSON": true
     }
+  },
+  "Mask": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
+    },
+    "1": {
+      "$a" : {
+        "find": "a",
+        "mask" : "b"
+      }
+    }
   }
 };
 
