@@ -799,10 +799,10 @@ Deduplicate values in an array.
 
 ```javascript
     var stylesheet = {
-      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
-      "flatten" : true
+      "set"         : [ 1, 2, 3, 1, 2],
+      "deduplicate" : true
     };
-	// output : ["a","b","c","d","e"]
+	// output : [1,2,3]
 ```
 
 ## FAQ
