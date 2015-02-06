@@ -307,6 +307,59 @@ var examples = {
         "mask" : "b"
       }
     }
+  },
+  "Misc": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
+      }
+    },
+    "find cast": {
+      "$a" : {
+        "find": "a.b.c",
+        "cast" : "number"
+      }
+    },
+    "find default": {
+      "$a" : {
+        "find": "a.b.d",
+        "default": "truc"
+      }
+    },
+    "unjson": {
+      "$a" : {
+        "find": "a.b.d",
+        "default": '["truc", "bidule"]',
+        "unjson": null
+      }
+    },
+    "required": {
+      "$a" : {
+        "find": "a.b.d",
+        "required": true
+      }
+    },
+    "extendWith": {
+      "extendWith": {
+        "a" : {
+          "b" : {
+            "cc" : "val1"
+          },
+          "d" : "val2"
+        }
+      }
+    },
+    "set": {
+      "set": {
+        "a" : {
+          "b" : "val1",
+          "e" : "val2"
+        }
+      }
+    }
   }
 };
 
