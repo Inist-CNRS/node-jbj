@@ -805,6 +805,30 @@ Deduplicate values in an array.
 	// output : [1,2,3]
 ```
 
+<a id="remove"></a>
+## remove:
+*alias : del*
+
+Remove one value in an array.
+
+```javascript
+    var stylesheet = {
+      "set"    : [ 1, 2, 3],
+      "remove" : 2
+    };
+	// output : [1,3]
+    var stylesheet = {
+      "set"    : [ "a", "", "b"],
+      "remove" : ""
+    };
+    // output : ["a","b"]
+    var stylesheet = {
+      "set"    : [ "a", "b", "c"],
+      "remove" : "b"
+    };
+    // output : ["a","c"]
+```
+
 ## FAQ
 
 ### How to chain the same action
