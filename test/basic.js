@@ -218,8 +218,32 @@ describe('basic', function () {
     var output = JBJ.renderSync(stylesheet);
     assert.equal(output, 'b');
   });
-
   it('basic #21', function() {
+    var stylesheet = {
+      "set" : [2, 4,1,7, 9,3],
+      "min" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 1);
+  });
+  it('basic #22', function() {
+    var stylesheet = {
+      "set" : [2, 4, 1, 7, 9, 3],
+      "max" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 9);
+  });
+  it('basic #23', function() {
+    var stylesheet = {
+      "set" : {a: 9, b: 4, c: 3, d: 5},
+      "min" : true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 3);
+  });
+
+  it('basic #24', function() {
     var stylesheet = {
       "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
       "flatten" : true
@@ -228,7 +252,7 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '["a","b","c","d","e"]');
   });
 
-  it('basic #22', function() {
+  it('basic #25', function() {
     var stylesheet = {
       "set"     : { 'a': 1, 'b': [2, 3]},
       "flatten" : true
@@ -237,7 +261,7 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '{"a":1,"b":[2,3]}');
   });
 
-  it('basic #23', function() {
+  it('basic #26', function() {
     var stylesheet = {
       "set"         : [ 1, 2, 3, 1, 2],
       "deduplicate" : true
