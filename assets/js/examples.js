@@ -140,6 +140,49 @@ var examples = {
         "compute": "round(a / b)",
         "cast": "number"
       }
+    },
+    "round this": {
+      "$e" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+      }
+    },
+    "variables": {
+      "$x" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+      },
+      "$y" : {
+        "path": "b",
+        "cast": "number"
+      },
+      "$z" : {
+        "compute": "x + y",
+      }
+    }
+  },
+  "CSV": {
+    "input": {
+      "a" : {
+        "b" : ["x","y","z"],
+        "d" : null
+      }
+    },
+    "output": {
+      "$e" : {
+        "find#0": "a",
+        "mask": "b",
+        "find#1": "b",
+        "csv" : ",",
+        "trim": true
+      }
+    },
+    "parseCSV": {
+      "find": "a.b",
+      "csv" : ",",
+      "parseCSV": ","
     }
   }
 };
