@@ -360,6 +360,92 @@ var examples = {
         }
       }
     }
+  },
+  "Select": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
+    },
+    "first": {
+      "$$" : {
+        "select" : ".a > .b > .c",
+        "first": true
+      }
+    },
+    "first 2": {
+      "$d.e.f" : {
+        "select" : ".a > .b > .c",
+        "first": true
+      }
+    },
+    "first 3": {
+      "$$" : {
+        "select" : ".a",
+        "first": true,
+        "select#1" : ".b > .c",
+        "first#1": true
+      }
+    },
+    "first 4": {
+      "select" : ".a",
+      "first": true,
+      "select#1" : ".b > .c",
+      "first#1": true
+    },
+    "first 5": {
+      "$d.e" : {
+        "select" : ".a",
+        "first": true,
+        "select#1" : ".b > .c",
+        "first#1": true
+      }
+    },
+    "first 6": {
+      "$$" : {
+        "select#0" : ".a",
+        "first#0": true,
+        "select#1" : ".b",
+        "first#1": true,
+        "select#2" : ".c",
+        "first#2": true
+      }
+    },
+    "first 7": {
+      "select#0" : ".a",
+      "first#0": true,
+      "select#1" : ".b",
+      "first#1": true,
+      "select#2" : ".c",
+      "first#2": true
+    },
+    "first 8": {
+      "$d" : {
+        "select#0" : ".a",
+        "first#0": true,
+        "select#1" : ".b",
+        "first#1": true,
+        "select#2" : ".c",
+        "first#2": true
+      }
+    }
+  },
+  "Empty": {
+    "default": {
+      "default" : {
+        "a" : {
+          "b" : [
+            { "#text" : "1" },
+            { "#text" : "2" },
+            { "#text" : "3" }
+          ]
+        }
+      },
+      "select" : ".a > .b .#text"
+    }
   }
 };
 
