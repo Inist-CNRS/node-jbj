@@ -184,6 +184,43 @@ var examples = {
       "csv" : ",",
       "parseCSV": ","
     }
+  },
+  "Find": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
+    },
+    "find": {
+      "find" : "a.b.c"
+    },
+    "find 2": {
+      "find" : "a",
+      "find#1" : "b.c"
+    },
+    "find 3": {
+      "find#0" : "a",
+      "find#1" : "b",
+      "find#2" : "c"
+    },
+    "coalesce": {
+      "find" : ["x", "x.y", "a.b.c"],
+      "coalesce" : true
+    },
+    "order": {
+      "$x.y" : {
+        "find" : ["x.y", "a.b.c"],
+        "coalesce" : true,
+        "upcase" : true
+      },
+      "$x.z" : {
+        "find" : ["x.y", "a.b.c"],
+        "first" : true
+      }
+    }
   }
 };
 
