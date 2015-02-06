@@ -119,13 +119,13 @@ var applyStylesheet = function applyStylesheet() {
   var stylesheet = getValue('stylesheet');
   if (stylesheet.err) return;
   JBJ.render(stylesheet,input, function afterRender(err, out) {
-      if (err) {
+    if (err) {
       console.error(err);
       output.value = err;
       return;
-      }
-      output.value = out;
-      });
+    }
+    output.value = JSON.stringify(out,null,' ');
+  });
 };
 
 var button = document.getElementsByTagName('button')[0];
