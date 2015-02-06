@@ -270,6 +270,27 @@ var examples = {
         }
       }
     }
+  },
+  "JSON": {
+    "input": {
+      "a" : {
+        "b" : ["x","y","z"],
+        "d" : null
+      }
+    },
+    "output": {
+      "$e" : {
+        "find#0": "a",
+        "mask": "b",
+        "find#1": "b",
+        "json" : ",",
+      }
+    },
+    "parseJSON": {
+      "find": "a.b",
+      "json" : true,
+      "parseJSON": true
+    }
   }
 };
 
