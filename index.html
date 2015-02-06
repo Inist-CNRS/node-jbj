@@ -169,6 +169,9 @@ var getValue = function getValue(id) {
     return value;
   }
   catch(e) {
+    if (document.getElementById(id).value === 'undefined') {
+      return undefined;
+    }
     console.error(e);
     value.err = e;
     output.value = "Error in " + id + ":\n" + e;
@@ -178,7 +181,7 @@ var getValue = function getValue(id) {
 
 var applyStylesheet = function applyStylesheet() {
   var input = getValue('input');
-  if (input.err) return;
+  if (input && input.err) return;
   var stylesheet = getValue('stylesheet');
   if (stylesheet.err) return;
   JBJ.render(stylesheet,input, function afterRender(err, out) {
