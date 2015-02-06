@@ -221,6 +221,55 @@ var examples = {
         "first" : true
       }
     }
+  },
+  "Foreach": {
+    "input": {
+      "a" : {
+        "b" : "x",
+        "c" : "y",
+        "d" : "z"
+      }
+    },
+    "upcase": {
+      "path" : "a",
+      "foreach" : {
+        "upcase" : true
+      }
+    }
+  },
+  "Foreach array": {
+    "input": {
+      "a" : [
+        { "b" : "x" },
+        { "b" : "y" },
+        { "b" : "z" }
+      ]
+    },
+    "find and upcase": {
+      "path" : "a",
+      "foreach" : {
+        "find": "b",
+        "upcase" : true
+      }
+    }
+  },
+  "Foreach apply array": {
+    "input": {
+      "a" : [
+        { "b" : "x", "c" : 0 },
+        { "b" : "y", "c" : 1 },
+        { "b" : "z", "c" : 2 }
+      ]
+    },
+    "find and upcase 2": {
+      "path" : "a",
+      "foreach" : {
+        "$b" : {
+          "find": "b",
+          "upcase" : true
+        }
+      }
+    }
   }
 };
 
