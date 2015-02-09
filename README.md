@@ -474,6 +474,40 @@ Note : `this` variable contains *input*
 	// output : 10
 ```
 
+<a id="assert"></a>
+### assert: expression
+
+If expression is true, then statements will be continued, otherwise it is stopped and  it returns null
+Note : `this` variable contains *input*
+```javascript
+	var stylesheet1 = {
+		"set" : {
+			"a" : 1
+		},
+		"$val#1" : {
+			"assert": "a == 1",
+			"set" : "if val"
+		}
+	};
+	// output : "if val"
+	var stylesheet2 = {
+		"set" : {
+			"a" : 0
+		},
+		"$val#1" : {
+			"assert": "a == 1",
+			"set" : "if val"
+		},
+	    "$val#2" : {
+			"get" : "val",
+	        "default": "else val",
+		  }
+	};
+	// output : "else val"
+
+```
+
+
 <a id="capitalize"></a>
 ### capitalize:
 Capitalize the first letter of *input*
