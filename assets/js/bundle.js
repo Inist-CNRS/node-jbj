@@ -1,4 +1,5 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*jshint node:true*/
 'use strict';
 var assert = require('assert')
   , extend = require('extend')
@@ -270,7 +271,6 @@ exports.cast = function(obj, args) {
  }
 
 
-
  /*!
   * EJS - Filters
   * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
@@ -346,7 +346,25 @@ exports.cast = function(obj, args) {
   */
 
  exports.size = exports.length = function(obj) {
-   return obj.length;
+   return Object.keys(obj).length;
+ };
+
+ /**
+  * get the max of *input*
+  */
+ exports.max = function(obj, args) {
+   return execargs(args, function(arg) {
+     return Object.keys(obj).reduce(function(m, k){ return obj[k] > m ? obj[k] : m }, -Infinity)
+   });
+ };
+
+  /**
+  * get the min of *input*
+  */
+ exports.min = function(obj, args) {
+   return execargs(args, function(arg) {
+     return Object.keys(obj).reduce(function(m, k){ return obj[k] < m ? obj[k] : m }, Infinity)
+   });
  };
 
  /**
@@ -358,6 +376,7 @@ exports.cast = function(obj, args) {
      return Number(a) + Number(b);
    });
  };
+
 
  /**
   * Subtract `b` from `a`.
@@ -503,7 +522,27 @@ exports.glue = exports.join = function(obj, str) {
  };
 
 
+exports.flatten = function flatten(obj) {
+  return Array.isArray(obj)
+    ? obj.reduce(function (arr, val) {
+        return arr.concat(Array.isArray(val) ? flatten(val) : val);
+      }, [])
+    : obj;
+};
 
+exports.dedupe = exports.deduplicate = exports.unique = function(obj) {
+  if (!Array.isArray(obj)) return obj;
+  var i;
+  var out = [];
+  var o   = {};
+  obj.forEach(function (e) {
+    o[e] = e;
+  });
+  for (i in o) {
+    out.push(o[i]);
+  }
+  return out;
+};
 
 },{"./jbj.js":"jbj","JSONSelect":2,"assert":5,"csv-string":34,"extend":38,"filtrex":39,"json-mask":42,"mustache":44,"object-path":45,"transtype":46,"xml-mapping":49}],2:[function(require,module,exports){
 /*! Copyright (c) 2011, Lloyd Hilaiel, ISC License */
@@ -13757,5 +13796,6 @@ exports.register = function (protocol, callback) {
 };
 exports.render = render;
 exports.renderSync = renderSync;
+exports.filters = filters;
 
 },{"./filters.js":1,"assert":5,"async":3,"fs":4,"object-path":45,"url":31}]},{},[]);
