@@ -833,10 +833,34 @@ Deduplicate values in an array.
 
 ```javascript
     var stylesheet = {
-      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
-      "flatten" : true
+      "set"         : [ 1, 2, 3, 1, 2],
+      "deduplicate" : true
     };
-	// output : ["a","b","c","d","e"]
+	// output : [1,2,3]
+```
+
+<a id="remove"></a>
+## remove:
+*alias : del*
+
+Remove one value in an array.
+
+```javascript
+    var stylesheet = {
+      "set"    : [ 1, 2, 3],
+      "remove" : 2
+    };
+	// output : [1,3]
+    var stylesheet = {
+      "set"    : [ "a", "", "b"],
+      "remove" : ""
+    };
+    // output : ["a","b"]
+    var stylesheet = {
+      "set"    : [ "a", "b", "c"],
+      "remove" : "b"
+    };
+    // output : ["a","c"]
 ```
 
 ## FAQ

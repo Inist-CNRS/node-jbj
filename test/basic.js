@@ -270,4 +270,31 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '[1,2,3]');
   });
 
+  it('basic #27', function() {
+    var stylesheet = {
+      "set"    : [ 1, 2, 3],
+      "remove" : 2
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '[1,3]');
+  });
+
+  it('basic #28', function() {
+    var stylesheet = {
+      "set"    : [ "a", "", "b"],
+      "remove" : ""
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["a","b"]');
+  });
+
+  it('basic #29', function() {
+    var stylesheet = {
+      "set"    : [ "a", "b", "c"],
+      "remove" : "b"
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["a","c"]');
+  });
+
 });
