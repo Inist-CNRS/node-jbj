@@ -486,6 +486,30 @@ var examples = {
         "indent": false
       }
     }
+  },
+  "Assert" : {
+    "input" : {
+      "val" : "unmodified",
+      "a" : 1,
+      "b" : "one"
+    },
+    "if else": {
+      "$val#1" : {
+        "assert": "a == 1",
+        "set" : "if val"
+      },
+      "$val#2" : {
+        "get" : "val",
+        "default": "else val",
+      }
+    },
+    "if": {
+      "$val" : {
+        "get" : "a",
+        "assert": "this == 1",
+        "set" : "if val"
+      }
+    }
   }
 };
 
