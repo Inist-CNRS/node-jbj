@@ -513,20 +513,21 @@ var examples = {
   }
 };
 
-var inputArea = document.getElementById('input');
+var inputArea      = document.getElementById('input');
 var stylesheetArea = document.getElementById('stylesheet');
-var outputArea = document.getElementById('output');
+var outputArea     = document.getElementById('output');
 
 var showExample = function showExample(e) {
-  var exampleName = e.target.textContent;
-  var difficulty  = exampleName.split(':')[0];
-  var subName     = exampleName.split(':')[1].trim();
-  var input       = examples[difficulty].input;
-  var stylesheet  = examples[difficulty][subName];
-  inputArea.value = JSON.stringify(input,null,"\t");
+  var exampleName      = e.target.textContent;
+  var difficulty       = exampleName.split(':')[0];
+  var subName          = exampleName.split(':')[1].trim();
+  var input            = examples[difficulty].input;
+  var stylesheet       = examples[difficulty][subName];
+  inputArea.value      = JSON.stringify(input,null,"\t");
   stylesheetArea.value = JSON.stringify(stylesheet,null,"\t");
-  var result      = JBJ.renderSync(stylesheet, input);
-  outputArea.value = JSON.stringify(result,null,"\t");
+  var result           = JBJ.renderSync(JSON.parse(stylesheetArea.value),
+                                        JSON.parse(inputArea.value));
+  outputArea.value     = JSON.stringify(result,null,"\t");
 };
 
 var examplesList = document.getElementsByClassName('example');
