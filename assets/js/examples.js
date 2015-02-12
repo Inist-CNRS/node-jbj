@@ -518,7 +518,7 @@ var stylesheetArea = document.getElementById('stylesheet');
 var outputArea = document.getElementById('output');
 
 var showExample = function showExample(e) {
-  var exampleName = e.toElement.textContent;
+  var exampleName = e.target.textContent;
   var difficulty  = exampleName.split(':')[0];
   var subName     = exampleName.split(':')[1].trim();
   var input       = examples[difficulty].input;
