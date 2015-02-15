@@ -1,10 +1,11 @@
-
+/*jshint node:true,laxcomma:true*/
 /* global describe, it */
 'use strict';
 var assert = require('assert')
   , JBJ = require('..');
 
 describe('misc', function () {
+
   var input = {
     "a" : {
       "b" : {
@@ -104,6 +105,5 @@ describe('misc', function () {
     assert.equal(output.a.d, undefined);
     assert.equal(output.a.e, "val2");
   });
-
 
 });
