@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('mask', function () {
+describe('asynchronous mask', function () {
 
   var input = {
     "a" : {
@@ -15,16 +15,18 @@ describe('mask', function () {
     }
   };
 
-  it('mask #1', function() {
+  it('mask #1', function(done) {
     var stylesheet = {
       "$a" : {
         "find": "a",
         "mask" : "b"
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.a.b.c, 'value');
-    assert.equal(output.a.d, undefined);
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.a.b.c, 'value');
+      assert.equal(output.a.d, undefined);
+      done(err);
+    });
   });
 
 });
