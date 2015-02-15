@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('weird', function () {
+describe('asynchronous weird', function () {
 
   var input = {
     "a" : {
@@ -18,14 +18,16 @@ describe('weird', function () {
   };
 
   // see https://github.com/castorjs/castor-core/issues/5
-  it('weird #1', function() {
+  it('weird #1', function(done) {
     var stylesheet = {
       "$language" : {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.language, "X1X2X4X8");
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.language, "X1X2X4X8");
+      done(err);
+    });
   });
 
 });
