@@ -1,3 +1,4 @@
+/*jshint node:true,laxcomma:true*/
 /* global describe, it */
 'use strict';
 var assert = require('assert')
@@ -20,7 +21,7 @@ describe('select', function () {
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -30,7 +31,7 @@ describe('select', function () {
       "first": true
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -42,7 +43,7 @@ describe('select', function () {
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output.d.e.f, 'value');
   });
 
@@ -57,7 +58,7 @@ describe('select', function () {
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -69,7 +70,7 @@ describe('select', function () {
       "first#1": true
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -83,7 +84,7 @@ describe('select', function () {
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output.d.e, 'value');
   });
 
@@ -97,9 +98,9 @@ describe('select', function () {
         "select#2" : ".c",
         "first#2": true
       }
-    }
+    };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -113,7 +114,7 @@ describe('select', function () {
       "first#2": true
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output, 'value');
   });
 
@@ -127,9 +128,9 @@ describe('select', function () {
         "select#2" : ".c",
         "first#2": true
       }
-    }
+    };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output.d, 'value');
   });
 
@@ -145,9 +146,9 @@ describe('select', function () {
         }
       },
       "select" : ".a > .b .#text"
-    }
+    };
     var output = JBJ.renderSync(stylesheet);
-    assert.ifError(!output)
+    assert.ifError(!output);
     assert.equal(output[0], '1');
     assert.equal(output[1], '2');
     assert.equal(output[2], '3');
