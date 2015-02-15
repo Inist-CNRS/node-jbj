@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('csv', function () {
+describe('asynchronous csv', function () {
   var input = {
     "a" : {
       "b" : ["x","y","z"],
@@ -12,7 +12,7 @@ describe('csv', function () {
     }
   };
 
-  it('csv #1', function() {
+  it('csv #1', function(done) {
     var stylesheet = {
       "$e" : {
         "find#0": "a",
@@ -22,21 +22,24 @@ describe('csv', function () {
         "trim": true
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.e, "x,y,z");
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.e, "x,y,z");
+      done(err);
+    });
   });
 
- it('csv #2', function() {
+ it('csv #2', function(done) {
     var stylesheet = {
       "find": "a.b",
       "csv" : ",",
       "parseCSV": ","
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output[0], "x");
-    assert.equal(output[1], "y");
-    assert.equal(output[2], "z");
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output[0], "x");
+      assert.equal(output[1], "y");
+      assert.equal(output[2], "z");
+      done(err);
+    });
   });
-
 
 });
