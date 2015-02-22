@@ -192,7 +192,7 @@ var applyStylesheet = function applyStylesheet() {
       output.value = err;
       return;
     }
-    output.value = JSON.stringify(out,null,' ');
+    output.value = JSON.stringify(out,null,'\t');
   });
 };
 
