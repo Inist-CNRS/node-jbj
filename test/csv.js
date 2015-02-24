@@ -9,7 +9,8 @@ describe('csv', function () {
     "a" : {
       "b" : ["x","y","z"],
       "d" : null
-    }
+    },
+    "c" : "a; b; c"
   };
 
   it('csv #1', function() {
@@ -38,5 +39,15 @@ describe('csv', function () {
     assert.equal(output[2], "z");
   });
 
+ it('csv #3', function() {
+  var stylesheet = {
+    "find"    : "c",
+    "parseCSV": "; "
+  };
+  var output = JBJ.renderSync(stylesheet, input);
+  assert.equal(output[0], "a");
+  assert.equal(output[1], "b");
+  assert.equal(output[2], "c");
+ });
 
 });

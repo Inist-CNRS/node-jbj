@@ -9,7 +9,8 @@ describe('asynchronous csv', function () {
     "a" : {
       "b" : ["x","y","z"],
       "d" : null
-    }
+    },
+    "c" : "a; b; c"
   };
 
   it('csv #1', function(done) {
@@ -41,5 +42,18 @@ describe('asynchronous csv', function () {
       done(err);
     });
   });
+
+ it('csv #3', function(done) {
+  var stylesheet = {
+    "find"    : "c",
+    "parseCSV": "; "
+  };
+  var output = JBJ.render(stylesheet, input, function (err, output) {
+    assert.equal(output[0], "a");
+    assert.equal(output[1], "b");
+    assert.equal(output[2], "c");
+    done(err);
+  });
+ });
 
 });
