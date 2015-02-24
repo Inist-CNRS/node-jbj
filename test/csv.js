@@ -50,4 +50,14 @@ describe('csv', function () {
   assert.equal(output[2], "c");
  });
 
+  it('csv #4', function () {
+    var stylesheet = {
+      "find"    : "a.c",
+      "parseCSV": "; "
+    };
+    assert.doesNotThrow(function () {
+      var output = JBJ.renderSync(stylesheet, input);
+    });
+  });
+
 });
