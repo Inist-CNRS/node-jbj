@@ -187,6 +187,20 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #15.2', function (done) {
+    var stylesheet = {
+      "get"  : "unknown",
+      "join" : "; "
+    };
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(typeof output, "object");
+      assert.equal(Object.keys(output).length, 0);
+      done(err);
+    });
+  });
+
+
+
    it('basic #16', function(done) {
     var stylesheet = {
       "get": "a.d",
