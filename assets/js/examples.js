@@ -523,11 +523,10 @@ var showExample = function showExample(e) {
   var subName          = exampleName.split(':')[1].trim();
   var input            = examples[difficulty].input;
   var stylesheet       = examples[difficulty][subName];
-  inputArea.value      = JSON.stringify(input,null,"\t");
-  stylesheetArea.value = JSON.stringify(stylesheet,null,"\t");
-  var result           = JBJ.renderSync(JSON.parse(stylesheetArea.value),
-                                        JSON.parse(inputArea.value));
-  outputArea.value     = JSON.stringify(result,null,"\t");
+  inputEditor.set(input);
+  stylesheetEditor.set(stylesheet);
+  var result           = JBJ.renderSync(stylesheet, input);
+  outputEditor.set(result);
 };
 
 var examplesList = document.getElementsByClassName('example');
