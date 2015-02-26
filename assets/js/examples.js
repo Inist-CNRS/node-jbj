@@ -493,6 +493,20 @@ var examples = {
       "a" : 1,
       "b" : "one"
     },
+    "if": {
+      "$val" : {
+        "get" : "a",
+        "assert": "this == 1",
+        "set" : "if val"
+      }
+    }
+  },
+  "Assert2" : {
+    "input" : {
+      "val" : "unmodified",
+      "a" : 2,
+      "b" : "one"
+    },
     "if else": {
       "$val#1" : {
         "assert": "a == 1",
@@ -502,15 +516,9 @@ var examples = {
         "get" : "val",
         "default": "else val",
       }
-    },
-    "if": {
-      "$val" : {
-        "get" : "a",
-        "assert": "this == 1",
-        "set" : "if val"
-      }
     }
   }
+
 };
 
 var inputArea      = document.getElementById('input');
