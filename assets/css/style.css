@@ -66,27 +66,29 @@ textarea{
 }
 
 
-#actions ul
+.docs ul
 {
   margin: 0;
   padding: 0;
   list-style-type: none;
+
 }
 
-#actions ul li { display: inline; }
 
-#actions ul li a
+.docs ul li a
 {
   text-decoration: none;
   padding: .2em 1em;
   color: #bbb;
 }
-#actions {
+.docs {
   color: #bbb;
+  height: 250px !important;
+  overflow-y: scroll;
 }
 
 .example {
-  background-color: #444
+  cursor: pointer;
 }
 
 
