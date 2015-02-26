@@ -143,7 +143,7 @@ describe('asynchronous breakif', function () {
         "default": "else val",
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, input) {
+    var output = JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.val, "else val");
       done(err);
     });
