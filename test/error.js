@@ -4,27 +4,26 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('template', function () {
+describe('misc', function () {
 
   var input = {
     "a" : {
       "b" : {
-        "c" : "1"
+        "c" : "1234"
       },
-      "d" : "2",
-      "e" : "4"
-    },
-    "f": "8"
+      "d" : null
+    }
   };
 
-  it('template #1', function() {
+  it('error #1', function() {
     var stylesheet = {
       "$a" : {
-        "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
+        "default" : "\"xxxx",
+        "parseJSON" : true
       }
     };
     var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.a, "X1X2X4X8");
+    assert.equal(output.a.name, 'SyntaxError');
   });
 
 });

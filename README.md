@@ -281,13 +281,14 @@ Convert *input* to specific type
 ```javascript
 	var stylesheet1 = {
 		"set" : "1"
-		"cast": number
+		"cast": "number"
 	};
 	// output : 1
 	var stylesheet2 = {
 		"set" : 1
-		"cast": string
+		"cast": "string"
 	};
+	// output: "1"
 ```
 for syntax see [transtype](https://github.com/touv/transtype)
 

@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('json', function () {
+describe('asynchronous json', function () {
 
   var input = {
     "a" : {
@@ -13,7 +13,7 @@ describe('json', function () {
     }
   };
 
-  it('json #1', function() {
+  it('json #1', function(done) {
     var stylesheet = {
       "$e" : {
         "find#0": "a",
@@ -22,20 +22,24 @@ describe('json', function () {
         "json" : ",",
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.e, "[\"x\",\"y\",\"z\"]");
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.e, "[\"x\",\"y\",\"z\"]");
+      done(err);
+    });
   });
 
- it('json #2', function() {
+ it('json #2', function(done) {
     var stylesheet = {
       "find": "a.b",
       "json" : true,
       "parseJSON": true
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output[0], "x");
-    assert.equal(output[1], "y");
-    assert.equal(output[2], "z");
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output[0], "x");
+      assert.equal(output[1], "y");
+      assert.equal(output[2], "z");
+      done(err);
+    });
   });
 
 });

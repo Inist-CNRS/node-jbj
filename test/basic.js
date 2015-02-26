@@ -1,4 +1,4 @@
-/*jshint node:true */
+/*jshint node:true, laxcomma:true */
 /* global describe, it */
 'use strict';
 var assert = require('assert')
@@ -155,6 +155,16 @@ describe('basic', function () {
     };
     var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output, '#3');
+  });
+
+  it('basic #15.2', function () {
+    var stylesheet = {
+      "get"  : "unknown",
+      "join" : "; "
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(typeof output, "object");
+    assert.equal(Object.keys(output).length, 0);
   });
 
    it('basic #16', function() {

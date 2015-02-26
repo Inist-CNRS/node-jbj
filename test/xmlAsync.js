@@ -6,7 +6,7 @@ var assert = require('assert')
 
 describe('xml', function () {
 
-  it('#1', function() {
+  it('#1', function(done) {
     var stylesheet = {
       "default": "<root><item xml:id=\"1\">A</item><item xml:id=\"2\">B</item><item xml:id=\"3\">C</item></root>",
       "parseXML" : {
@@ -14,16 +14,18 @@ describe('xml', function () {
         "longTag" : true
       }
     };
-    var output = JBJ.renderSync(stylesheet);
-    assert.equal(output.root.item[0]['xml#id'], "1");
-    assert.equal(output.root.item[0]['#text'], "A");
-    assert.equal(output.root.item[1]['xml#id'], "2");
-    assert.equal(output.root.item[1]['#text'], "B");
-    assert.equal(output.root.item[2]['xml#id'], "3");
-    assert.equal(output.root.item[2]['#text'], "C");
+    var output = JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output.root.item[0]['xml#id'], "1");
+      assert.equal(output.root.item[0]['#text'], "A");
+      assert.equal(output.root.item[1]['xml#id'], "2");
+      assert.equal(output.root.item[1]['#text'], "B");
+      assert.equal(output.root.item[2]['xml#id'], "3");
+      assert.equal(output.root.item[2]['#text'], "C");
+      done(err);
+    });
   });
 
- it('#2', function() {
+ it('#2', function(done) {
     var stylesheet = {
       "default": {
         "root" : {
@@ -38,8 +40,10 @@ describe('xml', function () {
         "indent": false
       }
     };
-    var output = JBJ.renderSync(stylesheet);
-    assert.equal(output, "<root><item index=\"1\">A</item><item index=\"2\">B</item><item index=\"3\">C</item></root>");
+    var output = JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, "<root><item index=\"1\">A</item><item index=\"2\">B</item><item index=\"3\">C</item></root>");
+      done(err);
+    });
   });
 
 });

@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('compute', function () {
+describe('asynchronous compute', function () {
   var input = {
     "a" : 20,
     "b" : 3,
@@ -12,18 +12,20 @@ describe('compute', function () {
     "d" : 8
   };
 
-  it('#1', function() {
+  it('#1', function(done) {
     var stylesheet = {
       "$e" : {
         "compute": "round(a / b)",
         "cast": "number"
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.e, 7);
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.e, 7);
+      done(err);
+    });
   });
 
-  it('#2', function() {
+  it('#2', function(done) {
     var stylesheet = {
       "$e" : {
         "compute#1": "a / b",
@@ -31,11 +33,13 @@ describe('compute', function () {
         "cast": "number"
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.e, 7);
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.e, 7);
+      done(err);
+    });
   });
 
-  it('#3', function() {
+  it('#3', function(done) {
     var stylesheet = {
       "$x" : {
         "compute#1": "a / b",
@@ -50,9 +54,10 @@ describe('compute', function () {
         "compute": "x + y",
       }
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.z, 10);
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.z, 10);
+      done(err);
+    });
   });
-
 
 });

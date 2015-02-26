@@ -9,14 +9,16 @@ JBJ.filters.toto = function(obj, arg) {
 };
 
 describe('filters', function () {
- it('misc #1', function() {
+
+ it('misc #1', function(done) {
     var stylesheet = {
       "set" : "titi",
       "toto": "tata"
     };
-    var output = JBJ.renderSync(stylesheet);
-    assert.equal(output, 'tititata!');
+    var output = JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, 'tititata!');
+      done(err);
+    });
   });
-
 
 });
