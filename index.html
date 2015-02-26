@@ -229,14 +229,8 @@ var applyStylesheet = function applyStylesheet() {
   if (input && input.err) return;
   var stylesheet = getValue(stylesheetEditor);
   if (stylesheet.err) return;
-  JBJ.render(stylesheet,input, function afterRender(err, out) {
-    if (err) {
-      console.error(err);
-      outputEditor.set(err);
-      return;
-    }
-    outputEditor.set(out);
-  });
+  var out = JBJ.renderSync(stylesheet, input);
+  outputEditor.set(out);
 };
 
 var searchAction = function SearchAction(e) {
