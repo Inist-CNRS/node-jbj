@@ -4,7 +4,7 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-describe('misc', function () {
+describe('error', function () {
 
   var input = {
     "a" : {
