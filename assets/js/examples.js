@@ -517,6 +517,12 @@ var examples = {
         "default": "else val",
       }
     }
+  },
+  "Sum": {
+    "input": [1,2,3],
+    "1": {
+      "sum": true
+    }
   }
 
 };
