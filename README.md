@@ -864,6 +864,20 @@ Remove one value in an array.
     // output : ["a","c"]
 ```
 
+<a id="sum"></a>
+## sum:
+*alias : total*
+
+Return the sum of all the value of an array.
+
+```javascript
+    var stylesheet = {
+      "set"    : [ 1, 2, 3],
+      "sum" : true
+    };
+	// output : 6
+```
+
 ## FAQ
 
 ### How to chain the same action

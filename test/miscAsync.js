@@ -120,4 +120,26 @@ describe('asynchronous misc', function () {
     });
   });
 
+  it('#misc #7', function (done) {
+    var stylesheet = {
+      "set": [1,2,3],
+      "sum": true
+    };
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output, 6);
+      done(err);
+    });
+  });
+
+  it('#misc #7b', function (done) {
+    var stylesheet = {
+      "set": "[1,2,3]",
+      "sum": true
+    };
+    var output = JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.toString(), "Error: Input object should be an array");
+      done();
+    });
+  });
+
 });
