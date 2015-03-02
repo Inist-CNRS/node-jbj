@@ -106,4 +106,22 @@ describe('misc', function () {
     assert.equal(output.a.e, "val2");
   });
 
+  it('#misc #7', function () {
+    var stylesheet = {
+      "set": [1,2,3],
+      "sum": true
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, 6);
+  });
+
+  it('#misc #7b', function () {
+    var stylesheet = {
+      "set": "[1,2,3]",
+      "sum": true
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.toString(), "Error: Input object should be an array");
+  });
+
 });
