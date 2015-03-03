@@ -44,6 +44,7 @@
     </section>
     <aside style="" class="asideInfos">
       <div id="enterAside" class="glyphicon glyphicon-chevron-right"></div>
+      <div id="quitAside" class="glyphicon glyphicon-chevron-left" style="display: none"></div>
       <section id="examplesSection" style="display: none;">
         <h3 id="examplesButton">Examples</h3>
         <ul id="examples" style="display:none">
@@ -111,9 +112,9 @@
             <li class="example">Xml: parseXML</li>
             <li class="example">Assert: if</li>
             <li class="example">Assert2: if else</li>
-          </ul>
-        </section>
-        <section id="actionsSection" style="display: none;">
+        </ul>
+      </section>
+      <section id="actionsSection" style="display: none;">
           <h3 id="actionsButton">Actions</h3>
           <div id="actions" style="">
             <input id="search-action" type="text" placeholder="Search...">
@@ -184,8 +185,8 @@
               <li class="action"> <a href="https://github.com/castorjs/node-jbj#upcase">upcase</a> </li>
               <li class="action"> <a href="https://github.com/castorjs/node-jbj#xml">xml</a> </li>
             </ul>
-          </section>
-        </div>
+          </div>
+        </section>
     </aside>
 
     <script type="text/javascript">
@@ -268,18 +269,20 @@ var examples       = document.getElementById('examples'),
     examplesButton = document.getElementById('examplesButton'),
     actions        = document.getElementById('actions'),
     actionsButton  = document.getElementById('actionsButton'),
-    asideInfos     = document.getElementsByClassName('asideInfos')[0];
+    asideInfos     = document.getElementsByClassName('asideInfos')[0],
+    quitAside      = document.getElementById('quitAside');
 
-asideInfos.addEventListener('click' , function (event) {
-  if(this.style.left !== "-145px"){
+asideInfos.addEventListener('click' , function (e) {
+  if(this.style.left !== "0px"){
     this.style.left = "0px";
+    document.getElementById('quitAside').style.display = "block";
     document.getElementById('enterAside').style.display = "none";
     document.getElementById('examplesSection').style.display = "block";
     document.getElementById('actionsSection').style.display = "block";
   }
 });
 
-examplesButton.addEventListener('click' , function (event) {
+examplesButton.addEventListener('click' , function (e) {
   if(document.getElementById('examples').style.display == "none"){
     document.getElementById('examples').style.cssText = "display: flex; padding: 18px";
   }
@@ -288,7 +291,7 @@ examplesButton.addEventListener('click' , function (event) {
   }
 })
 
-actionsButton.addEventListener('click' , function (event) {
+actionsButton.addEventListener('click' , function (e) {
   if(document.getElementById('actions').style.display == "none"){
     document.getElementById('actions').style.cssText = "display: block;";
   }
@@ -296,6 +299,15 @@ actionsButton.addEventListener('click' , function (event) {
     document.getElementById('actions').style.cssText = "display: none;";
   }
 })
+
+quitAside.addEventListener('click' , function (e) {
+  e.stopPropagation();
+  document.getElementsByClassName('asideInfos')[0].style.left = "-145px";
+  document.getElementById('quitAside').style.display = "none";
+  document.getElementById('enterAside').style.display = "block";
+  document.getElementById('examplesSection').style.display = "none";
+  document.getElementById('actionsSection').style.display = "none";
+});
 
     </script>
     <script src="assets/js/examples.js" type="text/javascript"></script>

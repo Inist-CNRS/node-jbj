@@ -27,8 +27,9 @@ body{
 }
 
 .asideInfos:hover{
-  left: 0 !important;
+  left: 0px !important;
   overflow-y: auto !important; 
+  box-shadow: 4px 0px 9px #808080;
 }
 
 .asideInfos:hover #actionsSection , .asideInfos:hover #examplesSection{
@@ -40,6 +41,23 @@ body{
   margin-top:50px;
   color:white;
   font-size:15px;
+}
+
+
+#quitAside{
+  height: 50px;
+  width: 100%;
+  background: grey;
+  text-align: center;
+  font-size: 25px;
+  line-height: 50px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#quitAside:hover{
+  background: #fff;
+  color: #000;
 }
 
 .asideInfos h3{
@@ -60,8 +78,8 @@ body{
 }
 
 
-.asideInfos:hover .glyphicon{
-  display: none;
+.asideInfos:hover #enterAside{
+  display: none !important;
 }
 
 #examplesSection{
