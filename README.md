@@ -542,6 +542,19 @@ Uppercase *input*
 	// output : "XYZ"
 ```
 
+<a id="substring"></a>
+### substring: [offset]|[offset, length]
+
+*aliases : substr*
+
+```javascript
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    // output : "03"
+```
+
 <a id="first"></a>
 ### first:
 Get the first element of *input*

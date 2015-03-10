@@ -374,4 +374,15 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #30', function (done) {
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, "03");
+      done(err);
+    });
+  });
+
 });
