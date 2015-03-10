@@ -307,4 +307,13 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '["a","c"]');
   });
 
+  it('basic #30', function () {
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, "03");
+  });
+
 });
