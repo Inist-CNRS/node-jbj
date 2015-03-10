@@ -523,6 +523,15 @@ var examples = {
     "1": {
       "sum": true
     }
+  },
+  "Substring": {
+    "input": "20150310",
+    "month": {
+      "substring": [4,2]
+    },
+    "day": {
+      "substring": [-2]
+    }
   }
 
 };

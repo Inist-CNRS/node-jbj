@@ -632,6 +632,19 @@ exports.sum = exports.total = function (obj) {
   return out;
 };
 
+exports.substring = exports.substr = function (obj, arg) {
+  if (!Array.isArray(arg)) {
+    return obj;
+  }
+  if (!arg.length) {
+    return obj;
+  }
+  if (typeof obj !== 'string') {
+    return obj;
+  }
+  return obj.substr(arg[0], arg[1]||Infinity);
+};
+
 },{"./jbj.js":"jbj","JSONSelect":2,"assert":5,"csv-string":34,"extend":38,"filtrex":39,"json-mask":42,"mustache":44,"object-path":45,"transtype":46,"xml-mapping":49}],2:[function(require,module,exports){
 /*! Copyright (c) 2011, Lloyd Hilaiel, ISC License */
 /*
