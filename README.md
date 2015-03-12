@@ -579,7 +579,7 @@ Get the last element of *input*
 
 <a id="sort"></a>
 ### sort:
-Sort *input* object
+Sort *input* object or array.
 
 <a id="sortBy"></a>
 ### sortBy: prop | [prop, prop, ...]

@@ -83,6 +83,17 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #6b', function (done) {
+    var stylesheet = {
+      "get": "a.d",
+      "sort": true
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert.deepEqual(output, ["A","B","C"]);
+      done(err);
+    });
+  });
+
   it('basic #7', function(done) {
     var stylesheet = {
       "get": "a.d",
