@@ -581,6 +581,14 @@ Get the last element of *input*
 ### sort:
 Sort *input* object or array.
 
+```javascript
+	var stylesheet = {
+		"set": ["b", "c", "a"],
+		"sort": true
+	};
+	// output : ["a", "b", "c"]
+```
+
 <a id="sortBy"></a>
 ### sortBy: prop | [prop, prop, ...]
 
