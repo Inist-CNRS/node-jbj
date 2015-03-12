@@ -71,6 +71,15 @@ describe('basic', function () {
     assert.equal(output, 'A');
   });
 
+  it('basic #6b', function () {
+    var stylesheet = {
+      "get": "a.d",
+      "sort": true
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.deepEqual(output, ["A","B","C"]);
+  });
+
   it('basic #7', function() {
     var stylesheet = {
       "get": "a.d",
