@@ -384,6 +384,9 @@ exports.upcase = function(str) {
  */
 
 exports.sort = function(obj) {
+  if (Array.isArray(obj)) {
+    return [].concat(obj).sort();
+  }
   return Object.create(obj).sort();
 };
 

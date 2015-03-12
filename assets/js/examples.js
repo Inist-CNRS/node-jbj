@@ -35,6 +35,10 @@ var examples = {
       "sort" : null,
       "first" : null
     },
+    "sort 2": {
+      "get": "a.d",
+      "sort" : true
+    },
     "length": {
       "get": "a.d",
       "length" : null,
