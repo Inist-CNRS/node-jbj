@@ -275,6 +275,31 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
+<a id="mapping"></a>
+### mapping: object
+Replace a value by the matching value in the object.
+
+```javascript
+{
+  "set": "one",
+  "mapping": {
+    "one": 1
+  }
+}
+// output: 1
+```
+
+```javascript
+{
+  "set": "FR",
+  "mapping": {
+    "US": "United States of America",
+    "FR": "France"
+  }
+}
+// output: "France"
+```
+
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 Convert *input* to specific type
