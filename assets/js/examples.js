@@ -130,6 +130,23 @@ var examples = {
     "deduplicate": {
       "set"         : [ 1, 2, 3, 1, 2],
       "deduplicate" : true
+    },
+    "remove integer": {
+      "set"    : [ 1, 2, 3],
+      "remove" : 2
+    },
+    "remove empty": {
+      "set"    : [ "a", "", "b"],
+      "remove" : ""
+    },
+    "remove string": {
+      "set"    : [ "a", "b", "c"],
+      "remove" : "b"
+    },
+    "remove multiple": {
+      "set"    : [ "a", "b", "c", ""],
+      "remove#1" : "",
+      "remove#2" : "b"
     }
   },
   "Compute": {
