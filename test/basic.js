@@ -307,4 +307,37 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '["a","c"]');
   });
 
+   it('basic #30', function() {
+    var stylesheet = {
+      "$x" : {
+        "set" : "X",
+      },
+      "$y" : {
+        "get": "x"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.x, "X");
+    assert.equal(output.y, "X");
+  });
+
+  it('basic #31', function() {
+    var stylesheet = {
+      "get" : "a.b.c",
+      "append" : ">"
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "value>");
+  });
+
+  it('basic #32', function() {
+    var stylesheet = {
+      "get" : "a.b.c",
+      "prepend" : "<",
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "<value");
+  });
+
+
 });

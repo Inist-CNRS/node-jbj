@@ -26,4 +26,13 @@ describe('error', function () {
     assert.equal(output.a.name, 'SyntaxError');
   });
 
+  it('error #2', function() {
+    var stylesheet = {
+      "assert" : "a == 'X'"
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.name, 'Error');
+  });
+
+
 });
