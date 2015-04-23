@@ -300,6 +300,28 @@ Replace a value by the matching value in the object.
 // output: "France"
 ```
 
+Can also replace the values of an array with the matching values in the object.
+
+```javascript
+{
+  "set": [1, 2],
+  "mapping": ["a","b","c"]
+}
+// output: ["b","c"]
+```
+
+```javascript
+{
+  "set": ["a", "b"],
+  "mapping": {
+    "a": "Aha!",
+    "b": "Baby"
+  }
+}
+// output: ["Aha!","Baby"]
+```
+
+
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 Convert *input* to specific type
