@@ -262,7 +262,7 @@ describe('asynchronous basic', function (done) {
     });
   });
 
-  it('basic #20', function(done) {
+  it('basic #20.1', function(done) {
     var stylesheet = {
       "get" : "a.b.c",
       "mapping" : {
@@ -275,13 +275,39 @@ describe('asynchronous basic', function (done) {
     });
   });
 
-  it('basic #20', function(done) {
+  it('basic #20.2', function(done) {
     var stylesheet = {
       "default" : 1,
       "mapping" : ['a','b','c']
     };
     var output = JBJ.render(stylesheet, function (err, output) {
       assert.equal(output, 'b');
+      done(err);
+    });
+  });
+
+
+  it('basic #20.3', function(done) {
+    var stylesheet = {
+      "set": [1, 2],
+      "mapping": ['a','b','c']
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(JSON.stringify(output), '["b","c"]');
+      done(err);
+    });
+  });
+
+  it('basic #20.4', function(done) {
+    var stylesheet = {
+      "set": ["a", "b"],
+      "mapping": {
+        "a": "Aha!",
+        "b": "Baby"
+      }
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(JSON.stringify(output), '["Aha!","Baby"]');
       done(err);
     });
   });

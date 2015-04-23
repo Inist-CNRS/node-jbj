@@ -218,7 +218,7 @@ describe('basic', function () {
     assert.equal(output, 'C|B|A');
   });
 
-  it('basic #20', function() {
+  it('basic #20.1', function() {
     var stylesheet = {
       "get" : "a.b.c",
       "mapping" : {
@@ -229,7 +229,7 @@ describe('basic', function () {
     assert.equal(output, 1);
   });
 
-  it('basic #20', function() {
+  it('basic #20.2', function() {
     var stylesheet = {
       "default" : 1,
       "mapping" : ['a','b','c']
@@ -237,6 +237,28 @@ describe('basic', function () {
     var output = JBJ.renderSync(stylesheet);
     assert.equal(output, 'b');
   });
+
+  it('basic #20.3', function() {
+    var stylesheet = {
+      "set": [1, 2],
+      "mapping": ['a','b','c']
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["b","c"]');
+  });
+
+  it('basic #20.4', function() {
+    var stylesheet = {
+      "set": ["a", "b"],
+      "mapping": {
+        "a": "Aha!",
+        "b": "Baby"
+      }
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["Aha!","Baby"]');
+  });
+
   it('basic #21', function() {
     var stylesheet = {
       "set" : [2, 4,1,7, 9,3],
