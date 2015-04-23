@@ -11,7 +11,6 @@ describe('breakif', function () {
     "a" : 1,
     "b" : "one"
   };
-
   it('#1', function() {
     var stylesheet = {
       "$val" : {
@@ -57,7 +56,7 @@ describe('breakif', function () {
   });
 
 
-  it('#5', function() {
+  it('#5.1', function() {
     var stylesheet = {
       "$val#1" : {
         "breakIf": "a == 1",
@@ -73,7 +72,7 @@ describe('breakif', function () {
     assert.equal(output.val, "else");
   });
 
-  it('#5 bis', function() {
+  it('#5.2', function() {
     var stylesheet = {
       "$val#1" : {
         "breakIf": "a != 1",
@@ -89,7 +88,7 @@ describe('breakif', function () {
     assert.equal(output.val, null);
   });
 
-  it('#5 ter', function() {
+  it('#5.3', function() {
     var stylesheet = {
       "$val#1" : {
         "set" : "if"
@@ -104,7 +103,7 @@ describe('breakif', function () {
     assert.equal(output.val, "else");
   });
 
-  it('#6', function() {
+  it('#6.1', function() {
     var stylesheet = {
       "$val#1" : {
         "assert": "a == 1",
@@ -120,7 +119,7 @@ describe('breakif', function () {
     assert.equal(output.val, "if val");
   });
 
-  it('#6 bis', function() {
+  it('#6.2', function() {
     var stylesheet = {
       "$val#1" : {
         "assert": "a != 1",
@@ -145,6 +144,70 @@ describe('breakif', function () {
     };
     var output = JBJ.renderSync(stylesheet, input);
     assert.equal(output.val, "if val");
+  });
+
+  it('#8.1', function() {
+    var stylesheet = {
+      "$suffix" : {
+        "set" : "K",
+      },
+      "$val" : {
+        "assert" : "suffix == \"K\"",
+        "get": "suffix",
+        "prepend" : "O"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.suffix, "K");
+    assert.equal(output.val, "OK");
+  });
+
+  it('#8.2', function() {
+    var stylesheet = {
+      "$suffix" : {
+        "set" : "K",
+      },
+      "$val" : {
+        "assert" : "suffix != \"K\"",
+        "get": "suffix",
+        "prepend" : "O"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.suffix, "K");
+    assert.equal(output.val, null);
+  });
+
+  it('#8.3', function() {
+    var stylesheet = {
+      "$suffix" : {
+        "set" : "K",
+      },
+      "$val" : {
+        "get": "suffix",
+        "assert" : "this == \"K\"",
+        "prepend" : "O"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.suffix, "K");
+    assert.equal(output.val, "OK");
+  });
+
+    it('#8.4', function() {
+    var stylesheet = {
+      "$suffix" : {
+        "set" : "K",
+      },
+      "$val" : {
+        "get": "suffix",
+        "assert" : "this != \"K\"",
+        "prepend" : "O"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.suffix, "K");
+    assert.equal(output.val, "K");
   });
 
 });

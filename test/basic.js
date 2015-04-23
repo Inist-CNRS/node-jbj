@@ -218,7 +218,7 @@ describe('basic', function () {
     assert.equal(output, 'C|B|A');
   });
 
-  it('basic #20', function() {
+  it('basic #20.1', function() {
     var stylesheet = {
       "get" : "a.b.c",
       "mapping" : {
@@ -229,7 +229,7 @@ describe('basic', function () {
     assert.equal(output, 1);
   });
 
-  it('basic #20', function() {
+  it('basic #20.2', function() {
     var stylesheet = {
       "default" : 1,
       "mapping" : ['a','b','c']
@@ -237,6 +237,40 @@ describe('basic', function () {
     var output = JBJ.renderSync(stylesheet);
     assert.equal(output, 'b');
   });
+
+  it('basic #20.3', function() {
+    var stylesheet = {
+      "set": [1, 2],
+      "mapping": ['a','b','c']
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["b","c"]');
+  });
+
+  it('basic #20.4', function() {
+    var stylesheet = {
+      "set": ["a", "b"],
+      "mapping": {
+        "a": "Aha!",
+        "b": "Baby"
+      }
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(JSON.stringify(output), '["Aha!","Baby"]');
+  });
+
+  it('basic #20.5', function() {
+    var input = {
+      "arg": { "a": "Aha!", "b": "Baby"},
+      "input": "a"
+    };
+    var stylesheet = {
+      "mappingVar": ["input", "arg"]
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "Aha!");
+  });
+
   it('basic #21', function() {
     var stylesheet = {
       "set" : [2, 4,1,7, 9,3],
@@ -316,7 +350,40 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '["a","c"]');
   });
 
-  it('basic #30', function () {
+   it('basic #30', function() {
+    var stylesheet = {
+      "$x" : {
+        "set" : "X",
+      },
+      "$y" : {
+        "get": "x"
+      }
+   };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.x, "X");
+    assert.equal(output.y, "X");
+  });
+
+  it('basic #31', function() {
+    var stylesheet = {
+      "get" : "a.b.c",
+      "append" : ">"
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "value>");
+  });
+
+  it('basic #32', function() {
+    var stylesheet = {
+      "get" : "a.b.c",
+      "prepend" : "<",
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "<value");
+  });
+
+
+  it('basic #33', function () {
     var stylesheet = {
       "set"       : "20150310",
       "substring" : [4,2]

@@ -275,6 +275,71 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
+<a id="mapping"></a>
+### mapping: object
+Replace a value by the matching value in the object.
+
+```javascript
+{
+  "set": "one",
+  "mapping": {
+    "one": 1
+  }
+}
+// output: 1
+```
+
+```javascript
+{
+  "set": "FR",
+  "mapping": {
+    "US": "United States of America",
+    "FR": "France"
+  }
+}
+// output: "France"
+```
+
+Can also replace the values of an array with the matching values in the object.
+
+```javascript
+{
+  "set": [1, 2],
+  "mapping": ["a","b","c"]
+}
+// output: ["b","c"]
+```
+
+```javascript
+{
+  "set": ["a", "b"],
+  "mapping": {
+    "a": "Aha!",
+    "b": "Baby"
+  }
+}
+// output: ["Aha!","Baby"]
+```
+
+<a id="mappingVar"></a>
+### mappingVar: ["input","table"]
+
+*alias*: combine
+
+Replace the content of the `input` variable according to the content of the `table` variable.
+
+```javascript
+var input = {
+  "arg": { "a": "Aha!", "b": "Baby"},
+  "input": "a"
+};
+var stylesheet = {
+  "mappingVar": ["input", "arg"]
+};
+var output = JBJ.renderSync(stylesheet, input);
+// output "Aha!";
+```
+
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 Convert *input* to specific type
