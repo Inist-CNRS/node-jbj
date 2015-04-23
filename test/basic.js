@@ -259,6 +259,18 @@ describe('basic', function () {
     assert.equal(JSON.stringify(output), '["Aha!","Baby"]');
   });
 
+  it('basic #20.5', function() {
+    var input = {
+      "arg": { "a": "Aha!", "b": "Baby"},
+      "input": "a"
+    };
+    var stylesheet = {
+      "mappingVar": ["input", "arg"]
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output, "Aha!");
+  });
+
   it('basic #21', function() {
     var stylesheet = {
       "set" : [2, 4,1,7, 9,3],

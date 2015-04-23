@@ -312,6 +312,20 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #20.5', function(done) {
+    var input = {
+      "arg": { "a": "Aha!", "b": "Baby"},
+      "input": "a"
+    };
+    var stylesheet = {
+      "mappingVar": ["input", "arg"]
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output, "Aha!");
+      done(err);
+    });
+  });
+
   it('basic #21', function(done) {
     var stylesheet = {
       "set" : [2, 4,1,7, 9,3],

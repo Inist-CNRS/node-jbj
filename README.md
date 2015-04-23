@@ -321,6 +321,24 @@ Can also replace the values of an array with the matching values in the object.
 // output: ["Aha!","Baby"]
 ```
 
+<a id="mappingVar"></a>
+### mappingVar: ["input","table"]
+
+*alias*: combine
+
+Replace the content of the `input` variable according to the content of the `table` variable.
+
+```javascript
+var input = {
+  "arg": { "a": "Aha!", "b": "Baby"},
+  "input": "a"
+};
+var stylesheet = {
+  "mappingVar": ["input", "arg"]
+};
+var output = JBJ.renderSync(stylesheet, input);
+// output "Aha!";
+```
 
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
