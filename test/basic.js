@@ -71,6 +71,15 @@ describe('basic', function () {
     assert.equal(output, 'A');
   });
 
+  it('basic #6b', function () {
+    var stylesheet = {
+      "get": "a.d",
+      "sort": true
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.deepEqual(output, ["A","B","C"]);
+  });
+
   it('basic #7', function() {
     var stylesheet = {
       "get": "a.d",
@@ -339,5 +348,14 @@ describe('basic', function () {
     assert.equal(output, "<value");
   });
 
+
+  it('basic #33', function () {
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, "03");
+  });
 
 });

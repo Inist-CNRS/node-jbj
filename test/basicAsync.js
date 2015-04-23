@@ -83,6 +83,17 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #6b', function (done) {
+    var stylesheet = {
+      "get": "a.d",
+      "sort": true
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert.deepEqual(output, ["A","B","C"]);
+      done(err);
+    });
+  });
+
   it('basic #7', function(done) {
     var stylesheet = {
       "get": "a.d",
@@ -370,6 +381,17 @@ describe('asynchronous basic', function (done) {
     };
     var output = JBJ.render(stylesheet, function (err, output) {
       assert.equal(JSON.stringify(output), '["a","c"]');
+      done(err);
+    });
+  });
+
+  it('basic #30', function (done) {
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, "03");
       done(err);
     });
   });

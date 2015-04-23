@@ -275,6 +275,31 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
+<a id="mapping"></a>
+### mapping: object
+Replace a value by the matching value in the object.
+
+```javascript
+{
+  "set": "one",
+  "mapping": {
+    "one": 1
+  }
+}
+// output: 1
+```
+
+```javascript
+{
+  "set": "FR",
+  "mapping": {
+    "US": "United States of America",
+    "FR": "France"
+  }
+}
+// output: "France"
+```
+
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 Convert *input* to specific type
@@ -542,6 +567,19 @@ Uppercase *input*
 	// output : "XYZ"
 ```
 
+<a id="substring"></a>
+### substring: [offset]|[offset, length]
+
+*aliases : substr*
+
+```javascript
+    var stylesheet = {
+      "set"       : "20150310",
+      "substring" : [4,2]
+    };
+    // output : "03"
+```
+
 <a id="first"></a>
 ### first:
 Get the first element of *input*
@@ -566,7 +604,15 @@ Get the last element of *input*
 
 <a id="sort"></a>
 ### sort:
-Sort *input* object
+Sort *input* object or array.
+
+```javascript
+	var stylesheet = {
+		"set": ["b", "c", "a"],
+		"sort": true
+	};
+	// output : ["a", "b", "c"]
+```
 
 <a id="sortBy"></a>
 ### sortBy: prop | [prop, prop, ...]
