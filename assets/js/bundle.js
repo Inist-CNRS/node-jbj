@@ -51,10 +51,43 @@ exports.debug = function (input, arg) {
 
 /**
  * translate *input* with its equivalent in *arg*
+ * @param {string|array} input An array or a string to map
+ * @param {Array|Object} arg   An array of values or a hash.
+ * @return {string|array} the mapped input
  */
 exports.mapping = function (input, arg) {
-  return arg[input] ? arg[input] : input;
+  var mapElement = function (element, table) {
+    return table[element] ? table[element] : element;
+  };
+
+  if (typeof input !== 'object') {
+    return mapElement(input, arg);
+  }
+  if (Array.isArray(input)) {
+    return input.map(function (element) {
+      return mapElement(element, arg);
+    });
+  }
+  return input;
 };
+
+/**
+ * translate *arg[0]* with its equivalent in *arg[1]*
+ * @param  {object} obj current environment
+ * @param  {Array} arg arguments : ["input", "table"]
+ * @return {String|Array}     the mapped *arg[1]*
+ */
+exports.mappingVar = exports.combine = function (obj, arg) {
+  assert(Array.isArray(arg));
+  assert(typeof obj === 'object');
+  assert(arg.length === 2);
+  assert(typeof arg[0] === 'string');
+  assert(typeof arg[1] === 'string');
+  var objectPath = require('object-path');
+  var input = objectPath.get(obj, arg[0]);
+  var arg   = objectPath.get(obj, arg[1]);
+  return exports.mapping(input, arg);
+}
 
 /**
  * fix value if input is not set
@@ -256,36 +289,6 @@ exports.compute = function(obj, args) {
     };
     extend(env, obj);
     return filtrex(arg)(env);
-  });
-};
-
-
-/**
- * continue or not the feed
- */
-exports.assert = function(obj, args) {
-  var filtrex = require('filtrex');
-  return execargs(args, function(arg) {
-    assert(typeof arg === 'string');
-    var env = {
-      "this" : obj
-    };
-    extend(env, obj);
-    return Boolean(filtrex(arg)(env));
-  });
-};
-/**
- * break or not the feed
- */
-exports.breakIf =  exports.breakIF =  exports.breakif = function(obj, args) {
-  var filtrex = require('filtrex');
-  return execargs(args, function(arg) {
-    assert(typeof arg === 'string');
-    var env = {
-      "this" : obj
-    };
-    extend(env, obj);
-    return (!Boolean(filtrex(arg)(env)));
   });
 };
 
@@ -13775,7 +13778,7 @@ var filters = require('./filters.js')
   , fs = require('fs')
   , assert = require('assert')
   , async = require('async')
-  , debug = /*console.log  // */ function() { /* noop */ }
+  , debug = /* console.log  // */ function() { /* noop */ }
   , objectPath = require('object-path');
 
 
@@ -13811,10 +13814,21 @@ function renderSync(stylesheet, input)
     }
     else if ((filter.toLowerCase() === 'assert' || filter.toLowerCase() === 'breakif') && typeof filters[filter] === 'function') {
       var r = filters[filter](holder, stylesheet[key]);
-      if (input === holder) {
-        holder = null;
+      debug('test',  stylesheet[key], r);
+      if (r instanceof Error) {
+        holder = r;
+        console.error(holder);
+        return false;
       }
-      return r;
+      else if (r === false) {
+        if (input === holder) {
+          holder = null;
+        }
+        return false;
+      }
+      else {
+        return true;
+      }
     }
     else if (typeof filters[filter] === 'function') {
       holder = filters[filter](holder, stylesheet[key]);

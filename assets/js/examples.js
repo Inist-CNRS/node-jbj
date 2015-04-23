@@ -111,6 +111,24 @@ var examples = {
       "set" : 1,
       "mapping" : ['a','b','c']
     },
+    "mapping 3": {
+      "set": [1, 2],
+      "mapping": ['a','b','c']
+    },
+    "mapping 4": {
+      "set": ["a", "b"],
+      "mapping": {
+        "a": "Aha!",
+        "b": "Baby"
+      }
+    },
+    "mapping 5": {
+      "set": {
+        "arg": { "a": "Aha!", "b": "Baby"},
+        "input": "a"
+      },
+      "mappingVar": ["input","arg"]
+    },
     "min": {
       "set" : [2, 4,1,7, 9,3],
       "min" : true
