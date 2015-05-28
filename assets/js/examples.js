@@ -165,6 +165,21 @@ var examples = {
       "set"    : [ "a", "b", "c", ""],
       "remove#1" : "",
       "remove#2" : "b"
+    },
+    "getproperty array": {
+      "set"        : [ "a", "b", "c" ],
+      "getproperty": "2"
+    },
+    "getproperty object": {
+      "set"        : { "a": 0, "b": 1, "c":2 },
+      "getproperty": "b"
+    },
+    "zip": {
+      "set": {
+        "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
+        "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
+      },
+      "zip": [ "array1", "array2" ]
     }
   },
   "Compute": {
