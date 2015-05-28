@@ -339,6 +339,24 @@ var stylesheet = {
 var output = JBJ.renderSync(stylesheet, input);
 // output "Aha!";
 ```
+<a id="zip"></a>
+### zip: ["array1","array2"]
+
+Join two arrays (which elements have an `_id` and a `value` keys).
+
+```javascript
+var stylesheet = {
+  "set": {
+    "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
+    "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
+  },
+  "zip": [ "array1", "array2" ]
+};
+var output = JBJ.renderSync(stylesheet);
+// output: [ { _id: '1', array1: 1, array2: 10 },
+//           { _id: '2', array1: 2, array2: 20 } ]
+
+```
 
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
