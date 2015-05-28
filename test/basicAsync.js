@@ -436,4 +436,26 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #34', function (done) {
+    var stylesheet = {
+      "set"        : [ "a", "b", "c" ],
+      "getproperty": "2"
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, "c");
+      done(err);
+    });
+  });
+
+  it('basic #35', function (done) {
+    var stylesheet = {
+      "set"        : { "a": 0, "b": 1, "c":2 },
+      "getproperty": "b"
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, 1);
+      done(err);
+    });
+  });
+
 });

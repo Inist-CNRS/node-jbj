@@ -968,6 +968,25 @@ Remove one value in an array.
     // output : ["a","c"]
 ```
 
+<<a id="getproperty"></a>
+## getproperty: property | index
+*alias : getProperty*
+
+Get a property of an object, or an item of an array.
+
+```javascript
+var stylesheet = {
+  "set"        : [ "a", "b", "c" ],
+  "getproperty": "2"
+};
+// output : "c"
+var stylesheet = {
+  "set"        : { "a": 0, "b": 1, "c":2 },
+  "getproperty": "b"
+};
+// output : 1
+```
+
 <a id="sum"></a>
 ## sum:
 *alias : total*
