@@ -124,4 +124,21 @@ describe('misc', function () {
     assert.equal(output.toString(), "Error: Input object should be an array");
   });
 
+  it('misc #8', function () {
+    var stylesheet = {
+      "set": {
+        "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
+        "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
+      },
+      "zip": [ "array1", "array2" ]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output[0]._id, "1");
+    assert.equal(output[0].array1, 1);
+    assert.equal(output[0].array2, 10);
+    assert.equal(output[1]._id, "2");
+    assert.equal(output[1].array1, 2);
+    assert.equal(output[1].array2, 20);
+  });
+
 });

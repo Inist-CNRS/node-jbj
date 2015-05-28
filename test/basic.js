@@ -392,4 +392,22 @@ describe('basic', function () {
     assert.equal(output, "03");
   });
 
+  it('basic #34', function () {
+    var stylesheet = {
+      "set"        : [ "a", "b", "c" ],
+      "getproperty": "2"
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, "c");
+  });
+
+  it('basic #35', function () {
+    var stylesheet = {
+      "set"        : { "a": 0, "b": 1, "c":2 },
+      "getproperty": "b"
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 1);
+  });
+
 });
