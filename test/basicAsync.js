@@ -458,4 +458,32 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #36', function (done) {
+    var stylesheet = {
+      "set": {
+        "i": 1,
+        "t": ["a","b","c"]
+      },
+      "getPropertyVar": ["t", "i"]
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, "b");
+      done(err);
+    });
+  });
+
+  it('basic #37', function (done) {
+    var stylesheet = {
+      "set": {
+        "i" : "b",
+        "o" : { "a": 0, "b": 1, "c":2 },
+      },
+      "getPropertyVar": ["o", "i"]
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output, 1);
+      done(err);
+    });
+  });
+
 });
