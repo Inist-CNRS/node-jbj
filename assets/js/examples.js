@@ -174,6 +174,20 @@ var examples = {
       "set"        : { "a": 0, "b": 1, "c":2 },
       "getproperty": "b"
     },
+    "getpropertyvar array": {
+      "set": {
+        "i": 1,
+        "t": ["a","b","c"]
+      },
+      "getPropertyVar": ["t", "i"]
+    },
+    "getpropertyvar object": {
+      "set": {
+        "i" : "b",
+        "o" : { "a": 0, "b": 1, "c":2 },
+      },
+      "getPropertyVar": ["o", "i"]
+    },
     "zip": {
       "set": {
         "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],

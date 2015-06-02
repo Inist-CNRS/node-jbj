@@ -685,6 +685,19 @@ exports.getproperty = exports.getProperty = function (obj, arg) {
   return obj[arg];
 };
 
+exports.getpropertyvar = exports.getPropertyVar = function (obj, arg) {
+  assert(typeof obj === 'object');
+  assert(typeof arg === 'object');
+  assert(Array.isArray(arg));
+  assert(arg.length === 2);
+  var objectPath = require('object-path');
+  var o = objectPath.get(obj, arg[0]);
+  var i = objectPath.get(obj, arg[1]);
+  assert(o);
+  assert(i);
+  return o[i];
+};
+
 },{"./jbj.js":"jbj","JSONSelect":2,"assert":5,"csv-string":34,"extend":38,"filtrex":39,"json-mask":42,"mustache":44,"object-path":45,"transtype":46,"xml-mapping":49}],2:[function(require,module,exports){
 /*! Copyright (c) 2011, Lloyd Hilaiel, ISC License */
 /*
