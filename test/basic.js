@@ -410,4 +410,28 @@ describe('basic', function () {
     assert.equal(output, 1);
   });
 
+  it('basic #36', function () {
+    var stylesheet = {
+      "set": {
+        "i": 1,
+        "t": ["a","b","c"]
+      },
+      "getPropertyVar": ["t", "i"]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, "b");
+  });
+
+  it('basic #37', function () {
+    var stylesheet = {
+      "set": {
+        "i" : "b",
+        "o" : { "a": 0, "b": 1, "c":2 },
+      },
+      "getPropertyVar": ["o", "i"]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output, 1);
+  });
+
 });

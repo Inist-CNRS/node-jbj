@@ -968,7 +968,7 @@ Remove one value in an array.
     // output : ["a","c"]
 ```
 
-<<a id="getproperty"></a>
+<a id="getproperty"></a>
 ## getproperty: property | index
 *alias : getProperty*
 
@@ -983,6 +983,31 @@ var stylesheet = {
 var stylesheet = {
   "set"        : { "a": 0, "b": 1, "c":2 },
   "getproperty": "b"
+};
+// output : 1
+```
+
+<a id="getpropertyvar"></a>
+## getpropertyvar: [propertyName, indexName]
+*alias : getPropertyVar*
+
+Get a property of an object, or an item of an array, like [getproperty](#getproperty), but using variables.
+
+```javascript
+var stylesheet = {
+  "set": {
+    "i": 1,
+    "t": ["a","b","c"]
+  },
+  "getPropertyVar": ["t", "i"]
+};
+// output : "b"
+var stylesheet = {
+  "set": {
+    "i" : "b",
+    "o" : { "a": 0, "b": 1, "c":2 },
+  },
+  "getPropertyVar": ["o", "i"]
 };
 // output : 1
 ```
