@@ -122,7 +122,7 @@ body{
   transition: none;
 }
 
-.example:hover{
+.example:hover , .exampleClicked{
   width: 100%;
   background: #fff;
   color: #000;

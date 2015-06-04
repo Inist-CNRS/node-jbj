@@ -609,6 +609,15 @@ var stylesheetArea = document.getElementById('stylesheet');
 var outputArea     = document.getElementById('output');
 
 var showExample = function showExample(e) {
+  var exampleClicked = document.getElementsByClassName("exampleClicked")
+  if(exampleClicked.length > 0){
+    for(var i = 0 ; i < exampleClicked.length ; i++){
+      console.log(exampleClicked[i]);
+      exampleClicked[i].className = "example";
+    }
+  }
+  e.target.className = e.target.className + " exampleClicked";
+  
   var exampleName      = e.target.textContent;
   var difficulty       = exampleName.split(':')[0];
   var subName          = exampleName.split(':')[1].trim();
