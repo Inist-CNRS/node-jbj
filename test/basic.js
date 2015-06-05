@@ -434,4 +434,46 @@ describe('basic', function () {
     assert.equal(output, 1);
   });
 
+  it('basic #38', function () {
+    var stylesheet = {
+      "set": [
+        {
+          "_id": "2007",
+          "value": 538
+        }, {
+          "_id": "2008",
+          "value": 577
+        }, {
+          "_id": "2009",
+          "value": 611
+      }],
+      "array2object": true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output[2007], 538);
+    assert.equal(output[2008], 577);
+    assert.equal(output[2009], 611);
+  });
+
+  it('basic #38b', function () {
+    var stylesheet = {
+      "set": [
+        {
+          "key": "2007",
+          "val": 538
+        }, {
+          "key": "2008",
+          "val": 577
+        }, {
+          "key": "2009",
+          "val": 611
+      }],
+      "array2object": ["key","val"]
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output[2007], 538);
+    assert.equal(output[2008], 577);
+    assert.equal(output[2009], 611);
+  });
+
 });

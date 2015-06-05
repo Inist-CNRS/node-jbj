@@ -339,6 +339,50 @@ var stylesheet = {
 var output = JBJ.renderSync(stylesheet, input);
 // output "Aha!";
 ```
+
+<a id="array2object"></a>
+### array2object: [key, value]
+
+Convert an array, which items have `key` and `value` properties, to an associative array (or object), which key properties are `key` values and values are `value` values.
+
+> *Note*: when the parameter is not a two items array, its default value is `["_id","value"]`.
+
+Ex:
+
+```javascript
+var stylesheet = {
+  "set": [
+    {
+      "_id": "2007",
+      "value": 538
+    }, {
+      "_id": "2008",
+      "value": 577
+    }, {
+      "_id": "2009",
+      "value": 611
+  }],
+  "array2object": true
+};
+// output = { "2007": 538, "2008": 577, "2009": 611 }
+
+var stylesheet = {
+  "set": [
+    {
+      "key": "2007",
+      "val": 538
+    }, {
+      "key": "2008",
+      "val": 577
+    }, {
+      "key": "2009",
+      "val": 611
+  }],
+  "array2object": ["key","val"]
+};
+// output = { "2007": 538, "2008": 577, "2009": 611 }
+```
+
 <a id="zip"></a>
 ### zip: ["array1","array2"]
 
