@@ -188,6 +188,34 @@ var examples = {
       },
       "getPropertyVar": ["o", "i"]
     },
+    "array2object 1": {
+      "set": [
+        {
+          "_id": "2007",
+          "value": 538
+        }, {
+          "_id": "2008",
+          "value": 577
+        }, {
+          "_id": "2009",
+          "value": 611
+      }],
+      "array2object": true
+    },
+    "array2object 2": {
+      "set": [
+        {
+          "key": "2007",
+          "val": 538
+        }, {
+          "key": "2008",
+          "val": 577
+        }, {
+          "key": "2009",
+          "val": 611
+      }],
+      "array2object": ["key","val"]
+    },
     "zip": {
       "set": {
         "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],

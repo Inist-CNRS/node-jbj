@@ -117,6 +117,28 @@ exports.zip = function (obj, arg) {
 };
 
 /**
+ * Convert an array into an object
+ * @param  {object} obj current environment (the array)
+ * @param  {Array}  arg argument:  [ "key", "value"] (default: "_id", "value")
+ * @return {object}     An object where "key" are property names and "value"s are property values
+ */
+exports.array2object = function (obj, arg) {
+  assert(typeof obj === "object");
+  assert(Array.isArray(obj));
+  if (!Array.isArray(arg)) {
+    arg = ["_id","value"];
+  }
+  assert(arg.length === 2);
+  var key = arg[0];
+  var value = arg[1];
+  var o = {};
+  obj.forEach(function (item) {
+    o[item[key]] = item[value];
+  });
+  return o;
+};
+
+/**
  * fix value if input is not set
  */
 exports.default = function (input, arg) {
