@@ -166,20 +166,20 @@ var examples = {
       "remove#1" : "",
       "remove#2" : "b"
     },
-    "getproperty array": {
+    "getindex array": {
       "set"        : [ "a", "b", "c" ],
-      "getproperty": "2"
+      "getindex": "2"
     },
     "getproperty object": {
       "set"        : { "a": 0, "b": 1, "c":2 },
       "getproperty": "b"
     },
-    "getpropertyvar array": {
+    "getindexvar array": {
       "set": {
         "i": 1,
         "t": ["a","b","c"]
       },
-      "getPropertyVar": ["t", "i"]
+      "getIndexVar": ["t", "i"]
     },
     "getpropertyvar object": {
       "set": {
