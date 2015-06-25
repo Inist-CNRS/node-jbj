@@ -1013,15 +1013,16 @@ Remove one value in an array.
 ```
 
 <a id="getproperty"></a>
-## getproperty: property | index
-*alias : getProperty*
+<a id="getindex"></a>
+## getindex: property | index
+*aliases : getProperty, getproperty, getIndex*
 
 Get a property of an object, or an item of an array.
 
 ```javascript
 var stylesheet = {
   "set"        : [ "a", "b", "c" ],
-  "getproperty": "2"
+  "getindex": "2"
 };
 // output : "c"
 var stylesheet = {
@@ -1032,10 +1033,11 @@ var stylesheet = {
 ```
 
 <a id="getpropertyvar"></a>
-## getpropertyvar: [propertyName, indexName]
-*alias : getPropertyVar*
+<a id="getindexvar"></a>
+## getindexvar: [ arrayName | objectName , propertyName | indexName ]
+*aliases : getPropertyVar, getpropertyvar, getIndexVar*
 
-Get a property of an object, or an item of an array, like [getproperty](#getproperty), but using variables.
+Get a property of an object, or an item of an array, like [getindex](#getindex), but using variables.
 
 ```javascript
 var stylesheet = {
@@ -1043,7 +1045,7 @@ var stylesheet = {
     "i": 1,
     "t": ["a","b","c"]
   },
-  "getPropertyVar": ["t", "i"]
+  "getIndexVar": ["t", "i"]
 };
 // output : "b"
 var stylesheet = {
