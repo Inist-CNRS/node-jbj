@@ -556,9 +556,9 @@ exports.truncate = function(str, args) {
 
 exports.shift = function(obj, args) {
   return mapargs(args, function(n) {
-    return Array.isArray(obj) || typeof obj === 'string'
-    ? obj.slice(Number(n))
-    : n - obj;
+    return Array.isArray(obj) || typeof obj === 'string' ?
+          obj.slice(Number(n)) :
+          n - obj;
   });
 };
 
@@ -601,9 +601,9 @@ exports.replace = function(str, args) {
 
 exports.prepend = function(obj, args) {
   return mapargs(args, function(val) {
-    return Array.isArray(obj)
-    ? [val].concat(obj)
-    : val + obj;
+    return Array.isArray(obj) ?
+          [val].concat(obj) :
+          val + obj;
   });
 };
 
@@ -613,9 +613,9 @@ exports.prepend = function(obj, args) {
 
 exports.append = function(obj, args){
   return mapargs(args, function(val) {
-    return Array.isArray(obj)
-    ? obj.concat(val)
-    : obj + val;
+    return Array.isArray(obj) ?
+          obj.concat(val) :
+          obj + val;
   });
 };
 
@@ -634,18 +634,18 @@ exports.append = function(obj, args){
  */
 
 exports.reverse = function(obj) {
-  return Array.isArray(obj)
-  ? obj.reverse()
-  : String(obj).split('').reverse().join('');
+  return Array.isArray(obj) ?
+        obj.reverse() :
+        String(obj).split('').reverse().join('');
 };
 
 
 exports.flatten = function flatten(obj) {
-  return Array.isArray(obj)
-  ? obj.reduce(function (arr, val) {
-    return arr.concat(Array.isArray(val) ? flatten(val) : val);
-  }, [])
-  : obj;
+  return Array.isArray(obj) ?
+        obj.reduce(function (arr, val) {
+          return arr.concat(Array.isArray(val) ? flatten(val) : val);
+        }, []) :
+        obj;
 };
 
 exports.dedupe = exports.deduplicate = exports.unique = function(obj) {
@@ -700,14 +700,29 @@ exports.substring = exports.substr = function (obj, arg) {
   return obj.substr(arg[0], arg[1]||Infinity);
 };
 
-exports.getproperty = exports.getProperty = function (obj, arg) {
+/**
+ * Get a property of an object, or an item of an array.
+ * @param  {object}         obj current environment (object/array)
+ * @param  {String|Number}  arg the key, or the indice in the obj
+ * @return {object|String|Number}  The property of the obj
+ */
+exports.getproperty = exports.getIndex = exports.getindex = exports.getProperty =
+function getProperty(obj, arg) {
   assert(typeof obj === 'object');
   assert(typeof arg !== 'object');
   assert(!Array.isArray(arg));
   return obj[arg];
 };
 
-exports.getpropertyvar = exports.getPropertyVar = function (obj, arg) {
+/**
+ * Get a property of an object, or an item of an array, like getproperty, but
+ * using variables.
+ * @param  {object} obj current environment (object/array)
+ * @param  {Array}  arg array of variable names [ "object", "property"]
+ * @return {object}     The property of the obj
+ */
+exports.getpropertyvar = exports.getindexvar = exports.getIndexVar = exports.getPropertyVar =
+function getPropertyVar(obj, arg) {
   assert(typeof obj === 'object');
   assert(typeof arg === 'object');
   assert(Array.isArray(arg));
