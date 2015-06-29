@@ -532,4 +532,17 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #39', function (done) {
+    var stylesheet = {
+      "set" : [ 5, 3, 2 ],
+      "sort": true
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output[0], 2);
+      assert.equal(output[1], 3);
+      assert.equal(output[2], 5);
+      done(err);
+    });
+  });
+
 });

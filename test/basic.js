@@ -476,4 +476,15 @@ describe('basic', function () {
     assert.equal(output[2009], 611);
   });
 
+  it('basic #39', function () {
+    var stylesheet = {
+      "set" : [ 5, 3, 2 ],
+      "sort": true
+    };
+    var output = JBJ.renderSync(stylesheet);
+    assert.equal(output[0], 2);
+    assert.equal(output[1], 3);
+    assert.equal(output[2], 5);
+  });
+
 });
