@@ -110,7 +110,6 @@
             <li class="example">Misc: unjson</li>
             <li class="example">Misc: required</li>
             <li class="example">Misc: extendWith</li>
-            <li class="example">Misc: extendWith 2</li>
             <li class="example">Misc: set</li>
             <li class="example">Sum: 1</li>
             <li class="example">Select: first</li>
@@ -268,6 +267,10 @@ var applyStylesheet = function applyStylesheet() {
   var stylesheet = getValue(stylesheetEditor);
   if (stylesheet.err) return;
   var out = JBJ.renderSync(stylesheet, input);
+  if (out instanceof Error) {
+    console.error(out);
+    out = "Error: " + out.message;
+  }
   outputEditor.set(out);
 };
 
