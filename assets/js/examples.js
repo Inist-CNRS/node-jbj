@@ -637,10 +637,9 @@ var stylesheetArea = document.getElementById('stylesheet');
 var outputArea     = document.getElementById('output');
 
 var showExample = function showExample(e) {
-  var exampleClicked = document.getElementsByClassName("exampleClicked")
+  var exampleClicked = document.getElementsByClassName("exampleClicked");
   if(exampleClicked.length > 0){
     for(var i = 0 ; i < exampleClicked.length ; i++){
-      console.log(exampleClicked[i]);
       exampleClicked[i].className = "example";
     }
   }

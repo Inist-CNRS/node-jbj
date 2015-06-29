@@ -56,19 +56,21 @@ exports.debug = function (input, arg) {
  * @return {string|array} the mapped input
  */
 exports.mapping = function (input, arg) {
-  var mapElement = function (element, table) {
-    return table[element] ? table[element] : element;
-  };
+  return execargs(arg, function (arg) {
+    var mapElement = function (element, table) {
+      return table[element] ? table[element] : element;
+    };
 
-  if (typeof input !== 'object') {
-    return mapElement(input, arg);
-  }
-  if (Array.isArray(input)) {
-    return input.map(function (element) {
-      return mapElement(element, arg);
-    });
-  }
-  return input;
+    if (typeof input !== 'object') {
+      return mapElement(input, arg);
+    }
+    if (Array.isArray(input)) {
+      return input.map(function (element) {
+        return mapElement(element, arg);
+      });
+    }
+    return input;
+  });
 };
 
 /**
@@ -78,17 +80,19 @@ exports.mapping = function (input, arg) {
  * @return {String|Array}     the mapped *arg[1]*
  */
 exports.mappingVar = exports.combine = function (obj, arg) {
-  assert(Array.isArray(arg));
-  assert(typeof obj === 'object');
-  assert(arg.length === 2);
-  assert(typeof arg[0] === 'string');
-  assert(typeof arg[1] === 'string');
-  var objectPath = require('object-path');
-  var input = objectPath.get(obj, arg[0]);
-  var arg2  = objectPath.get(obj, arg[1]);
-  assert(input);
-  assert(arg2);
-  return exports.mapping(input, arg2);
+  return execargs(arg, function (arg) {
+    assert(Array.isArray(arg));
+    assert(typeof obj === 'object');
+    assert(arg.length === 2);
+    assert(typeof arg[0] === 'string');
+    assert(typeof arg[1] === 'string');
+    var objectPath = require('object-path');
+    var input = objectPath.get(obj, arg[0]);
+    var arg2  = objectPath.get(obj, arg[1]);
+    assert(input);
+    assert(arg2);
+    return exports.mapping(input, arg2);
+  });
 };
 
 /**
@@ -98,21 +102,23 @@ exports.mappingVar = exports.combine = function (obj, arg) {
  * @return {Array}      the joined arrays
  */
 exports.zip = function (obj, arg) {
-  assert(Array.isArray(arg));
-  assert(typeof obj === 'object');
-  assert(arg.length == 2);
-  var objectPath = require('object-path');
-  var array1 = objectPath.get(obj, arg[0]);
-  var array2 = objectPath.get(obj, arg[1]);
-  assert(array1);
-  assert(array2);
-  assert(Array.isArray(array1));
-  assert(Array.isArray(array2));
-  return array1.map(function (e,i) {
-    var o = { _id: e._id };
-    o[arg[0]] = e.value;
-    o[arg[1]] = array2[i].value;
-    return o;
+  return execargs(arg, function (arg) {
+    assert(Array.isArray(arg));
+    assert(typeof obj === 'object');
+    assert(arg.length == 2);
+    var objectPath = require('object-path');
+    var array1 = objectPath.get(obj, arg[0]);
+    var array2 = objectPath.get(obj, arg[1]);
+    assert(array1);
+    assert(array2);
+    assert(Array.isArray(array1));
+    assert(Array.isArray(array2));
+    return array1.map(function (e,i) {
+      var o = { _id: e._id };
+      o[arg[0]] = e.value;
+      o[arg[1]] = array2[i].value;
+      return o;
+    });
   });
 };
 
@@ -123,19 +129,21 @@ exports.zip = function (obj, arg) {
  * @return {object}     An object where "key" are property names and "value"s are property values
  */
 exports.array2object = function (obj, arg) {
-  assert(typeof obj === "object");
-  assert(Array.isArray(obj));
-  if (!Array.isArray(arg)) {
-    arg = ["_id","value"];
-  }
-  assert(arg.length === 2);
-  var key = arg[0];
-  var value = arg[1];
-  var o = {};
-  obj.forEach(function (item) {
-    o[item[key]] = item[value];
+  return execargs(arg, function (arg) {
+    assert(typeof obj === "object");
+    assert(Array.isArray(obj));
+    if (!Array.isArray(arg)) {
+      arg = ["_id","value"];
+    }
+    assert(arg.length === 2);
+    var key = arg[0];
+    var value = arg[1];
+    var o = {};
+    obj.forEach(function (item) {
+      o[item[key]] = item[value];
+    });
+    return o;
   });
-  return o;
 };
 
 /**
@@ -319,7 +327,7 @@ exports.trim = function(obj, args) {
  */
 exports.required = function(obj, args) {
   if (obj === '' || obj === undefined || obj === null || obj.length === 0) {
-    return new Error('Input object cannot be empty');
+    return new Error('Input object cannot be empty (required)');
   }
   else {
     return obj;
@@ -395,7 +403,9 @@ exports.template = function(obj, args) {
  */
 
 exports.first = function(obj) {
-  return obj[0];
+  return execargs(null, function () {
+    return obj[0];
+  });
 };
 
 /**
@@ -403,7 +413,9 @@ exports.first = function(obj) {
  */
 
 exports.last = function(obj) {
-  return obj[obj.length - 1];
+  return execargs(null, function () {
+    return obj[obj.length - 1];
+  });
 };
 
 /**
@@ -436,10 +448,12 @@ exports.upcase = function(str) {
  */
 
 exports.sort = function(obj) {
-  if (Array.isArray(obj)) {
-    return [].concat(obj).sort();
-  }
-  return Object.create(obj).sort();
+  return execargs(null, function () {
+    if (Array.isArray(obj)) {
+      return [].concat(obj).sort();
+    }
+    return Object.create(obj).sort();
+  });
 };
 
 /**
@@ -462,7 +476,9 @@ exports.sortBy = exports.sort_by = function(obj, args){
  */
 
 exports.size = exports.length = function(obj) {
-  return Object.keys(obj).length;
+  return execargs(null, function () {
+    return Object.keys(obj).length;
+  });
 };
 
 /**
@@ -580,19 +596,21 @@ exports.truncateWords = exports.truncate_words = function(str, args) {
  */
 
 exports.replace = function(str, args) {
-  var pattern, substitution, flags;
-  if (Array.isArray(args)) {
-    pattern = String(args[0]);
-    substitution = String(args[1] || '');
-    flags = String(args[2] || 'g');
-  }
-  else {
-    pattern = String(args);
-    substitution = '';
-    flags = 'g';
-  }
-  var search = new RegExp(pattern, flags);
-  return String(str).replace(search, substitution);
+  return execargs(args, function (args) {
+    var pattern, substitution, flags;
+    if (Array.isArray(args)) {
+      pattern = String(args[0]);
+      substitution = String(args[1] || '');
+      flags = String(args[2] || 'g');
+    }
+    else {
+      pattern = String(args);
+      substitution = '';
+      flags = 'g';
+    }
+    var search = new RegExp(pattern, flags);
+    return String(str).replace(search, substitution);
+  });
 };
 
 /**
@@ -650,7 +668,7 @@ exports.flatten = function flatten(obj) {
 
 exports.dedupe = exports.deduplicate = exports.unique = function(obj) {
   if (!Array.isArray(obj)) {
-    return obj;
+    return new Error("The input have to be an array (deduplicate).");
   }
   var i;
   var out = [];
@@ -666,7 +684,7 @@ exports.dedupe = exports.deduplicate = exports.unique = function(obj) {
 
 exports.remove = exports.del = exports.unique = function(obj, arg) {
   if (!Array.isArray(obj)) {
-    return obj;
+    return new Error('The input have to be an array (del, remove).');
   }
   var out = [];
   obj.forEach(function (e) {
@@ -679,7 +697,7 @@ exports.remove = exports.del = exports.unique = function(obj, arg) {
 
 exports.sum = exports.total = function (obj) {
   if (!Array.isArray(obj)) {
-    return new Error('Input object should be an array');
+    return new Error('Input object should be an array (sum)');
   }
   var out = obj.reduce(function (prev, current) {
     return prev + Number(current);
@@ -689,13 +707,13 @@ exports.sum = exports.total = function (obj) {
 
 exports.substring = exports.substr = function (obj, arg) {
   if (!Array.isArray(arg)) {
-    return obj;
+    return new Error("Argument should be an array (substring, substr)");
   }
   if (!arg.length) {
-    return obj;
+    return new Error("Array argument should not be empty (substring, substr)");
   }
   if (typeof obj !== 'string') {
-    return obj;
+    return new Error("Input object should be a string (substring, substr)");
   }
   return obj.substr(arg[0], arg[1]||Infinity);
 };
@@ -708,10 +726,12 @@ exports.substring = exports.substr = function (obj, arg) {
  */
 exports.getproperty = exports.getIndex = exports.getindex = exports.getProperty =
 function getProperty(obj, arg) {
-  assert(typeof obj === 'object');
-  assert(typeof arg !== 'object');
-  assert(!Array.isArray(arg));
-  return obj[arg];
+  return execargs(arg, function(arg) {
+    assert(typeof obj === 'object');
+    assert(typeof arg !== 'object');
+    assert(!Array.isArray(arg));
+    return obj[arg];
+  });
 };
 
 /**
@@ -723,16 +743,18 @@ function getProperty(obj, arg) {
  */
 exports.getpropertyvar = exports.getindexvar = exports.getIndexVar = exports.getPropertyVar =
 function getPropertyVar(obj, arg) {
-  assert(typeof obj === 'object');
-  assert(typeof arg === 'object');
-  assert(Array.isArray(arg));
-  assert(arg.length === 2);
-  var objectPath = require('object-path');
-  var o = objectPath.get(obj, arg[0]);
-  var i = objectPath.get(obj, arg[1]);
-  assert(o);
-  assert(i);
-  return o[i];
+  return execargs(arg, function (arg) {
+    assert(typeof obj === 'object');
+    assert(typeof arg === 'object');
+    assert(Array.isArray(arg));
+    assert(arg.length === 2);
+    var objectPath = require('object-path');
+    var o = objectPath.get(obj, arg[0]);
+    var i = objectPath.get(obj, arg[1]);
+    assert(o);
+    assert(i);
+    return o[i];
+  });
 };
 
 },{"./jbj.js":"jbj","JSONSelect":2,"assert":5,"csv-string":34,"extend":38,"filtrex":39,"json-mask":42,"mustache":44,"object-path":45,"transtype":46,"xml-mapping":49}],2:[function(require,module,exports){
