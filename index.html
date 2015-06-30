@@ -28,6 +28,8 @@
           <div class="col-lg-4">
             <label for="input">INPUT :</label>
             <div id="input"></div>
+            <label for="inputurl">URL:</label>
+            <input id="inputurl" type="url" style="width:90%">
           </div>
           <div class="col-lg-4">
             <label for="stylesheet">STYLESHEET :</label>
@@ -305,7 +307,8 @@ var examples       = document.getElementById('examples'),
     actions        = document.getElementById('actions'),
     actionsButton  = document.getElementById('actionsButton'),
     asideInfos     = document.getElementsByClassName('asideInfos')[0],
-    quitAside      = document.getElementById('quitAside');
+    quitAside      = document.getElementById('quitAside'),
+    inputURL       = document.getElementById('inputurl');
 
 asideInfos.addEventListener('click' , function (e) {
   if(this.style.left !== "0px"){
@@ -358,8 +361,15 @@ var url2input = function (url) {
   });
 };
 
+inputURL.addEventListener('keyup', function (e) {
+  if (e.keyIdentifier === 'Enter') {
+    window.location.search = '?input=' + inputURL.value;
+  }
+});
+
 var url = window.location.search.slice("?input=".length);
 if (url.slice(0,4) === 'http') {
+  inputURL.value = url;
   url2input(url);
 }
 
