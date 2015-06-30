@@ -220,7 +220,8 @@
     </aside>
 
     <script type="text/javascript">
-var JBJ = require('jbj');
+var JBJ     = require('jbj');
+var reqwest = require('reqwest');
 
 var input       = document.getElementById('input'),
     stylesheet  = document.getElementById('stylesheet'),
@@ -342,6 +343,20 @@ quitAside.addEventListener('click' , function (e) {
   document.getElementById('examplesSection').style.display = "none";
   document.getElementById('actionsSection').style.display = "none";
 });
+
+var url2input = function (url) {
+  reqwest({url: url,
+    crossOrigin: true,
+    success: function (content) {
+      inputEditor.set(content);
+    }
+  });
+};
+
+var url = window.location.search.slice("?input=".length);
+if (url.slice(0,4) === 'http') {
+  url2input(url);
+}
 
     </script>
     <script src="assets/js/examples.js" type="text/javascript"></script>

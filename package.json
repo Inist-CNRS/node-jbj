@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec",
-    "build": "browserify -r ./lib/jbj.js:jbj > ./assets/js/bundle.js"
+    "build": "browserify -r ./lib/jbj.js:jbj -r reqwest > ./assets/js/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -25,15 +25,16 @@
     "mocha": ">=1.8.1"
   },
   "dependencies": {
-    "object-path": "^0.8.1",
-    "csv-string": "^2.2.5",
-    "mustache": "^1.0.0",
-    "json-mask": "^0.3.2",
-    "filtrex": "^0.5.4",
-    "transtype": "^1.0.0",
     "JSONSelect": "https://github.com/touv/JSONSelect/archive/master.tar.gz",
-    "extend": "^2.0.0",
     "async": "^0.9.0",
+    "csv-string": "^2.2.5",
+    "extend": "^2.0.0",
+    "filtrex": "^0.5.4",
+    "json-mask": "^0.3.2",
+    "mustache": "^1.0.0",
+    "object-path": "^0.8.1",
+    "reqwest": "^1.1.5",
+    "transtype": "^1.0.0",
     "xml-mapping": "^1.7.0"
   }
 }
