@@ -11,24 +11,25 @@ html{
 
 body{
     background: #333;
+    padding-left: 15px; /* compensate sidebar width */
 }
 
 .asideInfos{
-  position: absolute;
+  position: fixed;
   z-index: 9;
   left:-145px;
   top:0;
   height: 100%;
   width: 160px;
-  max-height: 100%; 
-  overflow: hidden; 
+  max-height: 100%;
+  overflow: hidden;
   background:#555555;
   transition: all 650ms;
 }
 
 .asideInfos:hover{
   left: 0px !important;
-  overflow-y: auto !important; 
+  overflow-y: auto !important;
   box-shadow: 4px 0px 9px #808080;
 }
 
@@ -164,7 +165,7 @@ h2{
 }
 
 label{
-    width: 89%;
+    width: 100%;
     text-align: center;
     font-size: 15px;
     color: #fff;
@@ -180,11 +181,9 @@ textarea{
     color: #ddd;
 }
 
-.textareaSection{
-    display: flex;
-    justify-content: center;
+#inputurl {
+  width: 100%;
 }
-
 
 .tryButton{
     height: 70px;
@@ -228,6 +227,11 @@ textarea{
 *
 */
 
+#stylesheet .jsoneditor,
+#input .jsoneditor,
+#output .jsoneditor {
+  width: 100%;
+}
 .jsoneditor .menu{
   display: none;
 }
