@@ -344,9 +344,14 @@ quitAside.addEventListener('click' , function (e) {
   document.getElementById('actionsSection').style.display = "none";
 });
 
+/**
+ * Request the URL content and put it in inputEditor.
+ * @param  {URL} url URL of the JSON to load
+ */
 var url2input = function (url) {
   reqwest({url: url,
     crossOrigin: true,
+    type: 'json',
     success: function (content) {
       inputEditor.set(content);
     }
