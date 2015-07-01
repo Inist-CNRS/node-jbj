@@ -49,6 +49,7 @@
       <div id="quitAside" class="glyphicon glyphicon-chevron-left" style="display: none"></div>
       <section id="examplesSection" style="display: none;">
         <h3 id="examplesButton">Examples</h3>
+        <input id="search-example" type="text" placeholder="Search...">
         <ul id="examples" style="display:none">
         </ul>
       </section>
@@ -197,6 +198,23 @@ var applyStylesheet = function applyStylesheet() {
   outputEditor.set(out);
 };
 
+var searchExample = function searchExample(e) {
+  var toFind     = e.target.value;
+  var len        = toFind.length;
+  var examples   = document.getElementById('examples');
+  var examplesNb = examples.children.length;
+  for (var i=0; i < examplesNb; i++) {
+    var li = examples.children[i];
+    var text = li.textContent.trim();
+    if (text.slice(0, len) === toFind) {
+      li.setAttribute('style', 'display:normal');
+    }
+    else {
+      li.setAttribute('style', 'display:none');
+    }
+  }
+};
+
 var searchAction = function SearchAction(e) {
   console.log(e);
   console.log(e.target.value);
@@ -221,6 +239,9 @@ button.addEventListener('click', applyStylesheet);
 
 var search_action = document.getElementById('search-action');
 search_action.addEventListener('keyup', searchAction);
+
+var search_example = document.getElementById('search-example');
+search_example.addEventListener('keyup', searchExample);
 
 var examples       = document.getElementById('examples'),
     examplesButton = document.getElementById('examplesButton'),
