@@ -1,5 +1,5 @@
 var examples = {
-  "Basic": {
+  capitalize : {
     "input": {
       "a" : {
         "b" : {
@@ -9,264 +9,526 @@ var examples = {
         "e" : 3
       }
     },
-    "capitalize": {
+    "stylesheet": {
       "get": "a.b.c",
-      "capitalize" : null
+      "capitalize" : true
+    }
+  },
+  upcase: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "upcase": {
+    "stylesheet": {
       "get": "a.b.c",
-      "upcase" : null
+      "upcase" : true
+    }
+  },
+  downcase: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "downcase": {
+    "stylesheet": {
       "get": "a.b.c",
-      "upcase" : null,
-      "downcase" : null
+      "upcase" : true,
+      "downcase" : true
+    }
+  },
+  first: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "first": {
+    "stylesheet": {
       "get": "a.d",
-      "first" : null
+      "first" : true
+    }
+  },
+  last: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "last": {
+    "stylesheet": {
       "get": "a.d",
-      "last" : null
+      "last" : true
+    }
+  },
+  sort: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "sort": {
+    "stylesheet": {
       "get": "a.d",
-      "sort" : null,
-      "first" : null
+      "sort" : true,
+      "first": true
+    }
+  },
+  "sort 2": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "sort 2": {
+    "stylesheet": {
       "get": "a.d",
       "sort" : true
+    }
+  },
+  length: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "length": {
+    "stylesheet": {
       "get": "a.d",
-      "length" : null,
+      "length" : true
+    }
+  },
+  plus: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "plus": {
+    "stylesheet": {
       "get": "a.e",
-      "plus" : 3,
+      "plus" : 3
+    }
+  },
+  minus: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "minus": {
+    "stylesheet": {
       "get": "a.e",
       "minus" : 2
+    }
+  },
+  times: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "times":{
+    "stylesheet": {
       "get": "a.e",
       "times" : 2
+    }
+  },
+  dividedBy: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "dividedBy": {
+    "stylesheet": {
       "get": "a.e",
       "times" : 2,
-      "dividedBy" : 3
+      "dividedBy": 3
+    }
+  },
+  join: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "join": {
+    "stylesheet": {
       "get": "a.d",
       "join" : "/"
+    }
+  },
+  truncate: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "truncate": {
+    "stylesheet": {
       "get": "a.d",
       "join" : "/",
       "truncate": 3
+    }
+  },
+  truncateWords: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "truncateWords": {
+    "stylesheet": {
       "get": "a.d",
       "join" : " ",
       "truncateWords": 2
+    }
+  },
+  prepend: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "prepend": {
+    "stylesheet": {
       "get": "a.e",
       "cast" : "string",
       "prepend": "#"
+    }
+  },
+  append: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "append": {
+    "stylesheet": {
       "get": "a.d",
-      "join" : "/",
-      "truncate": 3,
+      "join": "/",
+      "truncate" : 3,
       "append": "..."
+    }
+  },
+  shift: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "shift": {
+    "stylesheet": {
       "get": "a.d",
-      "join" : "/",
-      "truncate": 3,
+      "join": "/",
+      "truncate" : 3,
       "shift": 2
+    }
+  },
+  replace: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "replace": {
+    "stylesheet": {
       "get": "a.d",
       "join" : "/",
       "replace": "/"
+    }
+  },
+  "replace 2": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "replace 2": {
+    "stylesheet": {
       "get": "a.d",
       "join" : "/",
       "replace": ["/", "|"]
+    }
+  },
+  mapping: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : ['C', 'B', 'A'],
+        "e" : 3
+      }
     },
-    "mapping": {
+    "stylesheet": {
       "get" : "a.b.c",
       "mapping" : {
         "value" : 1
       }
-    },
-    "mapping 2": {
-      "set" : 1,
+    }
+  },
+  "mapping 2": {
+    "input": 1,
+    "stylesheet": {
       "mapping" : ['a','b','c']
-    },
-    "mapping 3": {
-      "set": [1, 2],
-      "mapping": ['a','b','c']
-    },
-    "mapping 4": {
-      "set": ["a", "b"],
+    }
+  },
+  "mapping 3": {
+    "input": [1, 2],
+    "stylesheet": {
+      "mapping" : ['a','b','c']
+    }
+  },
+  "mapping 4": {
+    "input": ["a", "b"],
+    "stylesheet": {
       "mapping": {
         "a": "Aha!",
         "b": "Baby"
       }
-    },
-    "mapping 5": {
-      "set": {
-        "arg": { "a": "Aha!", "b": "Baby"},
-        "input": "a"
-      },
-      "mappingVar": ["input","arg"]
-    },
-    "min": {
-      "set" : [2, 4,1,7, 9,3],
-      "min" : true
-    },
-    "max": {
-      "set" : [2, 4, 1, 7, 9, 3],
-      "max" : true
-    },
-    "min obj": {
-      "set" : {a: 9, b: 4, c: 3, d: 5},
-      "min" : true
-    },
-    "flatten": {
-      "set"     : [ ['a', 'b'], ['c', 'd'], 'e'],
-      "flatten" : true
-    },
-    "deduplicate": {
-      "set"         : [ 1, 2, 3, 1, 2],
-      "deduplicate" : true
-    },
-    "remove integer": {
-      "set"    : [ 1, 2, 3],
-      "remove" : 2
-    },
-    "remove empty": {
-      "set"    : [ "a", "", "b"],
-      "remove" : ""
-    },
-    "remove string": {
-      "set"    : [ "a", "b", "c"],
-      "remove" : "b"
-    },
-    "remove multiple": {
-      "set"    : [ "a", "b", "c", ""],
-      "remove#1" : "",
-      "remove#2" : "b"
-    },
-    "getindex array": {
-      "set"        : [ "a", "b", "c" ],
-      "getindex": "2"
-    },
-    "getproperty object": {
-      "set"        : { "a": 0, "b": 1, "c":2 },
-      "getproperty": "b"
-    },
-    "getindexvar array": {
-      "set": {
-        "i": 1,
-        "t": ["a","b","c"]
-      },
-      "getIndexVar": ["t", "i"]
-    },
-    "getpropertyvar object": {
-      "set": {
-        "i" : "b",
-        "o" : { "a": 0, "b": 1, "c":2 },
-      },
-      "getPropertyVar": ["o", "i"]
-    },
-    "array2object 1": {
-      "set": [
-        {
-          "_id": "2007",
-          "value": 538
-        }, {
-          "_id": "2008",
-          "value": 577
-        }, {
-          "_id": "2009",
-          "value": 611
-      }],
-      "array2object": true
-    },
-    "array2object 2": {
-      "set": [
-        {
-          "key": "2007",
-          "val": 538
-        }, {
-          "key": "2008",
-          "val": 577
-        }, {
-          "key": "2009",
-          "val": 611
-      }],
-      "array2object": ["key","val"]
-    },
-    "zip": {
-      "set": {
-        "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
-        "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
-      },
-      "zip": [ "array1", "array2" ]
     }
   },
-  "Compute": {
+  mappingVar: {
+    "input": {
+      "arg": { "a": "Aha!", "b": "Baby"},
+      "input": "a"
+    },
+    "stylesheet": {
+      "mappingVar": ["input","arg"]
+    }
+  },
+  min: {
+    "input": [2, 4, 1, 7, 9, 3],
+    "stylesheet": {
+      "min" : true
+    }
+  },
+  max: {
+    "input": [2, 4, 1, 7, 9, 3],
+    "stylesheet": {
+      "max" : true
+    }
+  },
+  "min obj": {
+    "input": {a: 9, b: 4, c: 3, d: 5},
+    "stylesheet": {
+      "min" : true
+    }
+  },
+  flatten: {
+    "input": [ ['a', 'b'], ['c', 'd'], 'e'],
+    "stylesheet": {
+      "flatten" : true
+    }
+  },
+  deduplicate: {
+    "input": [ 1, 2, 3, 1, 2],
+    "stylesheet": {
+      "deduplicate" : true
+    }
+  },
+  "remove integer": {
+    "input": [ 1, 2, 3],
+    "stylesheet": {
+      "remove" : 2
+    }
+  },
+  "remove empty": {
+    "input": [ "a", "", "b"],
+    "stylesheet": {
+      "remove" : ""
+    }
+  },
+  "remove string": {
+    "input": [ "a", "b", "c"],
+    "stylesheet": {
+      "remove" : "b"
+    }
+  },
+  "remove multiple": {
+    "input": [ "a", "b", "c", ""],
+    "stylesheet": {
+      "remove#1" : "",
+      "remove#2" : "b"
+    }
+  },
+  "getindex array": {
+    "input": [ "a", "b", "c"],
+    "stylesheet": {
+      "getindex" : 2
+    }
+  },
+  "getproperty object": {
+    "input": { "a": 0, "b": 1, "c":2 },
+    "stylesheet": {
+      "getproperty": "b"
+    }
+  },
+  "getindexvar array": {
+    "input": {
+      "i": 1,
+      "t": ["a","b","c"]
+    },
+    "stylesheet": {
+      "getIndexVar": ["t", "i"]
+    }
+  },
+  "getpropertyvar object": {
+    "input": {
+      "i" : "b",
+      "o" : { "a": 0, "b": 1, "c":2 },
+    },
+    "stylesheet": {
+      "getPropertyVar": ["o", "i"]
+    }
+  },
+  "array2object 1": {
+    "input": [
+      {
+        "_id": "2007",
+        "value": 538
+      }, {
+        "_id": "2008",
+        "value": 577
+      }, {
+        "_id": "2009",
+        "value": 611
+    }],
+    "stylesheet": {
+      "array2object": true
+    }
+  },
+  "array2object 2": {
+    "input": [
+      {
+        "key": "2007",
+        "val": 538
+      }, {
+        "key": "2008",
+        "val": 577
+      }, {
+        "key": "2009",
+        "val": 611
+    }],
+    "stylesheet": {
+      "array2object": ["key","val"]
+    }
+  },
+  zip: {
+    "input": {
+      "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
+      "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
+    },
+    "stylesheet": {
+      "zip": ["array1","array2"]
+    }
+  },
+  round: {
     "input": {
       "a" : 20,
-      "b" : 3,
-      "c" : 5,
-      "d" : 8
+      "b" : 3
     },
-    "round": {
-      "$e" : {
-        "compute": "round(a / b)",
-        "cast": "number"
-      }
+    "stylesheet": {
+      "compute": "round(a / b)"
+    }
+  },
+  "round this": {
+    "input": {
+      "a" : 20,
+      "b" : 3
     },
-    "round this": {
-      "$e" : {
-        "compute#1": "a / b",
-        "compute#2": "round(this)",
-        "cast": "number"
-      }
+    "stylesheet": {
+      "compute#1": "a / b",
+      "compute#2": "round(this)"
+    }
+  },
+  "variables ($)": {
+    "input": {
+      "a" : 20,
+      "b" : 3
     },
-    "variables": {
+    "stylesheet": {
       "$x" : {
         "compute#1": "a / b",
-        "compute#2": "round(this)",
-        "cast": "number"
+        "compute#2": "round(this)"
       },
       "$y" : {
-        "path": "b",
-        "cast": "number"
+        "path": "b"
       },
       "$z" : {
         "compute": "x + y",
       }
     }
   },
-  "CSV": {
+  csv: {
     "input": {
       "a" : {
         "b" : ["x","y","z"],
         "d" : null
       }
     },
-    "output": {
+    "stylesheet": {
       "$e" : {
         "find#0": "a",
         "mask": "b",
@@ -274,14 +536,22 @@ var examples = {
         "csv" : ",",
         "trim": true
       }
+    }
+  },
+  parseCSV: {
+    "input": {
+      "a" : {
+        "b" : ["x","y","z"],
+        "d" : null
+      }
     },
-    "parseCSV": {
+    "stylesheet": {
       "find": "a.b",
       "csv" : ",",
       "parseCSV": ","
     }
   },
-  "Find": {
+  find: {
     "input": {
       "a" : {
         "b" : {
@@ -290,23 +560,63 @@ var examples = {
         "d" : null
       }
     },
-    "find": {
+    "stylesheet": {
       "find" : "a.b.c"
+    }
+  },
+  "find 2": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "find 2": {
+    "stylesheet": {
       "find" : "a",
       "find#1" : "b.c"
+    }
+  },
+  "find 3": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "find 3": {
+    "stylesheet": {
       "find#0" : "a",
       "find#1" : "b",
       "find#2" : "c"
+    }
+  },
+  coalesce: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "coalesce": {
+    "stylesheet": {
       "find" : ["x", "x.y", "a.b.c"],
       "coalesce" : true
+    }
+  },
+  order: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "order": {
+    "stylesheet": {
       "$x.y" : {
         "find" : ["x.y", "a.b.c"],
         "coalesce" : true,
@@ -318,7 +628,7 @@ var examples = {
       }
     }
   },
-  "Foreach": {
+  "foreach object": {
     "input": {
       "a" : {
         "b" : "x",
@@ -326,14 +636,14 @@ var examples = {
         "d" : "z"
       }
     },
-    "upcase": {
-      "path" : "a",
+    "stylesheet":{
+      "get" : "a",
       "foreach" : {
         "upcase" : true
       }
     }
   },
-  "Foreach array": {
+  "foreach array": {
     "input": {
       "a" : [
         { "b" : "x" },
@@ -341,8 +651,8 @@ var examples = {
         { "b" : "z" }
       ]
     },
-    "find and upcase": {
-      "path" : "a",
+    "stylesheet":{
+      "get" : "a",
       "foreach" : {
         "find": "b",
         "upcase" : true
@@ -357,8 +667,8 @@ var examples = {
         { "b" : "z", "c" : 2 }
       ]
     },
-    "find and upcase 2": {
-      "path" : "a",
+    "stylesheet": {
+      "get" : "a",
       "foreach" : {
         "$b" : {
           "find": "b",
@@ -367,28 +677,36 @@ var examples = {
       }
     }
   },
-  "JSON": {
+  "JSON output": {
     "input": {
       "a" : {
         "b" : ["x","y","z"],
         "d" : null
       }
     },
-    "output": {
+    "stylesheet": {
       "$e" : {
         "find#0": "a",
         "mask": "b",
         "find#1": "b",
         "json" : ",",
       }
+    }
+  },
+  parseJSON: {
+    "input": {
+      "a" : {
+        "b" : ["x","y","z"],
+        "d" : null
+      }
     },
-    "parseJSON": {
+    "stylesheet": {
       "find": "a.b",
       "json" : true,
       "parseJSON": true
     }
   },
-  "Mask": {
+  mask: {
     "input": {
       "a" : {
         "b" : {
@@ -397,14 +715,14 @@ var examples = {
         "d" : null
       }
     },
-    "1": {
+    "stylesheet": {
       "$a" : {
         "find": "a",
         "mask" : "b"
       }
     }
   },
-  "Misc": {
+  "find cast": {
     "input": {
       "a" : {
         "b" : {
@@ -413,32 +731,72 @@ var examples = {
         "d" : null
       }
     },
-    "find cast": {
+    "stylesheet": {
       "$a" : {
         "find": "a.b.c",
         "cast" : "number"
       }
+    }
+  },
+  "find default": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
+      }
     },
-    "find default": {
+    "stylesheet": {
       "$a" : {
         "find": "a.b.d",
         "default": "truc"
       }
+    }
+  },
+  unjson: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
+      }
     },
-    "unjson": {
+    "stylesheet": {
       "$a" : {
         "find": "a.b.d",
         "default": '["truc", "bidule"]',
-        "unjson": null
+        "unjson": true
+      }
+    }
+  },
+  required: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
       }
     },
-    "required": {
+    "stylesheet": {
       "$a" : {
         "find": "a.b.d",
         "required": true
       }
+    }
+  },
+  extendWith: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
+      }
     },
-    "extendWith": {
+    "stylesheet": {
       "extendWith": {
         "a" : {
           "b" : {
@@ -447,8 +805,18 @@ var examples = {
           "d" : "val2"
         }
       }
+    }
+  },
+  set: {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "1234"
+        },
+        "d" : null
+      }
     },
-    "set": {
+    "stylesheet": {
       "set": {
         "a" : {
           "b" : "val1",
@@ -457,7 +825,7 @@ var examples = {
       }
     }
   },
-  "Select": {
+  "select first 1": {
     "input": {
       "a" : {
         "b" : {
@@ -466,41 +834,91 @@ var examples = {
         "d" : null
       }
     },
-    "first": {
+    "stylesheet": {
       "$$" : {
         "select" : ".a > .b > .c",
         "first": true
       }
+    }
+  },
+  "select first 2": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 2": {
+    "stylesheet": {
       "$d.e.f" : {
         "select" : ".a > .b > .c",
         "first": true
       }
+    }
+  },
+  "select first 3": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 3": {
+    "stylesheet": {
       "$$" : {
         "select" : ".a",
         "first": true,
         "select#1" : ".b > .c",
         "first#1": true
       }
+    }
+  },
+  "select first 4": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 4": {
+    "stylesheet": {
       "select" : ".a",
       "first": true,
       "select#1" : ".b > .c",
       "first#1": true
+    }
+  },
+  "select first 5": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 5": {
+    "stylesheet": {
       "$d.e" : {
         "select" : ".a",
         "first": true,
         "select#1" : ".b > .c",
         "first#1": true
       }
+    }
+  },
+  "select first 6": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 6": {
+    "stylesheet": {
       "$$" : {
         "select#0" : ".a",
         "first#0": true,
@@ -509,16 +927,36 @@ var examples = {
         "select#2" : ".c",
         "first#2": true
       }
+    }
+  },
+  "select first 7": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 7": {
+    "stylesheet": {
       "select#0" : ".a",
       "first#0": true,
       "select#1" : ".b",
       "first#1": true,
       "select#2" : ".c",
       "first#2": true
+    }
+  },
+  "select first 8": {
+    "input": {
+      "a" : {
+        "b" : {
+          "c" : "value"
+        },
+        "d" : null
+      }
     },
-    "first 8": {
+    "stylesheet": {
       "$d" : {
         "select#0" : ".a",
         "first#0": true,
@@ -529,8 +967,8 @@ var examples = {
       }
     }
   },
-  "Empty": {
-    "default": {
+  "empty default": {
+    "stylesheet": {
       "default" : {
         "a" : {
           "b" : [
@@ -543,7 +981,7 @@ var examples = {
       "select" : ".a > .b .#text"
     }
   },
-  "Template": {
+  "template": {
     "input": {
       "a" : {
         "b" : {
@@ -554,42 +992,44 @@ var examples = {
       },
       "f": "8"
     },
-    "mustache": {
+    "stylesheet": {
       "$a" : {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
       }
     }
   },
-  "Xml": {
-    "parseXML": {
+  "parseXML": {
+    "stylesheet": {
       "default": "<root><item xml:id=\"1\">A</item><item xml:id=\"2\">B</item><item xml:id=\"3\">C</item></root>",
       "parseXML" : {
         "specialChar": "#",
         "longTag" : true
       }
+    }
+  },
+  "xml": {
+    "input": {
+      "root" : {
+        "item" : [
+          { "index" : "1", "$t" : "A"},
+          { "index" : "2", "$t" : "B"},
+          { "index" : "3", "$t" : "C"}
+        ]
+      }
     },
-    "output": {
-      "default": {
-        "root" : {
-          "item" : [
-            { "index" : "1", "$t" : "A"},
-            { "index" : "2", "$t" : "B"},
-            { "index" : "3", "$t" : "C"}
-          ]
-        }
-      },
+    "stylesheet": {
       "xml" : {
         "indent": false
       }
     }
   },
-  "Assert" : {
-    "input" : {
+  "assert": {
+    "input": {
       "val" : "unmodified",
       "a" : 1,
       "b" : "one"
     },
-    "if": {
+    "stylesheet": {
       "$val" : {
         "get" : "a",
         "assert": "this == 1",
@@ -597,13 +1037,13 @@ var examples = {
       }
     }
   },
-  "Assert2" : {
+  "assert else" : {
     "input" : {
       "val" : "unmodified",
       "a" : 2,
       "b" : "one"
     },
-    "if else": {
+    "stylesheet": {
       "$val#1" : {
         "assert": "a == 1",
         "set" : "if val"
@@ -614,23 +1054,41 @@ var examples = {
       }
     }
   },
-  "Sum": {
+  "sum": {
     "input": [1,2,3],
-    "1": {
+    "stylesheet": {
       "sum": true
     }
   },
-  "Substring": {
+  "substring month": {
     "input": "20150310",
-    "month": {
+    "stylesheet": {
       "substring": [4,2]
-    },
-    "day": {
+    }
+  },
+  "substring day": {
+    "input": "20150310",
+    "stylesheet": {
       "substring": [-2]
     }
   }
-
 };
+
+/**
+ * Initialize Examples list
+ * @param  {Object} examples Array of examples
+ */
+(function (examples) {
+  var examplesUl = document.getElementById('examples');
+  for (var example in examples) {
+    var nExample = document.createElement('li');
+    nExample.className = "example";
+    var tExampleName = document.createTextNode(example);
+    nExample.appendChild(tExampleName);
+    examplesUl.appendChild(nExample);
+    console.log(nExample);
+  }
+})(examples);
 
 var inputArea      = document.getElementById('input');
 var stylesheetArea = document.getElementById('stylesheet');
@@ -644,12 +1102,10 @@ var showExample = function showExample(e) {
     }
   }
   e.target.className = e.target.className + " exampleClicked";
-  
-  var exampleName      = e.target.textContent;
-  var difficulty       = exampleName.split(':')[0];
-  var subName          = exampleName.split(':')[1].trim();
-  var input            = examples[difficulty].input;
-  var stylesheet       = examples[difficulty][subName];
+
+  var exampleName = e.target.textContent;
+  var input       = examples[exampleName].input;
+  var stylesheet  = examples[exampleName].stylesheet;
   inputEditor.set(input);
   stylesheetEditor.set(stylesheet);
   var result           = JBJ.renderSync(stylesheet, input);
