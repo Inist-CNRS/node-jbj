@@ -49,9 +49,11 @@
       <div id="quitAside" class="glyphicon glyphicon-chevron-left" style="display: none"></div>
       <section id="examplesSection" style="display: none;">
         <h3 id="examplesButton">Examples</h3>
-        <input id="search-example" type="text" placeholder="Search...">
-        <ul id="examples" style="display:none">
-        </ul>
+        <div id="examples" style="display:none">
+          <input id="search-example" type="text" placeholder="Search...">
+          <ul id="examples-list">          
+          </ul>
+        </div>
       </section>
       <section id="actionsSection" style="display: none;">
           <h3 id="actionsButton">Actions</h3>
@@ -201,7 +203,7 @@ var applyStylesheet = function applyStylesheet() {
 var searchExample = function searchExample(e) {
   var toFind     = e.target.value;
   var len        = toFind.length;
-  var examples   = document.getElementById('examples');
+  var examples   = document.getElementById('examples-list');
   var examplesNb = examples.children.length;
   for (var i=0; i < examplesNb; i++) {
     var li = examples.children[i];
@@ -263,12 +265,12 @@ asideInfos.addEventListener('click' , function (e) {
 
 examplesButton.addEventListener('click' , function (e) {
   if(document.getElementById('examples').style.display == "none"){
-    document.getElementById('examples').style.cssText = "display: flex; padding: 18px";
+    document.getElementById('examples').style.cssText = "display: block;";
   }
   else{
-    document.getElementById('examples').style.cssText = "display: none; padding: 0";
+    document.getElementById('examples').style.cssText = "display: none;";
   }
-})
+});
 
 actionsButton.addEventListener('click' , function (e) {
   if(document.getElementById('actions').style.display == "none"){
@@ -277,7 +279,7 @@ actionsButton.addEventListener('click' , function (e) {
   else{
     document.getElementById('actions').style.cssText = "display: none;";
   }
-})
+});
 
 quitAside.addEventListener('click' , function (e) {
   e.stopPropagation();

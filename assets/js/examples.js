@@ -1079,7 +1079,8 @@ var examples = {
  * @param  {Object} examples Array of examples
  */
 (function (examples) {
-  var examplesUl = document.getElementById('examples');
+  var examplesUl = document.getElementById('examples-list');
+  console.log(examplesUl);
   for (var example in examples) {
     var nExample = document.createElement('li');
     nExample.className = "example";

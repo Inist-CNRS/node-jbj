@@ -121,6 +121,7 @@ body{
   cursor: pointer;
   color: #bbb;
   transition: none;
+  padding-left: 18px;
 }
 
 .example:hover , .exampleClicked{
