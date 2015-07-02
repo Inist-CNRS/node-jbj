@@ -461,6 +461,8 @@ Parse *input* as CSV string, return array
 	// output : ["x","y","z"]
 ```
 
+> **Warning**: when parsing a whole CSV file, be aware that file line columns can't have space in their names, neither special characters (they must fit in variable names)
+
 <a id="json"></a>
 ### json: none
 
