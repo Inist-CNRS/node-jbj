@@ -1080,14 +1080,12 @@ var examples = {
  */
 (function (examples) {
   var examplesUl = document.getElementById('examples-list');
-  console.log(examplesUl);
   for (var example in examples) {
     var nExample = document.createElement('li');
     nExample.className = "example";
     var tExampleName = document.createTextNode(example);
     nExample.appendChild(tExampleName);
     examplesUl.appendChild(nExample);
-    console.log(nExample);
   }
 })(examples);
 
