@@ -305,7 +305,7 @@ var url2input = function (url) {
 };
 
 inputURL.addEventListener('keyup', function (e) {
-  if (e.keyIdentifier === 'Enter') {
+  if (e.keyIdentifier === 'Enter' || e.code === 'Enter') {
     window.location.search = '?input=' + inputURL.value;
   }
 });
