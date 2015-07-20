@@ -46,6 +46,8 @@ body{
 
 
 #quitAside{
+  position: sticky; /* FF /Safari */
+  top: 0;
   height: 50px;
   width: 100%;
   background: grey;
@@ -54,6 +56,22 @@ body{
   line-height: 50px;
   color: #fff;
   cursor: pointer;
+
+  -moz-box-shadow: -3px 2px 9px 1px #000000;
+  -webkit-box-shadow: -3px 2px 9px 1px #000000;
+  -o-box-shadow: -3px 2px 9px 1px #000000;
+  box-shadow: -3px 2px 9px 1px #000000;
+}
+
+/* Chrome */
+@supports not (position: sticky) {
+  #quitAside{
+    position: fixed;
+    width: 160px;
+  }
+  #examplesSection{
+    margin-top: 65px;
+  }
 }
 
 #quitAside:hover{
@@ -84,7 +102,7 @@ body{
 }
 
 #examplesSection{
-  width: 100%;
+  width: 160px;
 }
 
 #examplesSection ul{
