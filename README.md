@@ -966,7 +966,7 @@ Reverse items order of *input*
 ```
 
 <a id="flatten"></a>
-## flatten:
+### flatten:
 Flatten an array.
 ```javascript
     var stylesheet = {
@@ -977,7 +977,7 @@ Flatten an array.
 ```
 
 <a id="deduplicate"></a>
-## deduplicate:
+### deduplicate:
 *aliases : dedupe , unique*
 
 Deduplicate values in an array.
@@ -991,7 +991,7 @@ Deduplicate values in an array.
 ```
 
 <a id="remove"></a>
-## remove:
+### remove:
 *alias : del*
 
 Remove one value in an array.
@@ -1016,7 +1016,7 @@ Remove one value in an array.
 
 <a id="getproperty"></a>
 <a id="getindex"></a>
-## getindex: property | index
+### getindex: property | index
 *aliases : getProperty, getproperty, getIndex*
 
 Get a property of an object, or an item of an array.
@@ -1036,7 +1036,7 @@ var stylesheet = {
 
 <a id="getpropertyvar"></a>
 <a id="getindexvar"></a>
-## getindexvar: [ arrayName | objectName , propertyName | indexName ]
+### getindexvar: [ arrayName | objectName , propertyName | indexName ]
 *aliases : getPropertyVar, getpropertyvar, getIndexVar*
 
 Get a property of an object, or an item of an array, like [getindex](#getindex), but using variables.
@@ -1061,7 +1061,7 @@ var stylesheet = {
 ```
 
 <a id="sum"></a>
-## sum:
+### sum:
 *alias : total*
 
 Return the sum of all the value of an array.
