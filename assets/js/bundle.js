@@ -13,22 +13,24 @@ var assert = require('assert')
 /**
  * wrappers
  */
-function execargs(args, func) {
+function execargs(args, func, actionName) {
   try {
     return func(args);
   }
   catch(e) {
+    e.message += actionName ? " (" + actionName + ")" : "";
     return e;
   }
 }
 
-function mapargs(args, func) {
+function mapargs(args, func, actionName) {
   if (Array.isArray(args)) {
     return args.map(function(i) {
       try {
         return func(i);
       }
       catch(e) {
+        e.message += actionName ? " (" + actionName + ")" : "";
         return e;
       }
     }).filter(function(i) {
@@ -36,7 +38,7 @@ function mapargs(args, func) {
     });
   }
   else {
-    return execargs(args, func);
+    return execargs(args, func, actionName);
   }
 }
 
@@ -70,7 +72,7 @@ exports.mapping = function (input, arg) {
       });
     }
     return input;
-  });
+  }, "mapping");
 };
 
 /**
@@ -92,7 +94,7 @@ exports.mappingVar = exports.combine = function (obj, arg) {
     assert(input);
     assert(arg2);
     return exports.mapping(input, arg2);
-  });
+  }, "mappingVar");
 };
 
 /**
@@ -119,7 +121,7 @@ exports.zip = function (obj, arg) {
       o[arg[1]] = array2[i].value;
       return o;
     });
-  });
+  }, "zip");
 };
 
 /**
@@ -143,7 +145,7 @@ exports.array2object = function (obj, arg) {
       o[item[key]] = item[value];
     });
     return o;
-  });
+  }, "array2object");
 };
 
 /**
@@ -178,7 +180,7 @@ exports.get = exports.find = exports.path = function(obj, args) {
   var objectPath = require('object-path');
   return mapargs(args, function(arg) {
     return objectPath.get(obj, arg);
-  });
+  }, "get");
 };
 
 /**
@@ -203,7 +205,7 @@ exports.select = function(obj, args) {
   return mapargs(args, function(arg) {
     assert(typeof arg === 'string');
     return jsel.match(arg, obj);
-  });
+  }, "select");
 };
 
 
@@ -215,12 +217,12 @@ exports.cast = function(obj, args) {
   if (Array.isArray(args)) {
     return execargs(args, function(arg) {
       return ttype(arg[0], obj, arg[1]);
-    });
+    }, "cast");
   }
   else {
     return execargs(args, function(arg) {
       return ttype(arg, obj);
-    });
+    }, "cast");
   }
 };
 
@@ -231,7 +233,7 @@ exports.mask = function(obj, args) {
   var mask = require('json-mask');
   return execargs(args, function(arg) {
     return mask(obj, arg);
-  });
+  }, "mask");
 };
 
 /**
@@ -242,7 +244,7 @@ exports.csv = function(obj, args) {
   return execargs(args, function(arg) {
     assert(typeof arg === 'string');
     return CSV.stringify(obj, arg);
-  });
+  }, "csv");
 };
 
 /**
@@ -253,7 +255,7 @@ exports.parseCSV = exports.fromCSV = exports.uncsv = function(obj, args) {
   return execargs(args, function(arg) {
     assert(typeof arg === 'string');
     return CSV.parse(obj, arg).shift();
-  });
+  }, "parseCSV");
 };
 
 /**
@@ -266,10 +268,10 @@ exports.json = exports.toJSON = function(obj){
 /**
  * parse JSON string to object
  */
-exports.parseJSON = exports.fromJSON = exports.unjson = function(obj, args) {
+exports.parseJSON = exports.fromJSON = exports.unjson = function parseJSON(obj, args) {
   return execargs(args, function(arg) {
     return JSON.parse(obj);
-  });
+  }, "parseJSON");
 };
 
 /**
@@ -278,7 +280,7 @@ exports.parseJSON = exports.fromJSON = exports.unjson = function(obj, args) {
 exports.xml = function(obj, args){
   return execargs(args, function(arg) {
     return require('xml-mapping').dump(obj, arg);
-  });
+  }, "xml");
 };
 
 /**
@@ -287,7 +289,7 @@ exports.xml = function(obj, args){
 exports.parseXML = exports.fromXML = exports.unxml = function(obj, args){
   return execargs(args, function(arg) {
     return require('xml-mapping').load(obj, arg);
-  });
+  }, "parseXML");
 };
 
 
@@ -304,7 +306,7 @@ exports.coalesce = function(obj, args) {
     }).filter(function(i) {
       return (i !== '' && i !== undefined && i !== null);
     });
-  });
+  }, "coalesce");
 };
 
 /**
@@ -318,7 +320,7 @@ exports.trim = function(obj, args) {
     else {
       return obj;
     }
-  });
+  }, "trim");
 };
 
 
@@ -346,7 +348,7 @@ exports.compute = function(obj, args) {
     };
     extend(env, obj);
     return filtrex(arg)(env);
-  });
+  }, "compute");
 };
 
 
@@ -362,7 +364,7 @@ exports.assert = function(obj, args) {
     };
     extend(env, obj);
     return Boolean(filtrex(arg)(env));
-  });
+  }, "assert");
 };
 
 /**
@@ -377,7 +379,7 @@ exports.breakIf =  exports.breakIF =  exports.breakif = function(obj, args) {
     };
     extend(env, obj);
     return (!Boolean(filtrex(arg)(env)));
-  });
+  }, "breakIf");
 };
 
 /**
@@ -388,7 +390,7 @@ exports.template = function(obj, args) {
   return mapargs(args, function(arg) {
     assert(typeof arg === 'string');
     return mustache.render(arg, obj);
-  });
+  }, "template");
 };
 
 
@@ -405,7 +407,7 @@ exports.template = function(obj, args) {
 exports.first = function(obj) {
   return execargs(null, function () {
     return obj[0];
-  });
+  }, "first");
 };
 
 /**
@@ -415,7 +417,7 @@ exports.first = function(obj) {
 exports.last = function(obj) {
   return execargs(null, function () {
     return obj[obj.length - 1];
-  });
+  }, "last");
 };
 
 /**
@@ -423,8 +425,10 @@ exports.last = function(obj) {
  */
 
 exports.capitalize = function(str) {
-  str = String(str);
-  return str[0].toUpperCase() + str.substr(1, str.length);
+  return execargs(null, function () {
+    str = String(str);
+    return str[0].toUpperCase() + str.substr(1, str.length);
+  }, "capitalize");
 };
 
 /**
@@ -432,7 +436,9 @@ exports.capitalize = function(str) {
  */
 
 exports.downcase = function(str) {
-  return String(str).toLowerCase();
+  return execargs(null, function () {
+    return String(str).toLowerCase();
+  }, "downcase");
 };
 
 /**
@@ -440,7 +446,9 @@ exports.downcase = function(str) {
  */
 
 exports.upcase = function(str) {
-  return String(str).toUpperCase();
+  return execargs(null, function () {
+    return String(str).toUpperCase();
+  }, "upcase");
 };
 
 /**
@@ -453,7 +461,7 @@ exports.sort = function(obj) {
       return [].concat(obj).sort();
     }
     return Object.create(obj).sort();
-  });
+  }, "sort");
 };
 
 /**
@@ -468,7 +476,7 @@ exports.sortBy = exports.sort_by = function(obj, args){
       if (a < b) {return -1;}
       return 0;
     });
-  });
+  }, "sortBy");
 };
 
 /**
@@ -478,7 +486,7 @@ exports.sortBy = exports.sort_by = function(obj, args){
 exports.size = exports.length = function(obj) {
   return execargs(null, function () {
     return Object.keys(obj).length;
-  });
+  }, "size");
 };
 
 /**
@@ -487,7 +495,7 @@ exports.size = exports.length = function(obj) {
 exports.max = function(obj, args) {
   return execargs(args, function(arg) {
     return Object.keys(obj).reduce(function(m, k){ return obj[k] > m ? obj[k] : m; }, -Infinity);
-  });
+  }, "max");
 };
 
 /**
@@ -496,7 +504,7 @@ exports.max = function(obj, args) {
 exports.min = function(obj, args) {
   return execargs(args, function(arg) {
     return Object.keys(obj).reduce(function(m, k){ return obj[k] < m ? obj[k] : m; }, Infinity);
-  });
+  }, "min");
 };
 
 /**
@@ -506,7 +514,7 @@ exports.min = function(obj, args) {
 exports.plus = function(a, args) {
   return mapargs(args, function(b) {
     return Number(a) + Number(b);
-  });
+  }, "plus");
 };
 
 
@@ -517,7 +525,7 @@ exports.plus = function(a, args) {
 exports.minus = function(a, args) {
   return mapargs(args, function(b) {
     return Number(a) - Number(b);
-  });
+  }, "minus");
 };
 
 /**
@@ -527,7 +535,7 @@ exports.minus = function(a, args) {
 exports.times = function(a, args) {
   return mapargs(args, function(b) {
     return Number(a) * Number(b);
-  });
+  }, "times");
 };
 
 /**
@@ -537,7 +545,7 @@ exports.times = function(a, args) {
 exports.dividedBy = exports.divided_by = function(a, args) {
   return mapargs(args, function(b) {
     return Number(a) / Number(b);
-  });
+  }, "dividedBy");
 };
 
 /**
@@ -547,7 +555,7 @@ exports.dividedBy = exports.divided_by = function(a, args) {
 exports.glue = exports.join = function(obj, args) {
   return execargs(args, function(arg) {
     return obj.join(String(arg|| ', '));
-  });
+  }, "join");
 };
 
 /**
@@ -562,7 +570,7 @@ exports.truncate = function(str, args) {
       str = str.slice(0, len);
     }
     return str;
-  });
+  }, "truncate");
 };
 
 
@@ -575,7 +583,7 @@ exports.shift = function(obj, args) {
     return Array.isArray(obj) || typeof obj === 'string' ?
           obj.slice(Number(n)) :
           n - obj;
-  });
+  }, "shift");
 };
 
 
@@ -588,7 +596,7 @@ exports.truncateWords = exports.truncate_words = function(str, args) {
   return mapargs(args, function(n) {
     var words = str.split(/ +/);
     return words.slice(0, n).join(' ');
-  });
+  }, "truncateWords");
 };
 
 /**
@@ -610,7 +618,7 @@ exports.replace = function(str, args) {
     }
     var search = new RegExp(pattern, flags);
     return String(str).replace(search, substitution);
-  });
+  }, "replace");
 };
 
 /**
@@ -622,7 +630,7 @@ exports.prepend = function(obj, args) {
     return Array.isArray(obj) ?
           [val].concat(obj) :
           val + obj;
-  });
+  }, "prepend");
 };
 
 /**
@@ -634,7 +642,7 @@ exports.append = function(obj, args){
     return Array.isArray(obj) ?
           obj.concat(val) :
           obj + val;
-  });
+  }, "append");
 };
 
 /**
@@ -652,70 +660,82 @@ exports.append = function(obj, args){
  */
 
 exports.reverse = function(obj) {
-  return Array.isArray(obj) ?
-        obj.reverse() :
-        String(obj).split('').reverse().join('');
+  return execargs(null, function () {
+    return Array.isArray(obj) ?
+          obj.reverse() :
+          String(obj).split('').reverse().join('');
+  }, "reverse");
 };
 
 
 exports.flatten = function flatten(obj) {
-  return Array.isArray(obj) ?
-        obj.reduce(function (arr, val) {
-          return arr.concat(Array.isArray(val) ? flatten(val) : val);
-        }, []) :
-        obj;
+  return execargs(null, function () {
+    return Array.isArray(obj) ?
+          obj.reduce(function (arr, val) {
+            return arr.concat(Array.isArray(val) ? flatten(val) : val);
+          }, []) :
+          obj;
+  }, "flatten");
 };
 
 exports.dedupe = exports.deduplicate = exports.unique = function(obj) {
-  if (!Array.isArray(obj)) {
-    return new Error("The input have to be an array (deduplicate).");
-  }
-  var i;
-  var out = [];
-  var o   = {};
-  obj.forEach(function (e) {
-    o[e] = e;
-  });
-  for (i in o) {
-    out.push(o[i]);
-  }
-  return out;
+  return execargs(null, function () {
+    if (!Array.isArray(obj)) {
+      return new Error("The input have to be an array");
+    }
+    var i;
+    var out = [];
+    var o   = {};
+    obj.forEach(function (e) {
+      o[e] = e;
+    });
+    for (i in o) {
+      out.push(o[i]);
+    }
+    return out;
+  }, "deduplicate");
 };
 
 exports.remove = exports.del = exports.unique = function(obj, arg) {
-  if (!Array.isArray(obj)) {
-    return new Error('The input have to be an array (del, remove).');
-  }
-  var out = [];
-  obj.forEach(function (e) {
-    if (e !== arg) {
-      out.push(e);
+  return execargs(arg, function (arg) {
+    if (!Array.isArray(obj)) {
+      return new Error('The input have to be an array');
     }
-  });
-  return out;
+    var out = [];
+    obj.forEach(function (e) {
+      if (e !== arg) {
+        out.push(e);
+      }
+    });
+    return out;
+  }, "remove");
 };
 
 exports.sum = exports.total = function (obj) {
-  if (!Array.isArray(obj)) {
-    return new Error('Input object should be an array (sum)');
-  }
-  var out = obj.reduce(function (prev, current) {
-    return prev + Number(current);
-  }, 0);
-  return out;
+  return execargs(null, function () {
+    if (!Array.isArray(obj)) {
+      return new Error('Input object should be an array');
+    }
+    var out = obj.reduce(function (prev, current) {
+      return prev + Number(current);
+    }, 0);
+    return out;
+  }, "sum");
 };
 
 exports.substring = exports.substr = function (obj, arg) {
-  if (!Array.isArray(arg)) {
-    return new Error("Argument should be an array (substring, substr)");
-  }
-  if (!arg.length) {
-    return new Error("Array argument should not be empty (substring, substr)");
-  }
-  if (typeof obj !== 'string') {
-    return new Error("Input object should be a string (substring, substr)");
-  }
-  return obj.substr(arg[0], arg[1]||Infinity);
+  return execargs(arg, function (arg) {
+    if (!Array.isArray(arg)) {
+      return new Error("Argument should be an array");
+    }
+    if (!arg.length) {
+      return new Error("Array argument should not be empty");
+    }
+    if (typeof obj !== 'string') {
+      return new Error("Input object should be a string");
+    }
+    return obj.substr(arg[0], arg[1]||Infinity);
+  }, "substring");
 };
 
 /**
@@ -731,7 +751,7 @@ function getProperty(obj, arg) {
     assert(typeof arg !== 'object');
     assert(!Array.isArray(arg));
     return obj[arg];
-  });
+  }, "getProperty, getIndex");
 };
 
 /**
@@ -754,7 +774,7 @@ function getPropertyVar(obj, arg) {
     assert(o);
     assert(i);
     return o[i];
-  });
+  }, "getPropertyVar, getIndexVar");
 };
 
 },{"./jbj.js":"jbj","JSONSelect":2,"assert":5,"csv-string":34,"extend":38,"filtrex":39,"json-mask":42,"mustache":44,"object-path":45,"transtype":46,"xml-mapping":49}],2:[function(require,module,exports){
