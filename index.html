@@ -21,17 +21,16 @@
     <a href="https://github.com/castorjs/node-jbj"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
     <aside class="asideInfos">
-      <div id="enterAside" class="glyphicon glyphicon-chevron-right"></div>
-      <div id="quitAside" class="glyphicon glyphicon-chevron-left" style="display: none"></div>
-      <section id="examplesSection" style="display: none;">
+      <h2>Node-JBJ</h2>
+      <section id="examplesSection">
         <h3 id="examplesButton">Examples</h3>
         <div id="examples" style="display:none">
           <input id="search-example" type="text" placeholder="Search...">
-          <ul id="examples-list">          
+          <ul id="examples-list">         
           </ul>
         </div>
       </section>
-      <section id="actionsSection" style="display: none;">
+      <section id="actionsSection">
           <h3 id="actionsButton">Actions</h3>
           <div id="actions" style="">
             <input id="search-action" type="text" placeholder="Search...">
@@ -127,8 +126,9 @@
           <div class="col-xs-12 col-sm-4">
             <label for="input">INPUT :</label>
             <div id="input"></div>
+            <br/>
             <label for="inputurl">URL:</label>
-            <input id="inputurl" type="url">
+            <input id="inputurl" type="url" placeholder="Url of json data">
           </div>
           <div class="col-xs-12 col-sm-4">
             <label for="stylesheet">STYLESHEET :</label>
@@ -141,6 +141,7 @@
       </div>
       <div class="text-center row" style="margin: 50px; ">
           <button class="tryButton">TRY IT!</button>
+          <button class="optionsButton">FULL OPTIONS</button>
       </div>
     </section>
 
@@ -249,20 +250,22 @@ var examples       = document.getElementById('examples'),
     examplesButton = document.getElementById('examplesButton'),
     actions        = document.getElementById('actions'),
     actionsButton  = document.getElementById('actionsButton'),
+    optionsButton   = document.getElementsByClassName('optionsButton')[0],
     asideInfos     = document.getElementsByClassName('asideInfos')[0],
-    quitAside      = document.getElementById('quitAside'),
     inputURL       = document.getElementById('inputurl'),
     content        = document.getElementsByClassName('content')[0];
 
-asideInfos.addEventListener('click' , function (e) {
-  if(this.style.left !== "0px"){
-    this.style.left = "0px";
-    document.getElementById('quitAside').style.display = "block";
-    document.getElementById('enterAside').style.display = "none";
-    document.getElementById('examplesSection').style.display = "block";
-    document.getElementById('actionsSection').style.display = "block";
-    content.style.left = "160px";
-    content.style.width = "calc(100vw - 175px)";
+optionsButton.addEventListener('click' , function (e) {
+  console.log("this.style.left " , this.style.left);
+  if(asideInfos.style.left !== "0px"){
+    asideInfos.style.left = "0px";
+    content.style.left = "240px";
+    content.style.width = "calc(100vw - 240px)";
+  }
+  else{
+    asideInfos.style.left = "-240px";
+    content.style.left = "0";
+    content.style.width = "100vw";
   }
 });
 
@@ -282,17 +285,6 @@ actionsButton.addEventListener('click' , function (e) {
   else{
     document.getElementById('actions').style.cssText = "display: none;";
   }
-});
-
-quitAside.addEventListener('click' , function (e) {
-  e.stopPropagation();
-  document.getElementsByClassName('asideInfos')[0].style.left = "-145px";
-  document.getElementById('quitAside').style.display = "none";
-  document.getElementById('enterAside').style.display = "block";
-  document.getElementById('examplesSection').style.display = "none";
-  document.getElementById('actionsSection').style.display = "none";
-  content.style.left = "";
-  content.style.width = "";
 });
 
 /**
@@ -319,7 +311,7 @@ var url = window.location.search.slice("?input=".length);
 if (url.slice(0,4) === 'http') {
   inputURL.value = url;
   url2input(url);
-}
+};
 
     </script>
     <script src="assets/js/examples.js" type="text/javascript"></script>

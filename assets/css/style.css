@@ -12,25 +12,20 @@ html{
 body{
     background: #333;
     padding-left: 15px; /* compensate sidebar width */
+    font-family: "Lato",Calibri,Arial,sans-serif;
 }
 
 .asideInfos{
   position: fixed;
   z-index: 9;
-  left:-145px;
+  left: -240px;
   top:0;
   height: 100%;
-  width: 160px;
+  width: 240px;
   max-height: 100%;
   overflow: hidden;
-  background:#555555;
-  transition: all 650ms;
-}
-
-.asideInfos:hover{
-  left: 0px !important;
-  overflow-y: auto !important;
-  box-shadow: 4px 0px 9px #808080;
+  background:#64307A;
+  transition: left 550ms;
 }
 
 .asideInfos:hover #actionsSection , .asideInfos:hover #examplesSection{
@@ -80,21 +75,30 @@ body{
   color: #000;
 }
 
+.asideInfos h2{
+  background: #3A1C47;
+  color: #fff;
+  font-size: 1.9em;
+  padding: 20px;
+}
+
 .asideInfos h3{
-  height: 50px;
+  height: 65px;
   width: 100%;
-  background: grey;
+  background: #64307A;
   text-align: center;
-  font-size: 25px;
-  line-height: 50px;
+  font-size: 17px;
+  line-height: 65px;
   color: #fff;
   cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 
 .asideInfos h3:hover{
-  background: #fff;
-  color: #000;
+  background: #836490;
+  color: #fff;
 }
 
 
@@ -107,30 +111,33 @@ body{
   width: calc(100vw - 15px);
 }
 
-#examplesSection{
-  width: 160px;
+#examplesSection , #actionsSection{
+  width: 240px;
+  border-bottom: 1px solid rgba(58,28,71,0.5);
 }
 
-#examplesSection ul{
+#examples-list{
   width: 100%;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items:baseline;
-  padding: 0px;
+  justify-content: flex-start;
+  align-items:center;
+  padding: 18px;
   list-style: none;
+  max-height: calc(100vh - 249px);
+  overflow: auto;
 }
 
 #actions-list{
   width: 100%;
-  padding: 0;
+  max-height: calc(100vh - 249px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items:baseline;
+  justify-content: flex-start;
+  align-items:center;
   padding: 18px;
   list-style: none;
+  overflow: auto;
 }
 
 #actions-list a{
@@ -141,11 +148,16 @@ body{
   text-decoration: none;
 }
 
+#actions , #examples{
+  text-align: center;
+}
+
 .example {
   cursor: pointer;
-  color: #bbb;
+  color: #fff;
   transition: none;
   padding-left: 18px;
+  font-style: italic;
 }
 
 .example:hover , .exampleClicked{
@@ -159,6 +171,7 @@ body{
   cursor: pointer;
   color: #bbb;
   transition: none;
+  font-style: italic;
 }
 
 .action:hover{
@@ -172,6 +185,10 @@ body{
   color: #000 !important;
 }
 
+#search-action , #search-example{
+  margin-top: 10px
+}
+
 h1{
     padding-bottom: 0;
     margin-bottom:  0;
@@ -183,10 +200,14 @@ h1{
 h2{
     padding-top: 0;
     margin-top:  0;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     text-align: center;
     font-size: 22px;
     color: #bbb;
+}
+
+.content h2{
+  margin-bottom: 50px;
 }
 
 label{
@@ -208,6 +229,12 @@ textarea{
 
 #inputurl {
   width: 100%;
+  background: #555555;
+  border-radius: 15px;
+  color: white;
+  border: none;
+  height: 33px;
+  font-size: 17px;
 }
 
 .tryButton{
@@ -216,9 +243,23 @@ textarea{
     background: #C2BA61;
     border: 0; color: #555;
     transition : all 450ms;
+    color: #000;
 }
 
 .tryButton:hover{
+    transform: scale(1.15);
+}
+
+.optionsButton{
+  height: 70px;
+  width: 150px;
+  background: #64307A;
+  border: 0; color: #555;
+  transition : all 450ms;
+  color: #fff;
+}
+
+.optionsButton:hover{
     transform: scale(1.15);
 }
 
