@@ -21,7 +21,7 @@
     <a href="https://github.com/castorjs/node-jbj"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
     <aside class="asideInfos">
-      <h2>Node-JBJ</h2>
+      <h2>API</h2>
       <section id="examplesSection">
         <h3 id="examplesButton">Examples</h3>
         <div id="examples" style="display:none">
@@ -31,7 +31,7 @@
         </div>
       </section>
       <section id="actionsSection">
-          <h3 id="actionsButton" style="background : #836490">Actions</h3>
+          <h3 id="actionsButton" style="background : #A34EC6">Actions</h3>
           <div id="actions" style="">
             <input id="search-action" type="text" placeholder="Search...">
             <ul style="" id="actions-list">
@@ -141,7 +141,7 @@
       </div>
       <div class="text-center row" style="margin: 50px; ">
           <button class="tryButton">TRY IT!</button>
-          <button class="optionsButton">SHOW OPTIONS</button>
+          <button class="optionsButton">SHOW API</button>
       </div>
     </section>
 
@@ -256,15 +256,14 @@ var examples       = document.getElementById('examples'),
     content        = document.getElementsByClassName('content')[0];
 
 optionsButton.addEventListener('click' , function (e) {
-  console.log("this.style.left " , this.style.left);
   if(asideInfos.style.left !== "0px"){
-    optionsButton.innerHTML = "HIDE METHODS";
+    optionsButton.innerHTML = "HIDE API";
     asideInfos.style.left = "0px";
     content.style.left = "240px";
     content.style.width = "calc(100vw - 240px)";
   }
   else{
-    optionsButton.innerHTML = "SHOW METHODS";
+    optionsButton.innerHTML = "SHOW API";
     asideInfos.style.left = "-240px";
     content.style.left = "0";
     content.style.width = "100vw";
@@ -274,7 +273,9 @@ optionsButton.addEventListener('click' , function (e) {
 examplesButton.addEventListener('click' , function (e) {
   if(document.getElementById('examples').style.display == "none"){
     document.getElementById('examples').style.cssText = "display: block;";
-    examplesButton.style.cssText = "background: #836490";
+    document.getElementById('actions').style.cssText = "display: none;";
+    examplesButton.style.cssText = "background: #A34EC6";
+    actionsButton.style.removeProperty("background");
   }
   else{
     document.getElementById('examples').style.cssText = "display: none;";
@@ -285,7 +286,9 @@ examplesButton.addEventListener('click' , function (e) {
 actionsButton.addEventListener('click' , function (e) {
   if(document.getElementById('actions').style.display == "none"){
     document.getElementById('actions').style.cssText = "display: block;";
-    actionsButton.style.cssText = "background: #836490";
+    document.getElementById('examples').style.cssText = "display: none;";
+    actionsButton.style.cssText = "background: #A34EC6";
+    examplesButton.style.removeProperty("background");
   }
   else{
     document.getElementById('actions').style.cssText = "display: none;";

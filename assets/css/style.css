@@ -59,17 +59,6 @@ body{
   box-shadow: -3px 2px 9px 1px #000000;
 }
 
-/* Chrome */
-@supports not (position: sticky) {
-  #quitAside{
-    position: fixed;
-    width: 160px;
-  }
-  #examplesSection{
-    margin-top: 65px;
-  }
-}
-
 #quitAside:hover{
   background: #fff;
   color: #000;
@@ -97,7 +86,7 @@ body{
 
 
 .asideInfos h3:hover{
-  background: #836490;
+  background: #A34EC6;
   color: #fff;
 }
 
@@ -109,11 +98,12 @@ body{
 .content{
   position: absolute;
   width: calc(100vw - 15px);
+  padding-right: 26px;
 }
-
 #examplesSection , #actionsSection{
   width: 240px;
   border-bottom: 1px solid rgba(58,28,71,0.5);
+  transition : all 1s;
 }
 
 #examples-list{
@@ -153,6 +143,10 @@ body{
 }
 
 .example {
+  display: flex;
+  justify-content :  center;
+  align-items: center;
+  padding: 15px;
   cursor: pointer;
   color: #fff;
   transition: none;
@@ -168,10 +162,14 @@ body{
 }
 
 .action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   color: #bbb;
   transition: none;
   font-style: italic;
+  padding: 12px;
 }
 
 .action:hover{
