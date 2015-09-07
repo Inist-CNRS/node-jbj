@@ -128,7 +128,9 @@ Variable can be set using $ plus a dot notation path.
 ```
 
 
-## Actions
+## Template
+
+A template is JSON object where each key is an action. All actions are described below.
 
 <a id="set"></a>
 ### set: value
@@ -450,7 +452,7 @@ Pack *input* to CSV, return string
 <a id="parseCSV"></a>
 ### parseCSV: separator
 
-*aliases : fromCSV, uncsv*
+*aliases : parseCSVField, fromCSV, uncsv*
 
 Parse *input* as CSV string, return array
 ```javascript
@@ -459,6 +461,21 @@ Parse *input* as CSV string, return array
 		"parseCSV": ",",
 	};
 	// output : ["x","y","z"]
+```
+
+<a id="parseCSVFile"></a>
+### parseCSVFile: separator
+
+*alias : fromCSVFile*
+
+Parse *input* as CSV string, return an array of arrays of columns content.
+
+```javascript
+	var stylesheet = {
+		"set" : "\"Afghanistan\";\"AFG\"\n\"Aland Islands\";\"ALA\"",
+		"parseCSVFile": ";",
+	};
+	// output : [ [ 'Afghanistan', 'AFG' ], [ 'Aland Islands', 'ALA' ] ]
 ```
 
 > **Warning**: when parsing a whole CSV file, be aware that file line columns can't have space in their names, neither special characters (they must fit in variable names)
