@@ -450,7 +450,7 @@ Pack *input* to CSV, return string
 <a id="parseCSV"></a>
 ### parseCSV: separator
 
-*aliases : fromCSV, uncsv*
+*aliases : parseCSVField, fromCSV, uncsv*
 
 Parse *input* as CSV string, return array
 ```javascript
@@ -459,6 +459,21 @@ Parse *input* as CSV string, return array
 		"parseCSV": ",",
 	};
 	// output : ["x","y","z"]
+```
+
+<a id="parseCSVFile"></a>
+### parseCSVFile: separator
+
+*alias : fromCSVFile*
+
+Parse *input* as CSV string, return an array of arrays of columns content.
+
+```javascript
+	var stylesheet = {
+		"set" : "\"Afghanistan\";\"AFG\"\n\"Aland Islands\";\"ALA\"",
+		"parseCSVFile": ";",
+	};
+	// output : [ [ 'Afghanistan', 'AFG' ], [ 'Aland Islands', 'ALA' ] ]
 ```
 
 <a id="json"></a>

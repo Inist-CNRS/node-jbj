@@ -10,7 +10,8 @@ describe('csv', function () {
       "b" : ["x","y","z"],
       "d" : null
     },
-    "c" : "a; b; c"
+    "c" : "a; b; c",
+    "d" : "\"Afghanistan\";\"AFG\"\n\"Aland Islands\";\"ALA\""
   };
 
   it('csv #1', function() {
@@ -58,6 +59,19 @@ describe('csv', function () {
     assert.doesNotThrow(function () {
       var output = JBJ.renderSync(stylesheet, input);
     });
+  });
+
+  it('csv #5', function () {
+    var stylesheet = {
+      "find"        : "d",
+      "parseCSVFile": ";"
+    };
+    var output = JBJ.renderSync(stylesheet, input);
+    assert.equal(output.length,2);
+    assert.equal(output[0][0],"Afghanistan");
+    assert.equal(output[0][1],"AFG");
+    assert.equal(output[1][0],"Aland Islands");
+    assert.equal(output[1][1],"ALA");
   });
 
 });
