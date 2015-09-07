@@ -551,6 +551,10 @@ var examples = {
       "parseCSV": ","
     }
   },
+  parseCSVFile: {
+    "input": "\"Afghanistan\";\"AFG\"\n\"Aland Islands\";\"ALA\"",
+    "stylesheet": { "parseCSVFile": ";" }
+  },
   find: {
     "input": {
       "a" : {
