@@ -128,7 +128,9 @@ Variable can be set using $ plus a dot notation path.
 ```
 
 
-## Actions
+## Template
+
+A template is JSON object where each key is an action. All actions are described below.
 
 <a id="set"></a>
 ### set: value
