@@ -545,4 +545,34 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #40', function (done) {
+    var stylesheet = {
+      "set": [ [ "Afghanistan", "AFG" ],
+               [ "Aland Islands", "ALA" ] ],
+      "arrays2objects": true
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output[0]._id,"Afghanistan");
+      assert.equal(output[0].value, "AFG");
+      assert.equal(output[1]._id, "Aland Islands");
+      assert.equal(output[1].value, "ALA");
+      done(err);
+    });
+  });
+
+  it('basic #41', function (done) {
+    var stylesheet = {
+      "set": [ [ "Afghanistan", "AFG" ],
+               [ "Aland Islands", "ALA" ] ],
+      "arrays2objects": ["key", "val"]
+    };
+    JBJ.render(stylesheet, function (err, output) {
+      assert.equal(output[0].key,"Afghanistan");
+      assert.equal(output[0].val, "AFG");
+      assert.equal(output[1].key, "Aland Islands");
+      assert.equal(output[1].val, "ALA");
+      done(err);
+    });
+  });
+
 });

@@ -385,6 +385,35 @@ var stylesheet = {
 // output = { "2007": 538, "2008": 577, "2009": 611 }
 ```
 
+<a id="arrays2objects"></a>
+### arrays2objects: [key, value]
+
+Convert an array of arrays (of 2 items), to an array of objects, where the first key if `key` and the second `value`). Defailt value of `key`: `_id`, default value of `value`: `value`.
+
+> *Note*: this is useful to prepare data from a CSV file to be treated with `array2object`.
+
+Ex:
+
+```javascript
+var stylesheet = {
+  "set": [ [ "Afghanistan", "AFG" ],
+           [ "Aland Islands", "ALA" ] ],
+  "arrays2objects": ["key", "val"]
+};
+// output: [ { "key": "Afghanistan", "val": "AFG"},
+//           { "key": "Aland Islands", "val": "ALA"} ]
+```
+
+```javascript
+var stylesheet = {
+  "set": [ [ "Afghanistan", "AFG" ],
+           [ "Aland Islands", "ALA" ] ],
+  "arrays2objects": true
+};
+// output: [ { "_id": "Afghanistan", "value": "AFG"},
+//           { "_id": "Aland Islands", "value": "ALA"} ]
+```
+
 <a id="zip"></a>
 ### zip: ["array1","array2"]
 
@@ -493,6 +522,8 @@ Pack *input* to JSON, return string
 	};
 	// output : "[\"x\",\"y\",\"z\"]"
 ```
+
+> **Warning**: when parsing a whole CSV file, be aware that file line columns can't have space in their names, neither special characters (they must fit in variable names)
 
 <a id="parseJSON"></a>
 ### parseJSON:
