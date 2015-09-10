@@ -475,6 +475,20 @@ var examples = {
       "array2object": ["key","val"]
     }
   },
+  "arrays2objects 1": {
+    "input": [ [ "Afghanistan", "AFG" ],
+               [ "Aland Islands", "ALA" ] ],
+    "stylesheet": {
+      "arrays2objects": true
+    }
+  },
+  "arrays2objects 2": {
+    "input": [ [ "Afghanistan", "AFG" ],
+               [ "Aland Islands", "ALA" ] ],
+    "stylesheet": {
+      "arrays2objects": ["key","val"]
+    }
+  },
   zip: {
     "input": {
       "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
