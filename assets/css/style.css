@@ -23,8 +23,12 @@ body{
   height: 100%;
   width: 240px;
   max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 2px dashed #f5f5f5;
   overflow: hidden;
-  background:#64307A;
+  background:#333;
   transition: left 550ms;
 }
 
@@ -73,8 +77,8 @@ body{
 
 .asideInfos h3{
   height: 65px;
-  width: 100%;
-  background: #64307A;
+  width: 90%;
+  background: #8F3291;
   text-align: center;
   font-size: 17px;
   line-height: 65px;
@@ -82,13 +86,15 @@ body{
   cursor: pointer;
   margin-top: 0;
   margin-bottom: 0;
+    border-radius: 10px;
+    margin-left: 5%;
 }
 
 
-.asideInfos h3:hover{
-  background: #A34EC6;
+/*.asideInfos h3:hover{
+  background: #9D3AC6;
   color: #fff;
-}
+}*/
 
 
 .asideInfos:hover #enterAside{
@@ -100,11 +106,23 @@ body{
   width: calc(100vw - 15px);
   padding-right: 26px;
 }
-#examplesSection , #actionsSection{
+#examplesSection{
+    width: 240px;
+    /*border-bottom: 1px solid rgba(58,28,71,0.5);*/
+    /*background: #64307A;*/
+    transition : all 1s;
+    margin-bottom: 7px;
+
+}
+#actionsSection{
   width: 240px;
   border-bottom: 1px solid rgba(58,28,71,0.5);
   transition : all 1s;
 }
+
+/*#actionsButton{
+    background: #8F3291;
+}*/
 
 #examples-list{
   width: 100%;
@@ -114,13 +132,13 @@ body{
   align-items:center;
   padding: 18px;
   list-style: none;
-  max-height: calc(100vh - 249px);
+  max-height: calc(100vh - 180px);
   overflow: auto;
 }
 
 #actions-list{
   width: 100%;
-  max-height: calc(100vh - 249px);
+  max-height: calc(100vh - 180px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

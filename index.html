@@ -31,8 +31,8 @@
         </div>
       </section>
       <section id="actionsSection">
-          <h3 id="actionsButton" style="background : #A34EC6">Actions</h3>
-          <div id="actions" style="">
+          <h3 id="actionsButton">Actions</h3>
+          <div id="actions" style="display:none">
             <input id="search-action" type="text" placeholder="Search...">
             <ul style="" id="actions-list">
               <li class="action"> <a target="_blank" href="https://github.com/castorjs/node-jbj#append-something--something-something-">append</a> </li>
@@ -276,7 +276,7 @@ examplesButton.addEventListener('click' , function (e) {
   if(document.getElementById('examples').style.display == "none"){
     document.getElementById('examples').style.cssText = "display: block;";
     document.getElementById('actions').style.cssText = "display: none;";
-    examplesButton.style.cssText = "background: #A34EC6";
+    examplesButton.style.cssText = "background: #8F3291";
     actionsButton.style.removeProperty("background");
   }
   else{
@@ -289,7 +289,7 @@ actionsButton.addEventListener('click' , function (e) {
   if(document.getElementById('actions').style.display == "none"){
     document.getElementById('actions').style.cssText = "display: block;";
     document.getElementById('examples').style.cssText = "display: none;";
-    actionsButton.style.cssText = "background: #A34EC6";
+    actionsButton.style.cssText = "background: #8F3291";
     examplesButton.style.removeProperty("background");
   }
   else{
