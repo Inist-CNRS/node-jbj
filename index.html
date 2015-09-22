@@ -24,7 +24,7 @@
       <!--<h2>API</h2>-->
       <section id="examplesSection">
         <h3 id="examplesButton">Examples</h3>
-        <div id="examples" style="display:none">
+        <div id="examples" style="height:0;opacity:0;visibility: hidden">
           <input id="search-example" type="text" placeholder="Search...">
           <ul id="examples-list">         
           </ul>
@@ -32,7 +32,7 @@
       </section>
       <section id="actionsSection">
           <h3 id="actionsButton">Actions</h3>
-          <div id="actions" style="display:none">
+          <div id="actions" style="height:0;opacity:0;visibility: hidden">
             <input id="search-action" type="text" placeholder="Search...">
             <ul style="" id="actions-list">
               <li class="action"> <a target="_blank" href="https://github.com/castorjs/node-jbj#append-something--something-something-">append</a> </li>
@@ -275,27 +275,27 @@ optionsButton.addEventListener('click' , function (e) {
 });
 
 examplesButton.addEventListener('click' , function (e) {
-  if(document.getElementById('examples').style.display == "none"){
-    document.getElementById('examples').style.cssText = "display: block;";
-    document.getElementById('actions').style.cssText = "display: none;";
+  if(document.getElementById('examples').style.height == "0px"){
+    document.getElementById('examples').style.cssText = "height: calc(100vh - 130px);opacity: 1;visibility: visible";
+    document.getElementById('actions').style.cssText = "height: 0;opacity: 0;visibility: hidden";
     examplesButton.style.cssText = "background: #8F3291";
     actionsButton.style.removeProperty("background");
   }
   else{
-    document.getElementById('examples').style.cssText = "display: none;";
+    document.getElementById('examples').style.cssText = "height: 0; opacity: 0;visibility: hidden";
     examplesButton.style.removeProperty("background");
   }
 });
 
 actionsButton.addEventListener('click' , function (e) {
-  if(document.getElementById('actions').style.display == "none"){
-    document.getElementById('actions').style.cssText = "display: block;";
-    document.getElementById('examples').style.cssText = "display: none;";
+  if(document.getElementById('actions').style.height == "0px"){
+    document.getElementById('actions').style.cssText = "height: calc(100vh - 130px);opacity: 1;visibility: visible";
+    document.getElementById('examples').style.cssText = "height: 0; opacity: 0;visibility: hidden";
     actionsButton.style.cssText = "background: #8F3291";
     examplesButton.style.removeProperty("background");
   }
   else{
-    document.getElementById('actions').style.cssText = "display: none;";
+    document.getElementById('actions').style.cssText = "height: 0; opacity: 0;visibility: hidden";
     actionsButton.style.removeProperty("background");
   }
 });
