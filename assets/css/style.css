@@ -125,7 +125,7 @@ body{
 }*/
 
 #examples-list{
-  width: 100%;
+  width: 255px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -133,11 +133,11 @@ body{
   padding: 18px;
   list-style: none;
   max-height: calc(100vh - 180px);
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 #actions-list{
-  width: 100%;
+  width: 255px;
   max-height: calc(100vh - 180px);
   display: flex;
   flex-direction: column;
@@ -171,39 +171,57 @@ body{
   transition: none;
   padding-left: 18px;
   font-style: italic;
+  width: 240px;
+  transition : all 550ms;
+  margin-left: -15px;
 }
 
 .example:hover , .exampleClicked{
-  width: 100%;
-  background: #fff;
-  color: #000;
-  transition : background 600ms;
+  transform : scale(1.6);
+  transform: scale(1.45);
+  box-shadow: 0px 0px 12px 2px white;
 }
 
 .action {
   display: flex;
-  justify-content: center;
+  justify-content :  center;
   align-items: center;
+  padding: 15px;
   cursor: pointer;
-  color: #bbb;
+  color: #fff;
   transition: none;
+  padding-left: 18px;
   font-style: italic;
-  padding: 12px;
+  width: 240px;
+  transition : all 550ms;
+  margin-left: -15px;
 }
 
 .action:hover{
-  width: 100%;
-  background: #fff;
-  color: #000;
-  transition : background 600ms;
+  transform: scale(1.3);
+  box-shadow: 0px 0px 12px 2px white;
 }
 
 .action:hover a{
-  color: #000 !important;
+  color: #fff !important;
 }
 
 #search-action , #search-example{
-  margin-top: 10px
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px 1px transparent;
+  border: 1px solid white;
+  padding: 0px;
+  background: #555 none repeat scroll 0% 0%;
+  color: #FFF;
+  font-size: 13px;
+  text-align: center;
+  font-style: italic;
+}
+
+#search-action:hover , #search-example:hover , #search-action:focus , #search-example:focus{
+  border: 1px solid #DC8FDD;
 }
 
 h1{
