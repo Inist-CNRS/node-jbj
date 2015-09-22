@@ -16,7 +16,7 @@ body{
 }
 
 .leftInfos{
-  position: fixed;
+  position: absolute;
   left: 0;
   top : 0;
 }
@@ -68,18 +68,19 @@ body{
 }
 .menu-top-click {
   backface-visibility: hidden;
-  top: 15px;
+  top: 11px;
   transform: rotate(50deg);
-  transition: 0.55s 0.5s;
+  transition: 0.5s;
 }
 .menu-middle-click {
   opacity: 0;
 }
 .menu-bottom-click {
   backface-visibility: hidden;
-  top: 15px;
+  top: 9px;
+  left: 3.7px;
   transform: rotate(-410deg);
-  transition: 0.55s 0.5s;
+  transition: 0.5s;
 }
 
 

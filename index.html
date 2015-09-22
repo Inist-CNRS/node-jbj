@@ -263,21 +263,28 @@ var examples       = document.getElementById('examples'),
     actions        = document.getElementById('actions'),
     actionsButton  = document.getElementById('actionsButton'),
     optionsButton   = document.getElementsByClassName('optionsButton')[0],
+    menuTop        = document.getElementsByClassName('menu-top')[0],
+    menuMiddle        = document.getElementsByClassName('menu-middle')[0],
+    menuBottom        = document.getElementsByClassName('menu-bottom')[0],
     asideInfos     = document.getElementsByClassName('asideInfos')[0],
     inputURL       = document.getElementById('inputurl'),
     content        = document.getElementsByClassName('content')[0];
 
 optionsButton.addEventListener('click' , function (e) {
   if(asideInfos.style.left !== "0px"){
-    optionsButton.innerHTML = "HIDE API";
     optionsButton.style.right = "-300px";
     optionsButton.style.right = "-300px";
+    menuTop.classList.add("menu-top-click");
+    menuMiddle.classList.add("menu-middle-click");
+    menuBottom.classList.add("menu-bottom-click");
     asideInfos.style.left = "0px";
     content.style.left = "240px";
     content.style.width = "calc(100vw - 240px)";
   }
   else{
-    optionsButton.innerHTML = "SHOW API";
+    menuTop.classList.remove("menu-top-click");
+    menuMiddle.classList.remove("menu-middle-click");
+    menuBottom.classList.remove("menu-bottom-click");
     asideInfos.style.left = "-240px";
     optionsButton.style.right = "-60px";
     content.style.left = "0";
