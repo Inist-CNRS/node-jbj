@@ -955,7 +955,7 @@ Truncate *input* to *n* words (separator: space).
 
 <a id="replace"></a>
 ### replace: [pattern, substitution] | pattern
-Replace *pattern* with *substitution* in *input*.
+Replace *pattern* (as a regular expression) with *substitution* in *input*.
 ```javascript
 	var stylesheet = {
 		"set" : "XoXoXoX",
@@ -968,6 +968,8 @@ Replace *pattern* with *substitution* in *input*.
 	};
 	// output :  XXXX
 ```
+
+> **Tip:** to escape any character, use `\\` instead of just `\`. Example: use `"replace": "\\(trash\\)"` removes `(trash)` from input, whereas `"replace": "(trash)"` removes only `trash`.
 
 <a id="prepend"></a>
 ### prepend: something | [something, something, ...]
