@@ -76,14 +76,16 @@ To add a filter simply add a method to the .filters object:
 
 ```javascript
 	jbj.filters.concatx = function(obj, args) {
-		return String(obj) + String(args) + 'X;
+		return String(obj) + String(args) + 'X';
 	};
 ```
+
+> **Warning:** the method has change since v4.0
 
 ## Source
 
 Stylesheet can contain a reference to data source. Source can be a file or an URL.
-By default, only the *file:* protocol is supported. Add your own protocol with *register*
+By default, only the *file:* protocol is supported. Add your own protocol with [*register*](#registerprotocol--string-callback--function--none)
 
 ```javascript
 	var stylesheet_1 = {
@@ -128,12 +130,33 @@ Variable can be set using $ plus a dot notation path.
 ```
 
 
-## Template
+## Actions
 
-A template is JSON object where each key is an action. All actions are described below.
+A stylesheet is a JSON object where each key is an *action*. 
+The actions are divided into *modules* (since v4.0):
+
+- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif)
+- **ejs**: mainly the filters borrowed from [EJS](http://ejs.co/) ([first](#first), [last](#last), [capitalize](#capitalize), [downcase](#downcase), [upcase](#upcase), [sort](#sort), [sort_by](#sortby-prop--prop-prop-), [size](#size), [max](#max), [min](#min), [plus](#plus), [minus](#minus), [times](#times), [divided_by](#dividedby-value--value-value-), [join](#join), [truncate](#truncate), [shift](#shift), [truncate_words](#truncatewords-n--n-n-), [replace](#replace), [prepend](#prepend), [append](#append), [reverse](#reverse), [flatten](#flatten), [deduplicate](#deduplicate), [remove](#remove), [sum](#sum))
+- **parse**: file format conversion, through parsing ([csv](#csv), [parseCSV](#parsecsv-separator), [parseCSVFile](#parsecsvfile-separator), [json](#json), [parseJSON](#parsejson), [xml](#xml), [parseXML](#parsexml-options))
+- **template**: [compute](#compute), [template](#template)
+- **array**: complex actions implying arrays ([mapping](#mapping), [mappingVar](#mappingvar-inputtable), [zip](#zip), [array2object](#array2object), [arrays2objects](#arrays2objects), [coalesce](#coalesce), [substring](#substring), [getindex](#getindex), [getindexvar](#getindexvar))
+
+The modules you can use by defaults are `basics` and `ejs`.
+
+To use another module, first install it via npm:
+```bash
+$ npm install jbj-array
+```
+then declare its use via:
+```js
+JBJ.use(require('jbj-array'));
+```
+
+
 
 <a id="set"></a>
 ### set: value
+*module: basics*
 Set value and ignore *input*
 ```javascript
 	var stylesheet1 = {
@@ -151,8 +174,9 @@ Set value and ignore *input*
 ```
 
 <a id="get"></a>
-### get: path | [path,path, ...]
+### get: path | [path,path, ...]
 
+*module: basics*
 *aliases : find , path*
 
 Get value in *input* with some paths (with dot notation style)
@@ -183,6 +207,7 @@ Get value in *input* with some paths (with dot notation style)
 
 <a id="default"></a>
 ### default: value
+*module: basics*
 Fix value if *input* is not set
 ```javascript
 	var stylesheet = {
@@ -194,6 +219,7 @@ Fix value if *input* is not set
 
 <a id="debug"></a>
 ### debug: none
+*module: basics*
 Print *input* with console.log
 ```javascript
 	var stylesheet = {
@@ -205,6 +231,7 @@ Print *input* with console.log
 
 <a id="foreach"></a>
 ### foreach: stylesheet
+*module: basics*
 Apply stylesheet on all elements of *input*
 ```javascript
 	var stylesheet1 = {
@@ -242,7 +269,7 @@ Apply stylesheet on all elements of *input*
 
 <a id="extend"></a>
 ### extend: object
-
+*module: basics*
 *aliases : extendWith*
 
 Extend *input* with another object
@@ -260,6 +287,7 @@ Extend *input* with another object
 
 <a id="select"></a>
 ### select: path | [path, path, ...]
+*module: basics*
 Peck element(s) in *input* with "CSS selector"
 ```javascript
 	var stylesheet = {
@@ -279,6 +307,8 @@ for syntax see [JSONSelect](http://jsonselect.org/)
 
 <a id="mapping"></a>
 ### mapping: object
+*module: array*
+
 Replace a value by the matching value in the object.
 
 ```javascript
@@ -326,6 +356,7 @@ Can also replace the values of an array with the matching values in the object.
 <a id="mappingVar"></a>
 ### mappingVar: ["input","table"]
 
+*module: array*
 *alias*: combine
 
 Replace the content of the `input` variable according to the content of the `table` variable.
@@ -344,6 +375,7 @@ var output = JBJ.renderSync(stylesheet, input);
 
 <a id="array2object"></a>
 ### array2object: [key, value]
+*module: array*
 
 Convert an array, which items have `key` and `value` properties, to an associative array (or object), which key properties are `key` values and values are `value` values.
 
@@ -387,6 +419,7 @@ var stylesheet = {
 
 <a id="arrays2objects"></a>
 ### arrays2objects: [key, value]
+*module: array*
 
 Convert an array of arrays (of 2 items), to an array of objects, where the first key if `key` and the second `value`). Defailt value of `key`: `_id`, default value of `value`: `value`.
 
@@ -416,6 +449,7 @@ var stylesheet = {
 
 <a id="zip"></a>
 ### zip: ["array1","array2"]
+*module: array*
 
 Join two arrays (which elements have an `_id` and a `value` keys).
 
@@ -435,6 +469,7 @@ var output = JBJ.renderSync(stylesheet);
 
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
+*module: basics*
 Convert *input* to specific type
 ```javascript
 	var stylesheet1 = {
@@ -453,6 +488,7 @@ for syntax see [transtype](https://github.com/touv/transtype)
 
 <a id="mask"></a>
 ### mask: pattern
+*module: basics*
 Selecting specific parts of *input*, hiding the rest, return object
 ```javascript
 	var stylesheet = {
@@ -469,6 +505,8 @@ for syntax see [json-mask](https://github.com/nemtsov/json-mask)
 
 <a id="csv"></a>
 ### csv: separator
+*module: parse*
+
 Pack *input* to CSV, return string
 ```javascript
 	var stylesheet = {
@@ -481,6 +519,7 @@ Pack *input* to CSV, return string
 <a id="parseCSV"></a>
 ### parseCSV: separator
 
+*module: parse*
 *aliases : parseCSVField, fromCSV, uncsv*
 
 Parse *input* as CSV string, return array
@@ -495,6 +534,7 @@ Parse *input* as CSV string, return array
 <a id="parseCSVFile"></a>
 ### parseCSVFile: separator
 
+*module: parse*
 *alias : fromCSVFile*
 
 Parse *input* as CSV string, return an array of arrays of columns content.
@@ -510,6 +550,7 @@ Parse *input* as CSV string, return an array of arrays of columns content.
 <a id="json"></a>
 ### json: none
 
+*module: parse*
 *alias : toJSON*
 
 Pack *input* to JSON, return string
@@ -526,6 +567,7 @@ Pack *input* to JSON, return string
 <a id="parseJSON"></a>
 ### parseJSON:
 
+*module: parse*
 *aliases : fromJSON, unjson*
 
 Parse *input* as JSON string, return object
@@ -539,6 +581,8 @@ Parse *input* as JSON string, return object
 
 <a id="xml"></a>
 ### xml: options
+*module: parse*
+
 Pack *input* to XML, return string
 
 *options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options-1) documentation
@@ -563,6 +607,7 @@ Pack *input* to XML, return string
 <a id="parseXML"></a>
 ### parseXML: options
 
+*module: parse*
 *aliases : fromXML, unxml*
 
 Parse *input* as XML string, return object
@@ -581,6 +626,8 @@ Parse *input* as XML string, return object
 
 <a id="coalesce"></a>
 ### coalesce: none
+*module: array*
+
 Get the first non-undefined value
 ```javascript
 	var stylesheet = {
@@ -592,21 +639,25 @@ Get the first non-undefined value
 
 <a id="required"></a>
 ### required: none
+*module: basics*
 If *input* is not set, return Error
 
 <a id="trim"></a>
 ### trim: none
+*module: basics*
 Trim *input*, return string
 ```javascript
 	var stylesheet = {
 		"set" : "    xxx    ",
-		"trim: true
+		"trim": true
 	};
 	// output : "xxx"
 ```
 
 <a id="template"></a>
 ### template:  mustacheTemplate | [mustacheTemplate, mustacheTemplate, ...]
+*module: template*
+
 Build a string with mustache template and *input*
 ```javascript
 	var stylesheet = {
@@ -623,6 +674,7 @@ Build a string with mustache template and *input*
 
 <a id="compute"></a>
 ### compute: expression
+*module: template*
 
 Compute an expression with all variables of the *input*.
 Note : `this` variable contains *input*
@@ -652,6 +704,8 @@ Note : `this` variable contains *input*
 
 <a id="assert"></a>
 ### assert: expression
+
+*module: basics*
 
 If expression is true, then statements will be continued, otherwise it is stopped and  it returns null
 Note : `this` variable contains *input*
@@ -686,6 +740,7 @@ Note : `this` variable contains *input*
 
 <a id="capitalize"></a>
 ### capitalize:
+*module: ejs*
 Capitalize the first letter of *input*
 ```javascript
 	var stylesheet = {
@@ -697,6 +752,7 @@ Capitalize the first letter of *input*
 
 <a id="downcase"></a>
 ### downcase:
+*module: ejs*
 Downcase *input*
 ```javascript
 	var stylesheet = {
@@ -708,6 +764,7 @@ Downcase *input*
 
 <a id="upcase"></a>
 ### upcase:
+*module: ejs*
 Uppercase *input*
 ```javascript
 	var stylesheet = {
@@ -720,6 +777,7 @@ Uppercase *input*
 <a id="substring"></a>
 ### substring: [offset]|[offset, length]
 
+*module: array*
 *aliases : substr*
 
 ```javascript
@@ -732,6 +790,7 @@ Uppercase *input*
 
 <a id="first"></a>
 ### first:
+*module: ejs*
 Get the first element of *input*
 ```javascript
 	var stylesheet = {
@@ -743,6 +802,7 @@ Get the first element of *input*
 
 <a id="last"></a>
 ### last:
+*module: ejs*
 Get the last element of *input*
 ```javascript
 	var stylesheet = {
@@ -754,6 +814,7 @@ Get the last element of *input*
 
 <a id="sort"></a>
 ### sort:
+*module: ejs*
 Sort *input* object or array.
 
 ```javascript
@@ -767,6 +828,7 @@ Sort *input* object or array.
 <a id="sortBy"></a>
 ### sortBy: prop | [prop, prop, ...]
 
+*module: ejs*
 *aliases : sort_by*
 
 Sort *input* object the given `prop` ascending.
@@ -774,6 +836,7 @@ Sort *input* object the given `prop` ascending.
 <a id="size"></a>
 ### size:
 
+*module: ejs*
 *aliases : length*
 
 Get the size or the length of *input*
@@ -790,6 +853,7 @@ Get the size or the length of *input*
 ```
 <a id="max"></a>
 ### max:
+*module: ejs*
 Add *input* and *value*
 ```javascript
 	var stylesheet1 = {
@@ -806,6 +870,7 @@ Add *input* and *value*
 
 <a id="min"></a>
 ### min:
+*module: ejs*
 Subtract *value* from *input*
 ```javascript
 	var stylesheet1 = {
@@ -822,6 +887,7 @@ Subtract *value* from *input*
 
 <a id="plus"></a>
 ### plus: value | [value, value, ...]
+*module: ejs*
 Add *input* and *value*
 ```javascript
 	var stylesheet = {
@@ -838,6 +904,7 @@ Add *input* and *value*
 
 <a id="minus"></a>
 ### minus: value | [value, value, ...]
+*module: ejs*
 Subtract *value* from *input*
 ```javascript
 	var stylesheet = {
@@ -854,6 +921,7 @@ Subtract *value* from *input*
 
 <a id="times"></a>
 ### times: value | [value, value, ...]
+*module: ejs*
 Multiply *input* by *value*"
 ```javascript
 	var stylesheet = {
@@ -871,6 +939,7 @@ Multiply *input* by *value*"
 <a id="dividedBy"></a>
 ### dividedBy: value | [value, value, ...]
 
+*module: ejs*
 *aliases : divided_by*
 
 Divide *input* by *value*"
@@ -890,6 +959,7 @@ Divide *input* by *value*"
 <a id="join"></a>
 ### join: string = ', '
 
+*module: ejs*
 *aliases : glue*
 
 Join *input* with the given *string*.
@@ -903,6 +973,8 @@ Join *input* with the given *string*.
 
 <a id="shift"></a>
 ### shift: n | [n, n, ...]
+*module: ejs*
+
 Shift *input* to the left by *n*
 ```javascript
 	var stylesheet = {
@@ -924,6 +996,8 @@ Shift *input* to the left by *n*
 
 <a id="truncate"></a>
 ### truncate: length | [length, length, ...]
+*module: ejs*
+
 Truncate *input* to *length*.
 ```javascript
 	var stylesheet = {
@@ -936,6 +1010,7 @@ Truncate *input* to *length*.
 <a id="truncateWords"></a>
 ### truncateWords: n | [n, n, ...]
 
+*module: ejs*
 *aliases : truncate_words*
 
 Truncate *input* to *n* words (separator: space).
@@ -955,6 +1030,8 @@ Truncate *input* to *n* words (separator: space).
 
 <a id="replace"></a>
 ### replace: [pattern, substitution] | pattern
+*module: ejs*
+
 Replace *pattern* (as a regular expression) with *substitution* in *input*.
 ```javascript
 	var stylesheet = {
@@ -973,6 +1050,8 @@ Replace *pattern* (as a regular expression) with *substitution* in *input*.
 
 <a id="prepend"></a>
 ### prepend: something | [something, something, ...]
+*module: ejs*
+
 Prepend *something* to *input*
 ```javascript
 	var stylesheet = {
@@ -989,6 +1068,8 @@ Prepend *something* to *input*
 
 <a id="append"></a>
 ### append: something | [something, something, ...]
+*module: ejs*
+
 Append *something* to *input*
 ```javascript
 	var stylesheet = {
@@ -1005,6 +1086,8 @@ Append *something* to *input*
 
 <a id="reverse"></a>
 ### reverse:
+*module: ejs*
+
 Reverse items order of *input*
 ```javascript
 	var stylesheet = {
@@ -1015,6 +1098,8 @@ Reverse items order of *input*
 
 <a id="flatten"></a>
 ### flatten:
+*module: ejs*
+
 Flatten an array.
 ```javascript
     var stylesheet = {
@@ -1026,6 +1111,7 @@ Flatten an array.
 
 <a id="deduplicate"></a>
 ### deduplicate:
+*module: ejs*
 *aliases : dedupe , unique*
 
 Deduplicate values in an array.
@@ -1040,6 +1126,7 @@ Deduplicate values in an array.
 
 <a id="remove"></a>
 ### remove:
+*module: ejs*
 *alias : del*
 
 Remove one value in an array.
@@ -1065,6 +1152,7 @@ Remove one value in an array.
 <a id="getproperty"></a>
 <a id="getindex"></a>
 ### getindex: property | index
+*module: array*
 *aliases : getProperty, getproperty, getIndex*
 
 Get a property of an object, or an item of an array.
@@ -1085,6 +1173,7 @@ var stylesheet = {
 <a id="getpropertyvar"></a>
 <a id="getindexvar"></a>
 ### getindexvar: [ arrayName | objectName , propertyName | indexName ]
+*module: array*
 *aliases : getPropertyVar, getpropertyvar, getIndexVar*
 
 Get a property of an object, or an item of an array, like [getindex](#getindex), but using variables.
@@ -1110,6 +1199,7 @@ var stylesheet = {
 
 <a id="sum"></a>
 ### sum:
+*module: ejs*
 *alias : total*
 
 Return the sum of all the value of an array.
