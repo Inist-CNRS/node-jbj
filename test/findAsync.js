@@ -18,7 +18,7 @@ describe('asynchronous find', function () {
     var stylesheet = {
       "find" : "a.b.c"
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output, 'value');
       done(err);
     });
@@ -29,7 +29,7 @@ describe('asynchronous find', function () {
       "find" : "a",
       "find#1" : "b.c"
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output, 'value');
       done(err);
     });
@@ -41,7 +41,7 @@ describe('asynchronous find', function () {
       "find#1" : "b",
       "find#2" : "c"
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output, 'value');
       done(err);
     });
@@ -52,7 +52,7 @@ describe('asynchronous find', function () {
       "find" : ["x", "x.y", "a.b.c"],
       "coalesce" : null
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output, 'value');
       done(err);
     });
@@ -70,7 +70,7 @@ describe('asynchronous find', function () {
         "first" : null
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.x.z, 'VALUE');
       done(err);
     });

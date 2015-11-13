@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/array.js'));
+
 describe('basic', function () {
   var input = {
     "a" : {

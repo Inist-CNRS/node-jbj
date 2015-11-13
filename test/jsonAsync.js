@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/parse.js'));
+
 describe('asynchronous json', function () {
 
   var input = {
@@ -22,7 +24,7 @@ describe('asynchronous json', function () {
         "json" : ",",
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.e, "[\"x\",\"y\",\"z\"]");
       done(err);
     });
@@ -34,7 +36,7 @@ describe('asynchronous json', function () {
       "json" : true,
       "parseJSON": true
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output[0], "x");
       assert.equal(output[1], "y");
       assert.equal(output[2], "z");

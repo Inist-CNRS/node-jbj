@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/template.js'));
+
 describe('asynchronous compute', function () {
   var input = {
     "a" : 20,
@@ -19,7 +21,7 @@ describe('asynchronous compute', function () {
         "cast": "number"
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.e, 7);
       done(err);
     });
@@ -33,7 +35,7 @@ describe('asynchronous compute', function () {
         "cast": "number"
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.e, 7);
       done(err);
     });
@@ -54,7 +56,7 @@ describe('asynchronous compute', function () {
         "compute": "x + y",
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.z, 10);
       done(err);
     });

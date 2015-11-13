@@ -4,6 +4,9 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/parse.js'));
+JBJ.use(require('../lib/filters/array.js'));
+
 describe('asynchronous misc', function () {
 
   var input = {

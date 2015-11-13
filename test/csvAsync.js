@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/parse.js'));
+
 describe('asynchronous csv', function () {
   var input = {
     "a" : {
@@ -24,7 +26,7 @@ describe('asynchronous csv', function () {
         "trim": true
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.e, "x,y,z");
       done(err);
     });
@@ -36,7 +38,7 @@ describe('asynchronous csv', function () {
       "csv" : ",",
       "parseCSV": ","
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output[0], "x");
       assert.equal(output[1], "y");
       assert.equal(output[2], "z");
@@ -49,7 +51,7 @@ describe('asynchronous csv', function () {
     "find"    : "c",
     "parseCSV": "; "
   };
-  var output = JBJ.render(stylesheet, input, function (err, output) {
+  JBJ.render(stylesheet, input, function (err, output) {
     assert.equal(output[0], "a");
     assert.equal(output[1], "b");
     assert.equal(output[2], "c");
@@ -62,7 +64,7 @@ describe('asynchronous csv', function () {
       "find"        : "d",
       "parseCSVFile": ";"
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.length,2);
       assert.equal(output[0][0],"Afghanistan");
       assert.equal(output[0][1],"AFG");

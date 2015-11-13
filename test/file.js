@@ -1,8 +1,11 @@
+/*jshint node:true,laxcomma:true*/
 /* global describe, it */
 'use strict';
 var assert = require('assert')
   , path =require('path')
   , JBJ = require('..');
+
+JBJ.use(require('../lib/filters/parse.js'));
 
 describe('file', function () {
   it('no input', function(done) {
@@ -14,7 +17,7 @@ describe('file', function () {
         "upcase": null
       }
     };
-    var output = JBJ.render(stylesheet, function(error, output) {
+    JBJ.render(stylesheet, function(error, output) {
       assert(error instanceof Error);
       assert.equal(output, null);
       done();
@@ -31,7 +34,7 @@ describe('file', function () {
         "upcase": null
       }
     };
-    var output = JBJ.render(stylesheet, function(error, output) {
+    JBJ.render(stylesheet, function(error, output) {
       assert(error instanceof Error);
       done();
     });
@@ -47,7 +50,7 @@ describe('file', function () {
         "upcase": null
       }
     };
-    var output = JBJ.render(stylesheet, function(error, output) {
+    JBJ.render(stylesheet, function(error, output) {
       assert(error instanceof Error);
       done();
     });
@@ -66,7 +69,7 @@ describe('file', function () {
         "upcase": null
       }
     };
-    var output = JBJ.render(stylesheet, function(error, output) {
+    JBJ.render(stylesheet, function(error, output) {
       assert.equal(error, null);
       assert.equal(output.name, "JBJ");
       assert.equal(output.main, "INDEX.JS");
@@ -88,7 +91,7 @@ describe('file', function () {
         "path": "main",
       }
     };
-    var output = JBJ.render(stylesheet, {}, function(error, output) {
+    JBJ.render(stylesheet, {}, function(error, output) {
       assert.equal(error, null);
       assert.equal(output.name, "jbj");
       assert.equal(output.main, "index.js");
@@ -102,14 +105,11 @@ describe('file', function () {
       "parseJSON" : true,
       "path": "name"
     };
-    var output = JBJ.render(stylesheet, {}, function(error, output) {
+    JBJ.render(stylesheet, {}, function(error, output) {
       assert.equal(error, null);
       assert.equal(output, "jbj");
       done();
     });
   });
-
-
-
 
 });

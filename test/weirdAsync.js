@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/template.js'));
+
 describe('asynchronous weird', function () {
 
   var input = {
@@ -24,7 +26,7 @@ describe('asynchronous weird', function () {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.language, "X1X2X4X8");
       done(err);
     });

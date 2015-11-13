@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/template.js'));
+
 describe('weird', function () {
 
   var input = {

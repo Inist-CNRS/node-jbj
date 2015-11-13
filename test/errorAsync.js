@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/parse.js'));
+
 describe('asynchronous error', function () {
 
   var input = {

@@ -4,6 +4,8 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+JBJ.use(require('../lib/filters/template.js'));
+
 describe('asynchronous template', function () {
 
   var input = {
@@ -23,7 +25,7 @@ describe('asynchronous template', function () {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
       }
     };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
+    JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.a, "X1X2X4X8");
       done(err);
     });
