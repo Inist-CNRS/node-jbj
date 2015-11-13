@@ -152,7 +152,9 @@ then declare its use via:
 JBJ.use(require('jbj-array'));
 ```
 
-
+> **Note:** there may be some delay before these packages will be published. 
+> Until then, please use the files within the `jbj` module:
+> `JBJ.use(require('./node_modules/jbj/lib/filters/array.js'));`
 
 <a id="set"></a>
 ### set: value
