@@ -27,6 +27,7 @@ Use [mocha](https://github.com/visionmedia/mocha) to run the tests.
 ### render(stylesheet : Object, input : Mixed, callback : Function) : None
 
 Render `input` with `stylesheet`.
+
 ```javascript
 	var JBJ = require('jbj'),
 	JBJ.render({ "truncate" : 3 }, "1234", function(err, out) {
@@ -40,6 +41,7 @@ Render `input` with `stylesheet`.
 ### renderSync(stylesheet : Object, input : Mixed) : Object
 
 Render `input` with `stylesheet`.
+
 ```javascript
 	var JBJ = require('jbj'),
 	out = JBJ.renderSync({ "truncate" : 3 }, "1234");
@@ -50,7 +52,9 @@ Render `input` with `stylesheet`.
 ```
 
 ### register(protocol : String, callback : Function) : None
+
 Add a function to fetch data for a specific protocol
+
 ```javascript
 	JBJ.register('http:', function request(urlObj, callback) {
 		var buf = ''
@@ -70,6 +74,7 @@ Add a function to fetch data for a specific protocol
 		req.on('error', callback);
 	});
 ```
+
 ### Adding filters/actions
 
 To add a filter simply add a method to the .filters object:
@@ -112,10 +117,9 @@ By default, only the *file:* protocol is supported. Add your own protocol with [
 ```
 
 
-
 ## Variables
 
-Variable can be set using $ plus a dot notation path.
+Variable can be set using `$` plus a dot notation path.
 
 ```javascript
 	var stylesheet = {
@@ -137,8 +141,8 @@ The actions are divided into *modules* (since v4.0):
 
 - **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif)
 - **ejs**: mainly the filters borrowed from [EJS](http://ejs.co/) ([first](#first), [last](#last), [capitalize](#capitalize), [downcase](#downcase), [upcase](#upcase), [sort](#sort), [sort_by](#sortby-prop--prop-prop-), [size](#size), [max](#max), [min](#min), [plus](#plus), [minus](#minus), [times](#times), [divided_by](#dividedby-value--value-value-), [join](#join), [truncate](#truncate), [shift](#shift), [truncate_words](#truncatewords-n--n-n-), [replace](#replace), [prepend](#prepend), [append](#append), [reverse](#reverse), [flatten](#flatten), [deduplicate](#deduplicate), [remove](#remove), [sum](#sum))
-- **parse**: file format conversion, through parsing ([csv](#csv), [parseCSV](#parsecsv-separator), [parseCSVFile](#parsecsvfile-separator), [json](#json), [parseJSON](#parsejson), [xml](#xml), [parseXML](#parsexml-options))
-- **template**: [compute](#compute), [template](#template)
+- [**parse**](https://github.com/Inist-CNRS/node-jbj-parse): file format conversion, through parsing ([csv](https://github.com/Inist-CNRS/node-jbj-parse#csv), [parseCSV](https://github.com/Inist-CNRS/node-jbj-parse#parsecsv), [parseCSVFile](https://github.com/Inist-CNRS/node-jbj-parse#parsecsvfile), [json](https://github.com/Inist-CNRS/node-jbj-parse#json), [parseJSON](https://github.com/Inist-CNRS/node-jbj-parse#parsejson), [xml](https://github.com/Inist-CNRS/node-jbj-parse#xml), [parseXML](https://github.com/Inist-CNRS/node-jbj-parse#parsexml))
+- [**template**](https://github.com/Inist-CNRS/node-jbj-template): [compute](https://github.com/Inist-CNRS/node-jbj-template#compute), [template](https://github.com/Inist-CNRS/node-jbj-template#template)
 - **array**: complex actions implying arrays ([mapping](#mapping), [mappingVar](#mappingvar-inputtable), [zip](#zip), [array2object](#array2object), [arrays2objects](#arrays2objects), [coalesce](#coalesce), [substring](#substring), [getindex](#getindex), [getindexvar](#getindexvar))
 
 The modules you can use by defaults are `basics` and `ejs`.
@@ -152,9 +156,11 @@ then declare its use via:
 JBJ.use(require('jbj-array'));
 ```
 
-> **Note:** there may be some delay before these packages will be published. 
-> Until then, please use the files within the `jbj` module:
-> `JBJ.use(require('./node_modules/jbj/lib/filters/array.js'));`
+> **Note:** `basics` and `ejs` modules are distributed with the `jbj` package,
+> and used by default: you can use their actions without any further
+> declaration. However, `parse`, `template`, and `array`, which were parts of
+> the pre-3.0 versions of JBJ are now separate packages (simply add `jbj-`
+> before the modules names to get their matching packages).
 
 <a id="set"></a>
 ### set: value
@@ -318,167 +324,6 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
-<a id="mapping"></a>
-### mapping: object
-- *module: array*
-
-Replace a value by the matching value in the object.
-
-```javascript
-{
-  "set": "one",
-  "mapping": {
-    "one": 1
-  }
-}
-// output: 1
-```
-
-```javascript
-{
-  "set": "FR",
-  "mapping": {
-    "US": "United States of America",
-    "FR": "France"
-  }
-}
-// output: "France"
-```
-
-Can also replace the values of an array with the matching values in the object.
-
-```javascript
-{
-  "set": [1, 2],
-  "mapping": ["a","b","c"]
-}
-// output: ["b","c"]
-```
-
-```javascript
-{
-  "set": ["a", "b"],
-  "mapping": {
-    "a": "Aha!",
-    "b": "Baby"
-  }
-}
-// output: ["Aha!","Baby"]
-```
-
-<a id="mappingVar"></a>
-### mappingVar: ["input","table"]
-- *module: array*
-- *alias*: combine
-
-Replace the content of the `input` variable according to the content of the `table` variable.
-
-```javascript
-var input = {
-  "arg": { "a": "Aha!", "b": "Baby"},
-  "input": "a"
-};
-var stylesheet = {
-  "mappingVar": ["input", "arg"]
-};
-var output = JBJ.renderSync(stylesheet, input);
-// output "Aha!";
-```
-
-<a id="array2object"></a>
-### array2object: [key, value]
-- *module: array*
-
-Convert an array, which items have `key` and `value` properties, to an associative array (or object), which key properties are `key` values and values are `value` values.
-
-> *Note*: when the parameter is not a two items array, its default value is `["_id","value"]`.
-
-Ex:
-
-```javascript
-var stylesheet = {
-  "set": [
-    {
-      "_id": "2007",
-      "value": 538
-    }, {
-      "_id": "2008",
-      "value": 577
-    }, {
-      "_id": "2009",
-      "value": 611
-  }],
-  "array2object": true
-};
-// output = { "2007": 538, "2008": 577, "2009": 611 }
-
-var stylesheet = {
-  "set": [
-    {
-      "key": "2007",
-      "val": 538
-    }, {
-      "key": "2008",
-      "val": 577
-    }, {
-      "key": "2009",
-      "val": 611
-  }],
-  "array2object": ["key","val"]
-};
-// output = { "2007": 538, "2008": 577, "2009": 611 }
-```
-
-<a id="arrays2objects"></a>
-### arrays2objects: [key, value]
-- *module: array*
-
-Convert an array of arrays (of 2 items), to an array of objects, where the first key if `key` and the second `value`). Defailt value of `key`: `_id`, default value of `value`: `value`.
-
-> *Note*: this is useful to prepare data from a CSV file to be treated with `array2object`.
-
-Ex:
-
-```javascript
-var stylesheet = {
-  "set": [ [ "Afghanistan", "AFG" ],
-           [ "Aland Islands", "ALA" ] ],
-  "arrays2objects": ["key", "val"]
-};
-// output: [ { "key": "Afghanistan", "val": "AFG"},
-//           { "key": "Aland Islands", "val": "ALA"} ]
-```
-
-```javascript
-var stylesheet = {
-  "set": [ [ "Afghanistan", "AFG" ],
-           [ "Aland Islands", "ALA" ] ],
-  "arrays2objects": true
-};
-// output: [ { "_id": "Afghanistan", "value": "AFG"},
-//           { "_id": "Aland Islands", "value": "ALA"} ]
-```
-
-<a id="zip"></a>
-### zip: ["array1","array2"]
-- *module: array*
-
-Join two arrays (which elements have an `_id` and a `value` keys).
-
-```javascript
-var stylesheet = {
-  "set": {
-    "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
-    "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
-  },
-  "zip": [ "array1", "array2" ]
-};
-var output = JBJ.renderSync(stylesheet);
-// output: [ { _id: '1', array1: 1, array2: 10 },
-//           { _id: '2', array1: 2, array2: 20 } ]
-
-```
-
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 - *module: basics*
@@ -520,144 +365,6 @@ Selecting specific parts of *input*, hiding the rest, return object
 
 For syntax see [json-mask](https://github.com/nemtsov/json-mask)
 
-<a id="csv"></a>
-### csv: separator
-- *module: parse*
-
-Pack *input* to CSV, return string
-
-```javascript
-	var stylesheet = {
-		"set" : ["x","y","z"],
-		"csv" : ","
-	};
-	// output : "x,y,z"\r\n
-```
-
-<a id="parseCSV"></a>
-### parseCSV: separator
-
-- *module: parse*
-- *aliases : parseCSVField, fromCSV, uncsv*
-
-Parse *input* as CSV string, return array
-
-```javascript
-	var stylesheet = {
-		"set" : "x,y,z",
-		"parseCSV": ",",
-	};
-	// output : ["x","y","z"]
-```
-
-<a id="parseCSVFile"></a>
-### parseCSVFile: separator
-
-- *module: parse*
-- *alias : fromCSVFile*
-
-Parse *input* as CSV string, return an array of arrays of columns content.
-
-```javascript
-	var stylesheet = {
-		"set" : "\"Afghanistan\";\"AFG\"\n\"Aland Islands\";\"ALA\"",
-		"parseCSVFile": ";",
-	};
-	// output : [ [ 'Afghanistan', 'AFG' ], [ 'Aland Islands', 'ALA' ] ]
-```
-
-<a id="json"></a>
-### json: none
-- *module: parse*
-- *alias : toJSON*
-
-Pack *input* to JSON, return string
-
-```javascript
-	var stylesheet = {
-		"set" : ["x","y","z"],
-		"json": true
-	};
-	// output : "[\"x\",\"y\",\"z\"]"
-```
-
-> **Warning**: when parsing a whole CSV file, be aware that file line columns can't have space in their names, neither special characters (they must fit in variable names)
-
-<a id="parseJSON"></a>
-### parseJSON:
-- *module: parse*
-- *aliases : fromJSON, unjson*
-
-Parse *input* as JSON string, return object
-
-```javascript
-	var stylesheet = {
-		"set" : "[\"x\",\"y\",\"z\"]",
-		"parseJSON": true
-	};
-	// output : ["x","y","z"]
-```
-
-<a id="xml"></a>
-### xml: options
-- *module: parse*
-
-Pack *input* to XML, return string
-
-*options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options-1) documentation
-
-```javascript
-	var stylesheet = {
-		"set": {
-			"root" : {
-				"item" : [
-					{ "index" : "1", "$t" : "A"},
-					{ "index" : "2", "$t" : "B"},
-					{ "index" : "3", "$t" : "C"}
-				]
-			}
-		},
-		"xml" : {
-			"indent": false
-		}
-	};
-	// output : <root><item index="1">A</item><item index="2">B</item><item index="3">C</item></root>
-```
-
-<a id="parseXML"></a>
-### parseXML: options
-- *module: parse*
-- *aliases : fromXML, unxml*
-
-Parse *input* as XML string, return object
-
-*options* are detailed in the [xml-mapping](https://github.com/touv/node-xml-mapping#options) documentation
-
-```javascript
-	var stylesheet = {
-		"set": "<root><item xml:id=\"1\">A</item><item xml:id=\"2\">B</item><item xml:id=\"3\">C</item></root>",
-		"parseXML" : {
-			"specialChar": "#",
-			"longTag" : true
-		}
-	};
-	// output : { root : { item : [ { xml#id: 1, #text: A }, { xml#id: 2, #text: B }, { xml#id: 3, #text: C } ] } }
-```
-
-<a id="coalesce"></a>
-### coalesce: none
-- *module: array*
-
-Get the first non-undefined value
-
-```javascript
-	var stylesheet = {
-		"set" : [null, undefined, null, "a", "b"],
-		"coalesce": true
-	};
-	// output : "a"
-```
-
 <a id="required"></a>
 ### required: none
 - *module: basics*
@@ -676,56 +383,6 @@ Trim *input*, return string
 		"trim": true
 	};
 	// output : "xxx"
-```
-
-<a id="template"></a>
-### template:  mustacheTemplate | [mustacheTemplate, mustacheTemplate, ...]
-- *module: template*
-
-Build a string with mustache template and *input*
-
-```javascript
-	var stylesheet = {
-		"set" : {
-			"a" : {
-				"b" : "hello"
-			},
-			"c" : "world"
-		},
-		"template": "I say {{a.b}} to the {{c}}"
-	};
-	// output : I say hello to the world
-```
-
-<a id="compute"></a>
-### compute: expression
-- *module: template*
-
-Compute an expression with all variables of the *input*.
-> Note : `this` variable contains *input*
-
-```javascript
-	var stylesheet = {
-		"set" : {
-			"a" : 20,
-			"b" : 3,
-			"c" : 5,
-			"d" : 8
-		},
-		"$x" : {
-			"compute#1": "a / b",
-			"compute#2": "round(this)",
-			"cast": "number"
-		},
-		"$y" : {
-			"path": "b",
-			"cast": "number"
-		},
-		"$z" : {
-			"compute": "x + y",
-		}
-	};
-	// output : 10
 ```
 
 <a id="assert"></a>
@@ -806,19 +463,6 @@ Uppercase *input*
 	// output : "XYZ"
 ```
 
-<a id="substring"></a>
-### substring: [offset]|[offset, length]
-- *module: array*
-- *aliases : substr*
-
-```javascript
-    var stylesheet = {
-      "set"       : "20150310",
-      "substring" : [4,2]
-    };
-    // output : "03"
-```
-
 <a id="first"></a>
 ### first:
 - *module: ejs*
@@ -886,6 +530,7 @@ Get the size or the length of *input*
 	};
 	// output : 5
 ```
+
 <a id="max"></a>
 ### max:
 - *module: ejs*
@@ -1198,54 +843,6 @@ Remove one value in an array.
       "remove" : "b"
     };
     // output : ["a","c"]
-```
-
-<a id="getproperty"></a>
-<a id="getindex"></a>
-### getindex: property | index
-- *module: array*
-- *aliases : getProperty, getproperty, getIndex*
-
-Get a property of an object, or an item of an array.
-
-```javascript
-var stylesheet = {
-  "set"        : [ "a", "b", "c" ],
-  "getindex": "2"
-};
-// output : "c"
-var stylesheet = {
-  "set"        : { "a": 0, "b": 1, "c":2 },
-  "getproperty": "b"
-};
-// output : 1
-```
-
-<a id="getpropertyvar"></a>
-<a id="getindexvar"></a>
-### getindexvar: [ arrayName | objectName , propertyName | indexName ]
-- *module: array*
-- *aliases : getPropertyVar, getpropertyvar, getIndexVar*
-
-Get a property of an object, or an item of an array, like [getindex](#getindex), but using variables.
-
-```javascript
-var stylesheet = {
-  "set": {
-    "i": 1,
-    "t": ["a","b","c"]
-  },
-  "getIndexVar": ["t", "i"]
-};
-// output : "b"
-var stylesheet = {
-  "set": {
-    "i" : "b",
-    "o" : { "a": 0, "b": 1, "c":2 },
-  },
-  "getPropertyVar": ["o", "i"]
-};
-// output : 1
 ```
 
 <a id="sum"></a>
