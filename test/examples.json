@@ -742,7 +742,7 @@
       },
       "$val#2" : {
         "get" : "val",
-        "default": "else val",
+        "default": "else val"
       }
     }
   },
