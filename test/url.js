@@ -4,22 +4,13 @@
 var assert = require('assert')
   , JBJ = require('..');
 
+// Mock an HTTP request
 function request(urlObj, callback) {
-  var buf = '', req = require('http').get(urlObj, function(res) {
-    if (res.statusCode !== 200) {
-      return callback(new Error('HTTP Error ' + res.statusCode));
-    }
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      buf += chunk.toString();
-    });
-    res.on('error', callback);
-    res.on('end', function() {
-      callback(null, buf);
-    });
-  });
-
-  req.on('error', callback);
+  if ("http://registry.npmjs.com/jbj" === urlObj.href) {
+    return callback(null, "{ \"name\": \"jbj\" }");
+  } else {
+    return callback(new Error('HTTP Error'));
+  }
 }
 JBJ.register('http:', request);
 
