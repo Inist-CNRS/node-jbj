@@ -48,20 +48,6 @@ describe('asynchronous misc', function () {
     var stylesheet = {
       "$a" : {
         "find": "a.b.d",
-        "default": '["truc", "bidule"]',
-        "unjson": null
-      }
-    };
-    var output = JBJ.render(stylesheet, input, function (err, output) {
-      assert.equal(output.a[0], "truc");
-      done(err);
-    });
-  });
-
-  it('misc #4', function(done) {
-    var stylesheet = {
-      "$a" : {
-        "find": "a.b.d",
         "required": true
       }
     };
@@ -71,7 +57,7 @@ describe('asynchronous misc', function () {
     });
   });
 
-  it('misc #5', function(done) {
+  it('misc #4', function(done) {
     var stylesheet = {
       "extendWith": {
         "a" : {
@@ -88,7 +74,7 @@ describe('asynchronous misc', function () {
     });
   });
 
-  it('misc #5b', function(done) {
+  it('misc #5', function(done) {
     var stylesheet = {
       "extendWith": {
         "a" : {
