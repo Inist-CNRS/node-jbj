@@ -22,15 +22,16 @@
     "istanbul": "^0.2.14"
   },
   "dependencies": {
-    "object-path": "^0.8.1",
-    "csv-string": "^2.2.5",
-    "mustache": "^1.0.0",
-    "json-mask": "^0.3.2",
-    "filtrex": "^0.5.4",
-    "transtype": "^1.0.0",
     "JSONSelect": "https://github.com/touv/JSONSelect/archive/master.tar.gz",
-    "extend": "^2.0.0",
     "async": "^0.9.0",
+    "csv-string": "^2.2.5",
+    "each-async": "^1.1.1",
+    "extend": "^2.0.0",
+    "filtrex": "^0.5.4",
+    "json-mask": "^0.3.2",
+    "mustache": "^1.0.0",
+    "object-path": "^0.8.1",
+    "transtype": "^1.0.0",
     "xml-mapping": "^1.7.0"
   }
 }
