@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": ">=1.8.1",
-    "istanbul": "^0.2.14"
+    "istanbul": "^0.4.2"
   },
   "dependencies": {
     "JSONSelect": "https://github.com/touv/JSONSelect/archive/master.tar.gz",
