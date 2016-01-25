@@ -30,7 +30,7 @@
     "filtrex": "^0.5.4",
     "json-mask": "^0.3.2",
     "mustache": "^2.2.1",
-    "object-path": "^0.8.1",
+    "object-path": "^0.9.2",
     "transtype": "^1.0.0",
     "xml-mapping": "^1.7.0"
   }
