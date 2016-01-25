@@ -26,7 +26,7 @@
     "async": "^1.5.2",
     "csv-string": "^2.2.5",
     "each-async": "^1.1.1",
-    "extend": "^2.0.0",
+    "extend": "^3.0.0",
     "filtrex": "^0.5.4",
     "json-mask": "^0.3.2",
     "mustache": "^2.2.1",
