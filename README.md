@@ -324,6 +324,8 @@ Peck element(s) in *input* with "CSS selector"
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
 
+> **Note:** `select` *always* returns an array (an empty array when nothing was selected).
+
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
 - *module: basics*
