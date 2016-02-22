@@ -120,6 +120,7 @@ By default, only the *file:* protocol is supported. Add your own protocol with [
 ## Variables
 
 Variable can be set using `$` plus a dot notation path.
+The set value can only be a JBJ expression (not a JSON literal).
 
 ```javascript
 	var stylesheet = {
