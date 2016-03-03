@@ -120,6 +120,7 @@ By default, only the *file:* protocol is supported. Add your own protocol with [
 ## Variables
 
 Variable can be set using `$` plus a dot notation path.
+The set value can only be a JBJ expression (not a JSON literal).
 
 ```javascript
 	var stylesheet = {
@@ -323,6 +324,8 @@ Peck element(s) in *input* with "CSS selector"
 	// output : [1, 2]
 ```
 for syntax see [JSONSelect](http://jsonselect.org/)
+
+> **Note:** `select` *always* returns an array (an empty array when nothing was selected).
 
 <a id="cast"></a>
 ### cast: (number|string|boolean) | [(string|date), pattern]
