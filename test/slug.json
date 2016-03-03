@@ -1,0 +1,37 @@
+{
+  "slug spaces #1": {
+    "input": "with space",
+    "stylesheet": {
+      "slug": true
+    },
+    "expected": "with-space"
+  },
+  "slug lowercase #2": {
+    "input": "IN UPPERCASE",
+    "stylesheet": {
+      "slug": true
+    },
+    "expected": "in-uppercase"
+  },
+  "slug diacritics #3": {
+    "input": "En français",
+    "stylesheet": {
+      "slug": true
+    },
+    "expected": "en-francais"
+  },
+  "slug diacritics #4": {
+    "input": "Le Cinquième Élément",
+    "stylesheet": {
+      "slug": true
+    },
+    "expected": "le-cinquieme-element"
+  },
+  "slug unicode #5": {
+    "input": "i ♥ unicode",
+    "stylesheet": {
+      "slug": true
+    },
+    "expected": "i-unicode"
+  }
+}
