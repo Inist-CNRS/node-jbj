@@ -112,4 +112,14 @@ describe('file', function () {
     });
   });
 
+  it('should read CSV files, and return a string', function (done) {
+    var stylesheet = {
+      "$?" : "file://" + path.resolve(__dirname, '../dataset/1.csv'),
+    };
+    JBJ.render(stylesheet, {}, function(error, output) {
+      assert(!Buffer.isBuffer(output));
+      done();
+    });
+  });
+
 });
