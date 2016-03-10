@@ -2,6 +2,10 @@
 
 A new way to transform JSON object with a JSON stylesheet. It's like XSL/XML but only with JSON.
 
+### Try it
+
+http://inist-cnrs.github.io/jbj-playground/
+
 ## Contributors
 
   * [Nicolas Thouvenin](https://github.com/touv)
@@ -948,10 +952,6 @@ just use `this`
 
 
 see unit tests : https://github.com/castorjs/node-jbj/tree/master/test
-
-### Try it
-
-http://inist-cnrs.github.io/jbj-playground/
 
 # Also
 
