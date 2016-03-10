@@ -42,19 +42,6 @@ Render `input` with `stylesheet`.
 
 ```
 
-### renderSync(stylesheet : Object, input : Mixed) : Object
-
-Render `input` with `stylesheet`.
-
-```javascript
-	var JBJ = require('jbj'),
-	out = JBJ.renderSync({ "truncate" : 3 }, "1234");
-
-	console.log(out);
-
-	// Output : 123
-```
-
 ### register(protocol : String, callback : Function) : None
 
 Add a function to fetch data for a specific protocol
