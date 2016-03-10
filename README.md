@@ -951,7 +951,7 @@ see unit tests : https://github.com/castorjs/node-jbj/tree/master/test
 
 ### Try it
 
-http://castorjs.github.io/node-jbj/
+http://inist-cnrs.github.io/jbj-playground/
 
 # Also
 
