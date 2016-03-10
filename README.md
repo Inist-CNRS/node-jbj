@@ -2,7 +2,7 @@
 
 A new way to transform JSON object with a JSON stylesheet. It's like XSL/XML but only with JSON.
 
-### Try it
+### Try it online !
 
 http://inist-cnrs.github.io/jbj-playground/
 
