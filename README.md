@@ -125,6 +125,47 @@ The set value can only be a JBJ expression (not a JSON literal).
 
 ```
 
+Input:
+```json
+{
+  "a": {
+    "b": {
+      "c": 1
+    },
+    "d": "Second"
+  }
+}
+```
+
+Stylesheet:
+```json
+{
+    "$x" : {
+        "get": "a.b.c"
+    },
+    "$y.y1.y2" : {
+        "get": "a.d"
+    }
+}
+```
+
+Output:
+```json
+{
+  "a": {
+    "b": {
+      "c": 1
+    },
+    "d": "Second"
+  },
+  "x": 1,
+  "y": {
+    "y1": {
+      "y2": "Second"
+    }
+  }
+}
+```
 
 ## Actions
 
