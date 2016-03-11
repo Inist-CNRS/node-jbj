@@ -557,6 +557,18 @@ Sort *input* object or array.
 
 Sort *input* object the given `prop` ascending.
 
+
+```javascript
+	var stylesheet = {
+		"set": [
+			{ "name": "zert" },
+			{ "name": "abcd" }
+		],
+		"sortBy": "name"
+	};
+	// output : [{ "name": "abcd" }, { "name": "zert" }]
+```
+
 <a id="size"></a>
 ### size:
 - *module: ejs*
