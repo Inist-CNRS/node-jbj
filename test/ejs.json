@@ -1,0 +1,15 @@
+{
+  "sortBy": {
+    "input": [
+      { "name": "zert" },
+      { "name": "abcd" }
+    ],
+    "stylesheet": {
+      "sortBy": "name"
+    },
+    "expected": [
+      { "name": "abcd" },
+      { "name": "zert" }
+    ]
+  }
+}
