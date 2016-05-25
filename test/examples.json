@@ -786,5 +786,54 @@
       "slug": true
     },
     "expected": "i-unicode"
+  },
+  "expect #1 - default object keys": {
+    "stylesheet": {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    "expected": {
+      "a": 1,
+      "b": 2
+    }
+  },
+  "expect #2 - default object keys": {
+    "input": {
+      "a": 3
+    },
+    "stylesheet": {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    "expected": {
+      "a": 3,
+      "b": 2
+    }
+  },
+  "add a key-value #1": {
+    "input": { },
+    "stylesheet": {
+      "add": ["tag", "span"]
+    },
+    "expected": {
+      "tag": "span"
+    }
+  },
+  "add a key-value #2": {
+    "input": {
+      "content": "not empty"
+    },
+    "stylesheet": {
+      "add": ["tag", "span"]
+    },
+    "expected": {
+      "content": "not empty",
+      "tag": "span"
+    }
   }
+
 }

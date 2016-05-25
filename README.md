@@ -160,7 +160,7 @@ Output:
 A stylesheet is a JSON object where each key is an *action*. 
 The actions are divided into *modules* (since v4.0):
 
-- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif)
+- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif)
 - **ejs**: mainly the filters borrowed from [EJS](http://ejs.co/) ([first](#first), [last](#last), [capitalize](#capitalize), [downcase](#downcase), [upcase](#upcase), [slug](#slug), [sort](#sort), [sort_by](#sortby-prop--prop-prop-), [size](#size), [max](#max), [min](#min), [plus](#plus), [minus](#minus), [times](#times), [dividedBy](#dividedBy), [join](#join), [truncate](#truncate), [shift](#shift), [truncateWords](#truncateWords), [replace](#replace), [prepend](#prepend), [append](#append), [reverse](#reverse), [flatten](#flatten), [deduplicate](#deduplicate), [remove](#remove), [sum](#sum), [slug](#slug))
 - [**parse**](https://github.com/Inist-CNRS/node-jbj-parse): file format conversion, through parsing ([csv](https://github.com/Inist-CNRS/node-jbj-parse#csv), [parseCSV](https://github.com/Inist-CNRS/node-jbj-parse#parsecsv), [parseCSVFile](https://github.com/Inist-CNRS/node-jbj-parse#parsecsvfile), [json](https://github.com/Inist-CNRS/node-jbj-parse#json), [parseJSON](https://github.com/Inist-CNRS/node-jbj-parse#parsejson), [xml](https://github.com/Inist-CNRS/node-jbj-parse#xml), [parseXML](https://github.com/Inist-CNRS/node-jbj-parse#parsexml))
 - [**template**](https://github.com/Inist-CNRS/node-jbj-template): [compute](https://github.com/Inist-CNRS/node-jbj-template#compute), [template](https://github.com/Inist-CNRS/node-jbj-template#template)
@@ -248,6 +248,79 @@ Fix value if *input* is not set
 			"default": "value"
 		};
 	};
+```
+
+<a id="add"></a>
+### add: [key, value]
+- *module: basics*
+
+Add a *key*/*value* pair into the *input* object.
+
+```json
+{
+  "input": { },
+  "stylesheet": {
+    "add": ["tag", "span"]
+  },
+  "expected": {
+    "tag": "span"
+  }
+}
+```
+
+```json
+{
+  "input": {
+    "content": "not empty"
+  },
+  "stylesheet": {
+    "add": ["tag", "span"]
+  },
+  "expected": {
+    "content": "not empty",
+    "tag": "span"
+  }
+}
+```
+
+
+<a id="expect"></a>
+### expect: object
+- *module: basics*
+
+Set default key/values for the *input* object: when a key is not present in the *input* object, it is set the value given in the argument object.
+
+```json
+{
+  "input": {
+    "a": 3
+  },
+  "stylesheet": {
+    "expect": {
+      "a": 1,
+      "b": 2
+    }
+  },
+  "expected": {
+    "a": 3,
+    "b": 2
+  }
+}
+```
+
+```json
+{
+  "stylesheet": {
+    "expect": {
+      "a": 1,
+      "b": 2
+    }
+  },
+  "expected": {
+    "a": 1,
+    "b": 2
+  }
+}
 ```
 
 <a id="debug"></a>

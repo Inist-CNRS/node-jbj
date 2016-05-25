@@ -577,4 +577,79 @@ describe('asynchronous basic', function (done) {
     });
   });
 
+  it('basic #42 - expect', function (done) {
+    var input = undefined;
+    var stylesheet = {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    };
+    var expected = {
+      "a": 1,
+      "b": 2
+    }
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert(output);
+      assert.equal(output.a, 1);
+      assert.equal(output.b, 2);
+      done(err);
+    });
+  });
+
+  it('basic #43 - expect', function (done) {
+    var input = {
+      "a": 3
+    };
+    var stylesheet = {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    };
+    var expected = {
+      "a": 3,
+      "b": 2
+    }
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert(output);
+      assert.equal(output.a, 3);
+      assert.equal(output.b, 2);
+      done(err);
+    });
+  });
+
+  it('basic #44 - add', function (done) {
+    var input = { };
+    var stylesheet = {
+      "add": ["tag", "span"]
+    };
+    var expected = {
+      "tag": "span"
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert(output);
+      assert.equal(output.tag, "span");
+      done(err);
+    });
+  });
+
+  it('basic #45 - add', function (done) {
+    var input = {
+      "content": "not empty"
+    };
+    var stylesheet = {
+      "add": ["tag", "span"]
+    };
+    var expected = {
+      "content": "not empty",
+      "tag": "span"
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert(output);
+      assert.equal(output.tag, "span");
+      done(err);
+    });
+  });
+
 });
