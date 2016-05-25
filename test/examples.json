@@ -118,7 +118,7 @@
     },
     "stylesheet": {
       "get": "a.d",
-      "length" : true
+      "size" : true
     }
   },
   "plus": {
@@ -366,7 +366,7 @@
       "remove#2" : "b"
     }
   },
-  "find": {
+  "find / get": {
     "input": {
       "a" : {
         "b" : {
@@ -376,10 +376,10 @@
       }
     },
     "stylesheet": {
-      "find" : "a.b.c"
+      "get" : "a.b.c"
     }
   },
-  "find 2": {
+  "find / get 2": {
     "input": {
       "a" : {
         "b" : {
@@ -389,11 +389,11 @@
       }
     },
     "stylesheet": {
-      "find" : "a",
-      "find#1" : "b.c"
+      "get" : "a",
+      "get#1" : "b.c"
     }
   },
-  "find 3": {
+  "find /get 3": {
     "input": {
       "a" : {
         "b" : {
@@ -403,9 +403,9 @@
       }
     },
     "stylesheet": {
-      "find#0" : "a",
-      "find#1" : "b",
-      "find#2" : "c"
+      "get#0" : "a",
+      "get#1" : "b",
+      "get#2" : "c"
     }
   },
   "foreach object": {
@@ -434,12 +434,12 @@
     "stylesheet":{
       "get" : "a",
       "foreach" : {
-        "find": "b",
+        "get": "b",
         "upcase" : true
       }
     }
   },
-  "Foreach apply array": {
+  "foreach apply array": {
     "input": {
       "a" : [
         { "b" : "x", "c" : 0 },
@@ -451,7 +451,7 @@
       "get" : "a",
       "foreach" : {
         "$b" : {
-          "find": "b",
+          "get": "b",
           "upcase" : true
         }
       }
@@ -468,12 +468,12 @@
     },
     "stylesheet": {
       "$a" : {
-        "find": "a",
+        "get": "a",
         "mask" : "b"
       }
     }
   },
-  "find cast": {
+  "get cast": {
     "input": {
       "a" : {
         "b" : {
@@ -484,12 +484,12 @@
     },
     "stylesheet": {
       "$a" : {
-        "find": "a.b.c",
+        "get": "a.b.c",
         "cast" : "number"
       }
     }
   },
-  "find default": {
+  "get default": {
     "input": {
       "a" : {
         "b" : {
@@ -500,7 +500,7 @@
     },
     "stylesheet": {
       "$a" : {
-        "find": "a.b.d",
+        "get": "a.b.d",
         "default": "truc"
       }
     }
@@ -516,12 +516,12 @@
     },
     "stylesheet": {
       "$a" : {
-        "find": "a.b.d",
+        "get": "a.b.d",
         "required": true
       }
     }
   },
-  "extendWith": {
+  "extend with": {
     "input": {
       "a" : {
         "b" : {
@@ -531,7 +531,7 @@
       }
     },
     "stylesheet": {
-      "extendWith": {
+      "extend": {
         "a" : {
           "b" : {
             "cc" : "val1"
@@ -786,5 +786,54 @@
       "slug": true
     },
     "expected": "i-unicode"
+  },
+  "expect #1 - default object keys": {
+    "stylesheet": {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    "expected": {
+      "a": 1,
+      "b": 2
+    }
+  },
+  "expect #2 - default object keys": {
+    "input": {
+      "a": 3
+    },
+    "stylesheet": {
+      "expect": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    "expected": {
+      "a": 3,
+      "b": 2
+    }
+  },
+  "add a key-value #1": {
+    "input": { },
+    "stylesheet": {
+      "add": ["tag", "span"]
+    },
+    "expected": {
+      "tag": "span"
+    }
+  },
+  "add a key-value #2": {
+    "input": {
+      "content": "not empty"
+    },
+    "stylesheet": {
+      "add": ["tag", "span"]
+    },
+    "expected": {
+      "content": "not empty",
+      "tag": "span"
+    }
   }
+
 }
