@@ -1,839 +1,868 @@
 {
-  "capitalize": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.b.c",
-      "capitalize" : true
-    }
-  },
-  "upcase": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.b.c",
-      "upcase" : true
-    }
-  },
-  "downcase": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.b.c",
-      "upcase" : true,
-      "downcase" : true
-    }
-  },
-  "first": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "first" : true
-    }
-  },
-  "last": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "last" : true
-    }
-  },
-  "sort": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "sort" : true,
-      "first": true
-    }
-  },
-  "sort 2": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "sort" : true
-    }
-  },
-  "length": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "size" : true
-    }
-  },
-  "plus": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.e",
-      "plus" : 3
-    }
-  },
-  "minus": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.e",
-      "minus" : 2
-    }
-  },
-  "times": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.e",
-      "times" : 2
-    }
-  },
-  "dividedBy": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.e",
-      "times" : 2,
-      "dividedBy": 3
-    }
-  },
-  "join": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join" : "/"
-    }
-  },
-  "truncate": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join" : "/",
-      "truncate": 3
-    }
-  },
-  "truncateWords": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join" : " ",
-      "truncateWords": 2
-    }
-  },
-  "prepend": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.e",
-      "cast" : "string",
-      "prepend": "#"
-    }
-  },
-  "append": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join": "/",
-      "truncate" : 3,
-      "append": "..."
-    }
-  },
-  "shift": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join": "/",
-      "truncate" : 3,
-      "shift": 2
-    }
-  },
-  "replace": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join" : "/",
-      "replace": "/"
-    }
-  },
-  "replace 2": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : ["C", "B", "A"],
-        "e" : 3
-      }
-    },
-    "stylesheet": {
-      "get": "a.d",
-      "join" : "/",
-      "replace": ["/", "|"]
-    }
-  },
-  "min": {
-    "input": [2, 4, 1, 7, 9, 3],
-    "stylesheet": {
-      "min" : true
-    }
-  },
-  "max": {
-    "input": [2, 4, 1, 7, 9, 3],
-    "stylesheet": {
-      "max" : true
-    }
-  },
-  "min obj": {
-    "input": {"a": 9, "b": 4, "c": 3, "d": 5},
-    "stylesheet": {
-      "min" : true
-    }
-  },
-  "flatten": {
-    "input": [ ["a", "b"], ["c", "d"], "e"],
-    "stylesheet": {
-      "flatten" : true
-    }
-  },
-  "deduplicate": {
-    "input": [ 1, 2, 3, 1, 2],
-    "stylesheet": {
-      "deduplicate" : true
-    }
-  },
-  "remove integer": {
-    "input": [ 1, 2, 3],
-    "stylesheet": {
-      "remove" : 2
-    }
-  },
-  "remove empty": {
-    "input": [ "a", "", "b"],
-    "stylesheet": {
-      "remove" : ""
-    }
-  },
-  "remove string": {
-    "input": [ "a", "b", "c"],
-    "stylesheet": {
-      "remove" : "b"
-    }
-  },
-  "remove multiple": {
-    "input": [ "a", "b", "c", ""],
-    "stylesheet": {
-      "remove#1" : "",
-      "remove#2" : "b"
-    }
-  },
-  "find / get": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "get" : "a.b.c"
-    }
-  },
-  "find / get 2": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "get" : "a",
-      "get#1" : "b.c"
-    }
-  },
-  "find /get 3": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "get#0" : "a",
-      "get#1" : "b",
-      "get#2" : "c"
-    }
-  },
-  "foreach object": {
-    "input": {
-      "a" : {
-        "b" : "x",
-        "c" : "y",
-        "d" : "z"
-      }
-    },
-    "stylesheet":{
-      "get" : "a",
-      "foreach" : {
-        "upcase" : true
-      }
-    }
-  },
-  "foreach array": {
-    "input": {
-      "a" : [
-        { "b" : "x" },
-        { "b" : "y" },
-        { "b" : "z" }
-      ]
-    },
-    "stylesheet":{
-      "get" : "a",
-      "foreach" : {
-        "get": "b",
-        "upcase" : true
-      }
-    }
-  },
-  "foreach apply array": {
-    "input": {
-      "a" : [
-        { "b" : "x", "c" : 0 },
-        { "b" : "y", "c" : 1 },
-        { "b" : "z", "c" : 2 }
-      ]
-    },
-    "stylesheet": {
-      "get" : "a",
-      "foreach" : {
-        "$b" : {
-          "get": "b",
-          "upcase" : true
-        }
-      }
-    }
-  },
-  "mask": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$a" : {
-        "get": "a",
-        "mask" : "b"
-      }
-    }
-  },
-  "get cast": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "1234"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$a" : {
-        "get": "a.b.c",
-        "cast" : "number"
-      }
-    }
-  },
-  "get default": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "1234"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$a" : {
-        "get": "a.b.d",
-        "default": "truc"
-      }
-    }
-  },
-  "required": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "1234"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$a" : {
-        "get": "a.b.d",
-        "required": true
-      }
-    }
-  },
-  "extend with": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "1234"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "extend": {
-        "a" : {
-          "b" : {
-            "cc" : "val1"
-          },
-          "d" : "val2"
-        }
-      }
-    }
-  },
-  "set": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "1234"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "set": {
-        "a" : {
-          "b" : "val1",
-          "e" : "val2"
-        }
-      }
-    }
-  },
-  "select first 1": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$$" : {
-        "select" : ".a > .b > .c",
-        "first": true
-      }
-    }
-  },
-  "select first 2": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$d.e.f" : {
-        "select" : ".a > .b > .c",
-        "first": true
-      }
-    }
-  },
-  "select first 3": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$$" : {
-        "select" : ".a",
-        "first": true,
-        "select#1" : ".b > .c",
-        "first#1": true
-      }
-    }
-  },
-  "select first 4": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "select" : ".a",
-      "first": true,
-      "select#1" : ".b > .c",
-      "first#1": true
-    }
-  },
-  "select first 5": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$d.e" : {
-        "select" : ".a",
-        "first": true,
-        "select#1" : ".b > .c",
-        "first#1": true
-      }
-    }
-  },
-  "select first 6": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$$" : {
-        "select#0" : ".a",
-        "first#0": true,
-        "select#1" : ".b",
-        "first#1": true,
-        "select#2" : ".c",
-        "first#2": true
-      }
-    }
-  },
-  "select first 7": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "select#0" : ".a",
-      "first#0": true,
-      "select#1" : ".b",
-      "first#1": true,
-      "select#2" : ".c",
-      "first#2": true
-    }
-  },
-  "select first 8": {
-    "input": {
-      "a" : {
-        "b" : {
-          "c" : "value"
-        },
-        "d" : null
-      }
-    },
-    "stylesheet": {
-      "$d" : {
-        "select#0" : ".a",
-        "first#0": true,
-        "select#1" : ".b",
-        "first#1": true,
-        "select#2" : ".c",
-        "first#2": true
-      }
-    }
-  },
-  "empty default": {
-    "stylesheet": {
-      "default" : {
-        "a" : {
-          "b" : [
-            { "#text" : "1" },
-            { "#text" : "2" },
-            { "#text" : "3" }
-          ]
-        }
-      },
-      "select" : ".a > .b .#text"
-    }
-  },
-  "assert": {
-    "input": {
-      "val" : "unmodified",
-      "a" : 1,
-      "b" : "one"
-    },
-    "stylesheet": {
-      "$val" : {
-        "get" : "a",
-        "assert": "this == 1",
-        "set" : "if val"
-      }
-    }
-  },
-  "assert else" : {
-    "input" : {
-      "val" : "unmodified",
-      "a" : 2,
-      "b" : "one"
-    },
-    "stylesheet": {
-      "$val#1" : {
-        "assert": "a == 1",
-        "set" : "if val"
-      },
-      "$val#2" : {
-        "get" : "val",
-        "default": "else val"
-      }
-    }
-  },
-  "sum": {
-    "input": [1,2,3],
-    "stylesheet": {
-      "sum": true
-    }
-  },
-  "slug spaces #1": {
-    "input": "with space",
-    "stylesheet": {
-      "slug": true
-    },
-    "expected": "with-space"
-  },
-  "slug lowercase #2": {
-    "input": "IN UPPERCASE",
-    "stylesheet": {
-      "slug": true
-    },
-    "expected": "in-uppercase"
-  },
-  "slug diacritics #3": {
-    "input": "En français",
-    "stylesheet": {
-      "slug": true
-    },
-    "expected": "en-francais"
-  },
-  "slug diacritics #4": {
-    "input": "Le Cinquième Élément",
-    "stylesheet": {
-      "slug": true
-    },
-    "expected": "le-cinquieme-element"
-  },
-  "slug unicode #5": {
-    "input": "i ♥ unicode",
-    "stylesheet": {
-      "slug": true
-    },
-    "expected": "i-unicode"
-  },
-  "expect #1 - default object keys": {
-    "stylesheet": {
-      "expect": {
-        "a": 1,
-        "b": 2
-      }
-    },
-    "expected": {
-      "a": 1,
-      "b": 2
-    }
-  },
-  "expect #2 - default object keys": {
-    "input": {
-      "a": 3
-    },
-    "stylesheet": {
-      "expect": {
-        "a": 1,
-        "b": 2
-      }
-    },
-    "expected": {
-      "a": 3,
-      "b": 2
-    }
-  },
-  "add a key-value #1": {
-    "input": { },
-    "stylesheet": {
-      "add": ["tag", "span"]
-    },
-    "expected": {
-      "tag": "span"
-    }
-  },
-  "add a key-value #2": {
-    "input": {
-      "content": "not empty"
-    },
-    "stylesheet": {
-      "add": ["tag", "span"]
-    },
-    "expected": {
-      "content": "not empty",
-      "tag": "span"
-    }
-  }
-
+	"capitalize": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.b.c",
+			"capitalize" : true
+		}
+	},
+	"upcase": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.b.c",
+			"upcase" : true
+		}
+	},
+	"downcase": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.b.c",
+			"upcase" : true,
+			"downcase" : true
+		}
+	},
+	"first": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"first" : true
+		}
+	},
+	"last": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"last" : true
+		}
+	},
+	"sort": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"sort" : true,
+			"first": true
+		}
+	},
+	"sort 2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"sort" : true
+		}
+	},
+	"length": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"size" : true
+		}
+	},
+	"plus": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.e",
+			"plus" : 3
+		}
+	},
+	"minus": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.e",
+			"minus" : 2
+		}
+	},
+	"times": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.e",
+			"times" : 2
+		}
+	},
+	"dividedBy": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.e",
+			"times" : 2,
+			"dividedBy": 3
+		}
+	},
+	"join": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join" : "/"
+		}
+	},
+	"truncate": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join" : "/",
+			"truncate": 3
+		}
+	},
+	"truncateWords": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join" : " ",
+			"truncateWords": 2
+		}
+	},
+	"prepend": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.e",
+			"cast" : "string",
+			"prepend": "#"
+		}
+	},
+	"append": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join": "/",
+			"truncate" : 3,
+			"append": "..."
+		}
+	},
+	"shift": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join": "/",
+			"truncate" : 3,
+			"shift": 2
+		}
+	},
+	"replace": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join" : "/",
+			"replace": "/"
+		}
+	},
+	"replace 2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : ["C", "B", "A"],
+				"e" : 3
+			}
+		},
+		"stylesheet": {
+			"get": "a.d",
+			"join" : "/",
+			"replace": ["/", "|"]
+		}
+	},
+	"min": {
+		"input": [2, 4, 1, 7, 9, 3],
+		"stylesheet": {
+			"min" : true
+		}
+	},
+	"max": {
+		"input": [2, 4, 1, 7, 9, 3],
+		"stylesheet": {
+			"max" : true
+		}
+	},
+	"min obj": {
+		"input": {"a": 9, "b": 4, "c": 3, "d": 5},
+		"stylesheet": {
+			"min" : true
+		}
+	},
+	"flatten": {
+		"input": [ ["a", "b"], ["c", "d"], "e"],
+		"stylesheet": {
+			"flatten" : true
+		}
+	},
+	"deduplicate": {
+		"input": [ 1, 2, 3, 1, 2],
+		"stylesheet": {
+			"deduplicate" : true
+		}
+	},
+	"remove integer": {
+		"input": [ 1, 2, 3],
+		"stylesheet": {
+			"remove" : 2
+		}
+	},
+	"remove empty": {
+		"input": [ "a", "", "b"],
+		"stylesheet": {
+			"remove" : ""
+		}
+	},
+	"remove string": {
+		"input": [ "a", "b", "c"],
+		"stylesheet": {
+			"remove" : "b"
+		}
+	},
+	"remove multiple": {
+		"input": [ "a", "b", "c", ""],
+		"stylesheet": {
+			"remove#1" : "",
+			"remove#2" : "b"
+		}
+	},
+	"find / get": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"get" : "a.b.c"
+		}
+	},
+	"find / get 2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"get" : "a",
+			"get#1" : "b.c"
+		}
+	},
+	"find /get 3": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"get#0" : "a",
+			"get#1" : "b",
+			"get#2" : "c"
+		}
+	},
+	"foreach object": {
+		"input": {
+			"a" : {
+				"b" : "x",
+				"c" : "y",
+				"d" : "z"
+			}
+		},
+		"stylesheet":{
+			"get" : "a",
+			"foreach" : {
+				"upcase" : true
+			}
+		}
+	},
+	"foreach array": {
+		"input": {
+			"a" : [
+				{ "b" : "x" },
+				{ "b" : "y" },
+				{ "b" : "z" }
+			]
+		},
+		"stylesheet":{
+			"get" : "a",
+			"foreach" : {
+				"get": "b",
+				"upcase" : true
+			}
+		}
+	},
+	"foreach apply array": {
+		"input": {
+			"a" : [
+				{ "b" : "x", "c" : 0 },
+				{ "b" : "y", "c" : 1 },
+				{ "b" : "z", "c" : 2 }
+			]
+		},
+		"stylesheet": {
+			"get" : "a",
+			"foreach" : {
+				"$b" : {
+					"get": "b",
+					"upcase" : true
+				}
+			}
+		}
+	},
+	"mask": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a",
+				"mask" : "b"
+			}
+		}
+	},
+	"get cast": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a.b.c",
+				"cast" : "number"
+			}
+		}
+	},
+	"get default": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a.b.d",
+				"default": "truc"
+			}
+		}
+	},
+	"required": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a.b.d",
+				"required": true
+			}
+		}
+	},
+	"extend with": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"extend": {
+				"a" : {
+					"b" : {
+						"cc" : "val1"
+					},
+					"d" : "val2"
+				}
+			}
+		}
+	},
+	"set": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"set": {
+				"a" : {
+					"b" : "val1",
+					"e" : "val2"
+				}
+			}
+		}
+	},
+	"select first 1": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$$" : {
+				"select" : ".a > .b > .c",
+				"first": true
+			}
+		}
+	},
+	"select first 2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$d.e.f" : {
+				"select" : ".a > .b > .c",
+				"first": true
+			}
+		}
+	},
+	"select first 3": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$$" : {
+				"select" : ".a",
+				"first": true,
+				"select#1" : ".b > .c",
+				"first#1": true
+			}
+		}
+	},
+	"select first 4": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"select" : ".a",
+			"first": true,
+			"select#1" : ".b > .c",
+			"first#1": true
+		}
+	},
+	"select first 5": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$d.e" : {
+				"select" : ".a",
+				"first": true,
+				"select#1" : ".b > .c",
+				"first#1": true
+			}
+		}
+	},
+	"select first 6": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$$" : {
+				"select#0" : ".a",
+				"first#0": true,
+				"select#1" : ".b",
+				"first#1": true,
+				"select#2" : ".c",
+				"first#2": true
+			}
+		}
+	},
+	"select first 7": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"select#0" : ".a",
+			"first#0": true,
+			"select#1" : ".b",
+			"first#1": true,
+			"select#2" : ".c",
+			"first#2": true
+		}
+	},
+	"select first 8": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "value"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$d" : {
+				"select#0" : ".a",
+				"first#0": true,
+				"select#1" : ".b",
+				"first#1": true,
+				"select#2" : ".c",
+				"first#2": true
+			}
+		}
+	},
+	"empty default": {
+		"stylesheet": {
+			"default" : {
+				"a" : {
+					"b" : [
+						{ "#text" : "1" },
+						{ "#text" : "2" },
+						{ "#text" : "3" }
+					]
+				}
+			},
+			"select" : ".a > .b .#text"
+		}
+	},
+	"assert": {
+		"input": {
+			"val" : "unmodified",
+			"a" : 1,
+			"b" : "one"
+		},
+		"stylesheet": {
+			"$val" : {
+				"get" : "a",
+				"assert": "this == 1",
+				"set" : "if val"
+			}
+		}
+	},
+	"assert else" : {
+		"input" : {
+			"val" : "unmodified",
+			"a" : 2,
+			"b" : "one"
+		},
+		"stylesheet": {
+			"$val#1" : {
+				"assert": "a == 1",
+				"set" : "if val"
+			},
+			"$val#2" : {
+				"get" : "val",
+				"default": "else val"
+			}
+		}
+	},
+	"sum": {
+		"input": [1,2,3],
+		"stylesheet": {
+			"sum": true
+		}
+	},
+	"slug spaces #1": {
+		"input": "with space",
+		"stylesheet": {
+			"slug": true
+		},
+		"expected": "with-space"
+	},
+	"slug lowercase #2": {
+		"input": "IN UPPERCASE",
+		"stylesheet": {
+			"slug": true
+		},
+		"expected": "in-uppercase"
+	},
+	"slug diacritics #3": {
+		"input": "En français",
+		"stylesheet": {
+			"slug": true
+		},
+		"expected": "en-francais"
+	},
+	"slug diacritics #4": {
+		"input": "Le Cinquième Élément",
+		"stylesheet": {
+			"slug": true
+		},
+		"expected": "le-cinquieme-element"
+	},
+	"slug unicode #5": {
+		"input": "i ♥ unicode",
+		"stylesheet": {
+			"slug": true
+		},
+		"expected": "i-unicode"
+	},
+	"expect #1 - default object keys": {
+		"stylesheet": {
+			"expect": {
+				"a": 1,
+				"b": 2
+			}
+		},
+		"expected": {
+			"a": 1,
+			"b": 2
+		}
+	},
+	"expect #2 - default object keys": {
+		"input": {
+			"a": 3
+		},
+		"stylesheet": {
+			"expect": {
+				"a": 1,
+				"b": 2
+			}
+		},
+		"expected": {
+			"a": 3,
+			"b": 2
+		}
+	},
+	"add a key-value #1": {
+		"input": { },
+		"stylesheet": {
+			"add": ["tag", "span"]
+		},
+		"expected": {
+			"tag": "span"
+		}
+	},
+	"add a key-value #2": {
+		"input": {
+			"content": "not empty"
+		},
+		"stylesheet": {
+			"add": ["tag", "span"]
+		},
+		"expected": {
+			"content": "not empty",
+			"tag": "span"
+		}
+	},
+	"inject actions in new object #1": {
+		"input": {
+			"content": {
+				"name" : "Lorem",
+				"role": "Ipsum"
+			}
+		},
+		"stylesheet": {
+			"inject": {
+				"person" : {
+					"login<" : {
+						"get" : "content.name",
+						"upcase" : true
+					},
+					"passwd<" : {
+						"get" : "content.role",
+						"upcase" : true
+					},
+					"title" : "efedalo"
+				}
+			}
+		},
+		"expected": {
+			"person": {
+				"login" : "LOREM",
+				"passwd" : "IPSUM",
+				"title" : "efedalo"
+			}
+		}
+	}
 }

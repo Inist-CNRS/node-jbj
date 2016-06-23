@@ -5,6 +5,7 @@ var assert = require('assert')
   , JBJ = require('../')
   , examples = require('./slug.json')
   , examplesEjs = require('./ejs.json')
+  , examplesAll = require('./examples.json')
   ;
 
 describe('slug', function () {
@@ -31,6 +32,25 @@ describe('ejs', function () {
         assert.deepEqual(output, expected);
         done(err);
       });
+    });
+  });
+});
+
+describe('all', function () {
+  Object.keys(examplesAll).forEach(function (example) {
+    it(example, function (done) {
+      if (examplesAll[example].input && examplesAll[example].stylesheet && examplesAll[example].expected) {
+        var input      = examplesAll[example].input;
+        var stylesheet = examplesAll[example].stylesheet;
+        var expected   = examplesAll[example].expected;
+        JBJ.render(stylesheet, input, function (err, output) {
+          assert.deepEqual(output, expected);
+          done(err);
+        });
+      }
+      else {
+        done()
+      }
     });
   });
 });

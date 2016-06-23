@@ -66,14 +66,48 @@ Add a function to fetch data for a specific protocol
 	});
 ```
 
-### Adding filters/actions
+### getActions() : Array
 
-To add a filter simply add a method to the .filters object:
+List all available actions.
 
 ```javascript
-	jbj.filters.concatx = function(obj, args) {
-		return String(obj) + String(args) + 'X';
-	};
+	var JBJ = require('jbj'),
+
+	console.log(JBJ.getActions());
+
+	// Output : ['get', 'set', 'expect' ...]
+
+```
+
+### getFilter(filterName : String) : Function
+
+Get the statement function for an action name.
+
+```javascript
+	var JBJ = require('jbj'),
+
+	var func = JBJ.getFilter('append");
+
+	func('Hello', 'World' , function(err, output) {
+	   console.log(output)
+	})
+
+	// Output : HelloWorld
+```
+
+
+### use(module: Function) : None
+
+Adding filters/actions for external module. see the avaible modules here : https://www.npmjs.com/browse/keyword/jbj
+
+
+```javascript
+	var JBJ = require('jbj'),
+
+	JBJ.use(require(jbj-numerical'));
+	JBJ.use(require(jbj-ist'));
+	JBJ.use(require(jbj-rdfa'));
+
 ```
 
 > **Warning:** the method has change since v4.0
@@ -157,7 +191,7 @@ Output:
 
 ## Actions
 
-A stylesheet is a JSON object where each key is an *action*. 
+A stylesheet is a JSON object where each key is an *action*.
 The actions are divided into *modules* (since v4.0):
 
 - **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif)
@@ -322,6 +356,31 @@ Set default key/values for the *input* object: when a key is not present in the 
   }
 }
 ```
+
+<a id="inject"></a>
+### inject:
+- *module: basics*
+
+Return a new Object with some injection of JBJ stylesheet. Injections are identified by an suffix in the key. The suffix is the less-than sign  <
+
+```javascript
+    var stylesheet = {
+      "set"    : {
+	    key : "hello"
+	  },
+      "inject" : {
+	    "obj" : {
+	      "keyword<" : {
+		     get : "key",
+			 upcase: true
+		  }
+	  }
+
+    };
+	// output : { obj : { keyword : "HELLO" } }
+```
+
+
 
 <a id="debug"></a>
 ### debug: none
