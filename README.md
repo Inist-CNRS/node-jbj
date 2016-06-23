@@ -86,7 +86,7 @@ Get the statement function for an action name.
 ```javascript
 	var JBJ = require('jbj'),
 
-	var func = JBJ.getFilter('append");
+	var func = JBJ.getFilter('append');
 
 	func('Hello', 'World' , function(err, output) {
 	   console.log(output)
