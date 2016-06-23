@@ -104,9 +104,9 @@ Adding filters/actions for external module. see the avaible modules here : https
 ```javascript
 	var JBJ = require('jbj'),
 
-	JBJ.use(require(jbj-numerical'));
-	JBJ.use(require(jbj-ist'));
-	JBJ.use(require(jbj-rdfa'));
+	JBJ.use(require('jbj-numerical'));
+	JBJ.use(require('jbj-ist'));
+	JBJ.use(require('jbj-rdfa'));
 
 ```
 
