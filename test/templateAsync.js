@@ -8,7 +8,8 @@ JBJ.use(require('../lib/filters/template.js'));
 
 describe('asynchronous template', function () {
 
-  var input = {
+ it('template #1', function(done) {
+     var input = {
     "a" : {
       "b" : {
         "c" : "1"
@@ -19,7 +20,6 @@ describe('asynchronous template', function () {
     "f": "8"
   };
 
-  it('template #1', function(done) {
     var stylesheet = {
       "$a" : {
         "template": "X{{a.b.c}}X{{a.d}}X{{a.e}}X{{f}}",
@@ -30,5 +30,30 @@ describe('asynchronous template', function () {
       done(err);
     });
   });
+
+  it('template #2', function(done) {
+   var input = {
+    "a" : {
+      "b" : {
+        "c" : "1"
+      },
+      "d" : "2",
+      "e" : "4"
+    },
+    "f": "8"
+  };
+ 
+    var stylesheet = {
+      "$a" : {
+        "templateURL": "file://" + require('path').resolve(__dirname, "./template.mustache")
+      }
+    };
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(output.a, "X1X2X4X8\n");
+      done(err);
+    });
+  });
+
+
 
 });

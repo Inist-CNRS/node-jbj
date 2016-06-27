@@ -6,7 +6,8 @@ var assert = require('assert')
 
 describe('error', function () {
 
-  var input = {
+  it('error #1', function(done) {
+      var input = {
     "a" : {
       "b" : {
         "c" : "1234"
@@ -14,13 +15,14 @@ describe('error', function () {
       "d" : null
     }
   };
-
-  it('error #1', function() {
     var stylesheet = {
-      "assert" : "a == 'X'"
+      "assert" : "a == 'X"
     };
-    var output = JBJ.renderSync(stylesheet, input);
-    assert.equal(output.name, 'Error');
+    JBJ.render(stylesheet, input, function (err, output) {
+      assert.equal(err.name, 'Error');
+      assert.equal(output, undefined);
+      done();
+    })
   });
 
 

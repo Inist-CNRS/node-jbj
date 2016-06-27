@@ -206,9 +206,9 @@ describe('asynchronous basic', function (done) {
       "join" : "; "
     };
     JBJ.render(stylesheet, input, function (err, output) {
-      assert.equal(typeof output, "object");
-      assert.equal(Object.keys(output).length, 0);
-      done(err);
+      assert.equal(output, undefined);
+      assert.equal(err.name, 'TypeError');
+      done();
     });
   });
 
