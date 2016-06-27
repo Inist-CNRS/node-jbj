@@ -896,5 +896,13 @@
 			"templateURL": "file://./test/template.mustache"
 		},
 		"expected":  "X1X2X4X8\n"
+	},
+	"url #1" : {
+		"input": "file://./test/template.mustache",
+		"stylesheet": {
+			"parseURL": true,
+			"get": "protocol"
+		},
+		"expected":  "file:"
 	}
 }

@@ -33,7 +33,7 @@ describe('url', function () {
 
   it('bad input', function(done) {
     var stylesheet = {
-      "$?" : "oups://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
+      "fetch" : "oups://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
       "$name" : {
         "upcase": null
       },
@@ -49,7 +49,7 @@ describe('url', function () {
 
   it('wrong input', function(done) {
     var stylesheet = {
-      "$?" : "http://registry.npmjs.com/jbjj",
+      "fetch" : "http://registry.npmjs.com/jbjj",
       "$name" : {
         "upcase": null
       },
@@ -65,7 +65,7 @@ describe('url', function () {
 
   it('failed input', function(done) {
     var stylesheet = {
-      "$?" : "http://qsqsdqsd.qsdqsd.fr",
+      "fetch" : "http://qsqsdqsd.qsdqsd.fr",
       "$name" : {
         "upcase": null
       },
@@ -82,7 +82,7 @@ describe('url', function () {
 
   it('good input', function(done) {
     var stylesheet = {
-      "$?" : "http://registry.npmjs.com/jbj",
+      "fetch" : "http://registry.npmjs.com/jbj",
       "parseJSON" : true,
       "$name" : {
         "path": "name",
