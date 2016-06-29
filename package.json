@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "JSONSelect": "https://github.com/touv/JSONSelect/archive/master.tar.gz",
-    "anglicize": "https://github.com/azer/anglicize",
+    "anglicize": "^1.0.0",
     "async-waterfall": "^0.1.5",
     "clone": "^1.0.2",
     "csv-string": "^2.3.0",
