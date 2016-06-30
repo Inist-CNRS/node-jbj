@@ -897,6 +897,25 @@
 		},
 		"expected":  "X1X2X4X8\n"
 	},
+	"querystring #1" : {
+		"input": "foo[bar]=baz",
+		"stylesheet": {
+			"parseQueryString": true,
+			"get": "foo.bar"
+		},
+		"expected":  "baz"
+	},
+	"querystring #2" : {
+		"input": {
+			"foo": {
+				"bar": "baz"
+			}
+		},
+		"stylesheet": {
+			"querystring": true
+		},
+		"expected": "foo%5Bbar%5D=baz"
+	},
 	"url #1" : {
 		"input": "file://./test/template.mustache",
 		"stylesheet": {
@@ -904,5 +923,13 @@
 			"get": "protocol"
 		},
 		"expected":  "file:"
+	},
+	"url #2" : {
+		"input": "http://www.google.fr",
+		"stylesheet": {
+			"parseURL": true,
+			"url": true
+		},
+		"expected":  "http://www.google.fr/"
 	}
 }
