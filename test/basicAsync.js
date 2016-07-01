@@ -4,8 +4,6 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-JBJ.use(require('../lib/filters/array.js'));
-
 describe('asynchronous basic', function (done) {
   var input = {
     "a" : {
@@ -264,70 +262,6 @@ describe('asynchronous basic', function (done) {
     });
   });
 
-  it('basic #20.1', function(done) {
-    var stylesheet = {
-      "get" : "a.b.c",
-      "mapping" : {
-        "value" : 1
-      }
-    };
-    JBJ.render(stylesheet, input, function (err, output) {
-      assert.equal(output, 1);
-      done(err);
-    });
-  });
-
-  it('basic #20.2', function(done) {
-    var stylesheet = {
-      "default" : 1,
-      "mapping" : ['a','b','c']
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, 'b');
-      done(err);
-    });
-  });
-
-
-  it('basic #20.3', function(done) {
-    var stylesheet = {
-      "set": [1, 2],
-      "mapping": ['a','b','c']
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(JSON.stringify(output), '["b","c"]');
-      done(err);
-    });
-  });
-
-  it('basic #20.4', function(done) {
-    var stylesheet = {
-      "set": ["a", "b"],
-      "mapping": {
-        "a": "Aha!",
-        "b": "Baby"
-      }
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(JSON.stringify(output), '["Aha!","Baby"]');
-      done(err);
-    });
-  });
-
-  it('basic #20.5', function(done) {
-    var input = {
-      "arg": { "a": "Aha!", "b": "Baby"},
-      "input": "a"
-    };
-    var stylesheet = {
-      "mappingVar": ["input", "arg"]
-    };
-    JBJ.render(stylesheet, input, function (err, output) {
-      assert.equal(output, "Aha!");
-      done(err);
-    });
-  });
-
   it('basic #21', function(done) {
     var stylesheet = {
       "set" : [2, 4,1,7, 9,3],
@@ -426,114 +360,7 @@ describe('asynchronous basic', function (done) {
       done(err);
     });
   });
-
-  it('basic #30', function (done) {
-    var stylesheet = {
-      "set"       : "20150310",
-      "substring" : [4,2]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, "03");
-      done(err);
-    });
-  });
-
-  it('basic #34', function (done) {
-    var stylesheet = {
-      "set"        : [ "a", "b", "c" ],
-      "getproperty": "2"
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, "c");
-      done(err);
-    });
-  });
-
-  it('basic #35', function (done) {
-    var stylesheet = {
-      "set"        : { "a": 0, "b": 1, "c":2 },
-      "getproperty": "b"
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, 1);
-      done(err);
-    });
-  });
-
-  it('basic #36', function (done) {
-    var stylesheet = {
-      "set": {
-        "i": 1,
-        "t": ["a","b","c"]
-      },
-      "getPropertyVar": ["t", "i"]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, "b");
-      done(err);
-    });
-  });
-
-  it('basic #37', function (done) {
-    var stylesheet = {
-      "set": {
-        "i" : "b",
-        "o" : { "a": 0, "b": 1, "c":2 },
-      },
-      "getPropertyVar": ["o", "i"]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output, 1);
-      done(err);
-    });
-  });
-
-  it('basic #38', function (done) {
-    var stylesheet = {
-      "set": [
-        {
-          "_id": "2007",
-          "value": 538
-        }, {
-          "_id": "2008",
-          "value": 577
-        }, {
-          "_id": "2009",
-          "value": 611
-      }],
-      "array2object": true
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output[2007], 538);
-      assert.equal(output[2008], 577);
-      assert.equal(output[2009], 611);
-      done(err);
-    });
-  });
-
-  it('basic #38b', function (done) {
-    var stylesheet = {
-      "set": [
-        {
-          "key": "2007",
-          "val": 538
-        }, {
-          "key": "2008",
-          "val": 577
-        }, {
-          "key": "2009",
-          "val": 611
-      }],
-      "array2object": ["key","val"]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output[2007], 538);
-      assert.equal(output[2008], 577);
-      assert.equal(output[2009], 611);
-      done(err);
-    });
-  });
-
+  
   it('basic #39', function (done) {
     var stylesheet = {
       "set" : [ 5, 3, 2 ],
@@ -543,36 +370,6 @@ describe('asynchronous basic', function (done) {
       assert.equal(output[0], 2);
       assert.equal(output[1], 3);
       assert.equal(output[2], 5);
-      done(err);
-    });
-  });
-
-  it('basic #40', function (done) {
-    var stylesheet = {
-      "set": [ [ "Afghanistan", "AFG" ],
-               [ "Aland Islands", "ALA" ] ],
-      "arrays2objects": true
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output[0]._id,"Afghanistan");
-      assert.equal(output[0].value, "AFG");
-      assert.equal(output[1]._id, "Aland Islands");
-      assert.equal(output[1].value, "ALA");
-      done(err);
-    });
-  });
-
-  it('basic #41', function (done) {
-    var stylesheet = {
-      "set": [ [ "Afghanistan", "AFG" ],
-               [ "Aland Islands", "ALA" ] ],
-      "arrays2objects": ["key", "val"]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output[0].key,"Afghanistan");
-      assert.equal(output[0].val, "AFG");
-      assert.equal(output[1].key, "Aland Islands");
-      assert.equal(output[1].val, "ALA");
       done(err);
     });
   });

@@ -6,8 +6,8 @@ var assert = require('assert')
 
 // Mock an HTTP request
 function request(urlObj, callback) {
-  if ("http://registry.npmjs.com/jbj" === urlObj.href) {
-    return callback(null, "{ \"name\": \"jbj\" }");
+    if ("http://registry.npmjs.com/jbj" === urlObj.href) {
+    return callback(null, "JBJ");
   } else {
     return callback(new Error('HTTP Error'));
   }
@@ -49,7 +49,7 @@ describe('url', function () {
 
   it('wrong input', function(done) {
     var stylesheet = {
-      "fetch" : "http://registry.npmjs.com/jbjj",
+      "fetch" : "http://registry.npmjs.com/jbj",
       "$name" : {
         "upcase": null
       },
@@ -83,14 +83,11 @@ describe('url', function () {
   it('good input', function(done) {
     var stylesheet = {
       "fetch" : "http://registry.npmjs.com/jbj",
-      "parseJSON" : true,
-      "$name" : {
-        "path": "name",
-        "upcase": null
-      }    };
+      "upcase": true
+    };
     var output = JBJ.render(stylesheet, function(error, output) {
       assert.equal(error, null);
-      assert.equal(output.name, "JBJ");
+      assert.notEqual(output.search("JBJ"), -1);
       done();
     });
   });

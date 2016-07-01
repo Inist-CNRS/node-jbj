@@ -4,9 +4,6 @@
 var assert = require('assert')
   , JBJ = require('..');
 
-JBJ.use(require('../lib/filters/parse.js'));
-JBJ.use(require('../lib/filters/array.js'));
-
 describe('asynchronous misc', function () {
 
   var input = {
@@ -127,25 +124,6 @@ describe('asynchronous misc', function () {
     };
     var output = JBJ.render(stylesheet, input, function (err, output) {
       assert.equal(output.toString(), "Error: Input object should be an array");
-      done();
-    });
-  });
-
-  it('misc #8', function (done) {
-    var stylesheet = {
-      "set": {
-        "array1": [{"_id": "1", "value": 1},  {"_id": "2", "value": 2}],
-        "array2": [{"_id": "1", "value": 10}, {"_id": "2", "value": 20}]
-      },
-      "zip": [ "array1", "array2" ]
-    };
-    JBJ.render(stylesheet, function (err, output) {
-      assert.equal(output[0]._id, "1");
-      assert.equal(output[0].array1, 1);
-      assert.equal(output[0].array2, 10);
-      assert.equal(output[1]._id, "2");
-      assert.equal(output[1].array1, 2);
-      assert.equal(output[1].array2, 20);
       done();
     });
   });
