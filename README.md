@@ -194,10 +194,10 @@ Output:
 A stylesheet is a JSON object where each key is an *action*.
 The actions are divided into *modules* (since v4.0):
 
-- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif, [inject](#inject))
+- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif, [inject](#inject), [compute](#compute))
 - **ejs**: mainly the filters borrowed from [EJS](http://ejs.co/) ([first](#first), [last](#last), [capitalize](#capitalize), [downcase](#downcase), [upcase](#upcase), [slug](#slug), [sort](#sort), [sort_by](#sortby-prop--prop-prop-), [size](#size), [max](#max), [min](#min), [plus](#plus), [minus](#minus), [times](#times), [dividedBy](#dividedBy), [join](#join), [truncate](#truncate), [shift](#shift), [truncateWords](#truncateWords), [replace](#replace), [prepend](#prepend), [append](#append), [reverse](#reverse), [flatten](#flatten), [deduplicate](#deduplicate), [remove](#remove), [sum](#sum), [slug](#slug))
 - [**parse**](https://github.com/Inist-CNRS/node-jbj-parse): file format conversion, through parsing ([csv](https://github.com/Inist-CNRS/node-jbj-parse#csv), [parseCSV](https://github.com/Inist-CNRS/node-jbj-parse#parsecsv), [parseCSVFile](https://github.com/Inist-CNRS/node-jbj-parse#parsecsvfile), [json](https://github.com/Inist-CNRS/node-jbj-parse#json), [parseJSON](https://github.com/Inist-CNRS/node-jbj-parse#parsejson), [xml](https://github.com/Inist-CNRS/node-jbj-parse#xml), [parseXML](https://github.com/Inist-CNRS/node-jbj-parse#parsexml))
-- [**template**](https://github.com/Inist-CNRS/node-jbj-template): [compute](https://github.com/Inist-CNRS/node-jbj-template#compute), [template](https://github.com/Inist-CNRS/node-jbj-template#template)
+- [**template**](https://github.com/Inist-CNRS/node-jbj-template): [template](https://github.com/Inist-CNRS/node-jbj-template#template), templateURL
 - [**array**](https://github.com/Inist-CNRS/node-jbj-array): complex actions implying arrays ([mapping](https://github.com/Inist-CNRS/node-jbj-array#mapping), [mappingVar](https://github.com/Inist-CNRS/node-jbj-array#mappingvar-inputtable), [zip](https://github.com/Inist-CNRS/node-jbj-array#zip), [array2object](https://github.com/Inist-CNRS/node-jbj-array#array2object), [arrays2objects](https://github.com/Inist-CNRS/node-jbj-array#arrays2objects), [coalesce](https://github.com/Inist-CNRS/node-jbj-array#coalesce), [substring](https://github.com/Inist-CNRS/node-jbj-array#substring), [getindex](https://github.com/Inist-CNRS/node-jbj-array#getindex), [getindexvar](https://github.com/Inist-CNRS/node-jbj-array#getindexvar))
 - [**rdfa**](https://github.com/Inist-CNRS/node-jbj-rdfa): generate [HTML+RDFa](https://www.w3.org/TR/xhtml-rdfa-primer/) from a [JSON-LD](http://json-ld.org/) ([getJsonLdField](https://github.com/Inist-CNRS/node-jbj-rdfa#getJsonLdField), [style](https://github.com/Inist-CNRS/node-jbj-rdfa#style), [class](https://github.com/Inist-CNRS/node-jbj-rdfa#class), [tag](https://github.com/Inist-CNRS/node-jbj-rdfa#tag), [toHtml](https://github.com/Inist-CNRS/node-jbj-rdfa#toHtml))
 - [**nlp**](https://github.com/Inist-CNRS/node-jbj-nlp): natural language processing ([anglicize](https://github.com/Inist-CNRS/node-jbj-nlp#anglicize), [countCharacters](https://github.com/Inist-CNRS/node-jbj-nlp#countCharacters), [countWords](https://github.com/Inist-CNRS/node-jbj-nlp#countWords), [tokenize](https://github.com/Inist-CNRS/node-jbj-nlp#tokenize), [metaphone](https://github.com/Inist-CNRS/node-jbj-nlp#metaphone))
@@ -368,20 +368,50 @@ Return a new Object with some injection of JBJ stylesheet. Injections are
 identified by a suffix in the key. The suffix is the less-than sign  `<`
 
 ```javascript
-    var stylesheet = {
-      "set"    : {
-	    key : "hello"
-	  },
-      "inject" : {
-	    "obj" : {
-	      "keyword<" : {
-		     get : "key",
-			 upcase: true
-		  }
-	  }
+var stylesheet = {
+  "set"    : {
+    key : "hello"
+      },
+  "inject" : {
+    "obj" : {
+      "keyword<" : {
+         get : "key",
+             upcase: true
+          }
+      }
 
-    };
-	// output : { obj : { keyword : "HELLO" } }
+};
+// output : { obj : { keyword : "HELLO" } }
+```
+
+<a id="compute"></a>
+### compute:
+- *module: basics*
+
+Compute an expression with all variables of the *input*. Use the [filtrex](https://github.com/joewalnes/filtrex#expressions) syntax.
+Note : `this` variable contains *input*
+```javascript
+var stylesheet = {
+    "set" : {
+        "a" : 20,
+        "b" : 3,
+        "c" : 5,
+        "d" : 8
+    },
+    "$x" : {
+        "compute#1": "a / b",
+        "compute#2": "round(this)",
+        "cast": "number"
+    },
+    "$y" : {
+        "path": "b",
+        "cast": "number"
+    },
+    "$z" : {
+        "compute": "x + y",
+    }
+};
+// output : 10
 ```
 
 
