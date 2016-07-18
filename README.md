@@ -112,35 +112,6 @@ Adding filters/actions for external module. see the avaible modules here : https
 
 > **Warning:** the method has change since v4.0
 
-## Source
-
-Stylesheet can contain a reference to data source. Source can be a file or an URL.
-By default, only the *file:* protocol is supported. Add your own protocol with [*register*](#registerprotocol--string-callback--function--none)
-
-```javascript
-	var stylesheet_1 = {
-      "$?" : "https://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
-      "$name" : {
-        "upcase": true
-      },
-      "$main": {
-        "upcase": true
-      }
-    };
-	var stylesheet_2 = {
-      "$name" : {
-        "$?" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
-        "parseJSON" : true,
-        "path": "name"
-      },
-      "$main": {
-        "$?" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
-        "parseJSON" : true,
-        "path": "main",
-      }
-    };
-```
-
 
 ## Variables
 
@@ -287,6 +258,40 @@ Fix value if *input* is not set
 		};
 	};
 ```
+
+<a id="fetch"></a>
+### fetch
+- *module: basics*
+- *aliases : fetchURL, $?*
+
+Stylesheet can contain a reference to data source. Source can be a file or an URL.
+By default, only the *file:* protocol is supported. Add your own protocol with [*register*](#registerprotocol--string-callback--function--none)
+
+```javascript
+	var stylesheet_1 = {
+      "fetch" : "https://raw.githubusercontent.com/castorjs/node-jbj/master/package.json",
+      "$name" : {
+        "upcase": true
+      },
+      "$main": {
+        "upcase": true
+      }
+    };
+	var stylesheet_2 = {
+      "$name" : {
+        "fetch" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
+        "parseJSON" : true,
+        "path": "name"
+      },
+      "$main": {
+        "fetch" : "file://" + path.resolve(__dirname, '../dataset/1.json'),
+        "parseJSON" : true,
+        "path": "main",
+      }
+    };
+```
+
+
 
 <a id="add"></a>
 ### add: [key, value]
