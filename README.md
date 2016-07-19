@@ -9,6 +9,7 @@ http://inist-cnrs.github.io/jbj-playground/
 ## Contributors
 
   * [Nicolas Thouvenin](https://github.com/touv)
+  * [François Parmentier](https://github.com/parmentf)
 
 # Installation
 
