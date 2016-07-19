@@ -28,6 +28,7 @@ Use [mocha](https://github.com/visionmedia/mocha) to run the tests.
 
 ## API
 
+<a id="api-render"></a>
 ### render(stylesheet : Object, input : Mixed, callback : Function) : None
 
 Render `input` with `stylesheet`.
@@ -41,6 +42,108 @@ Render `input` with `stylesheet`.
 	// Output : 123
 
 ```
+
+#### Variables
+Variable can be set using `$` plus a dot notation path.
+The set value can only be a JBJ expression (not a JSON literal).
+
+Input:
+```json
+{
+  "a": {
+    "b": {
+      "c": 1
+    },
+    "d": "Second"
+  }
+}
+```
+
+Stylesheet:
+```json
+{
+    "$x" : {
+        "get": "a.b.c"
+    },
+    "$y.y1.y2" : {
+        "get": "a.d"
+    }
+}
+```
+
+Output:
+```json
+{
+  "a": {
+    "b": {
+      "c": 1
+    },
+    "d": "Second"
+  },
+  "x": 1,
+  "y": {
+    "y1": {
+      "y2": "Second"
+    }
+  }
+}
+```
+
+
+<a id="api-inject"></a>
+### inject(stylesheet : Object, input : Mixed, callback : Function) : None
+
+Alertative mode to use JBJ actions. You can inject in `stylesheet` the `input`.
+Injections are identified by a prefix and suffix in the key.
+The prefix and the suffix are the less-than sign  `<`.
+Prefix inject the result of a JBJ action in the current scope.
+Suffix inject the result of a JBJ render in the current key.
+
+
+```javascript
+	var JBJ = require('jbj'),
+	JBJ.render({ "<truncate" : 3 }, "1234", function(err, out) {
+			console.log(out);
+	});
+
+	// Output : 123
+
+```
+
+#### prefix
+```javascript
+var input = {
+    key : "hello"
+}
+var stylesheet = {
+	"obj" : {
+		"<get" : {
+			get : "key"
+		},
+		upcase: true
+	}
+};
+// output : { obj : "HELLO" }
+```
+
+
+#### suffix
+```javascript
+var input = {
+    key : "hello"
+}
+var stylesheet = {
+	"obj" : {
+		"keyword<" : {
+			get : "key",
+   		    upcase: true
+		}
+	}
+};
+// output : { obj : { keyword : "HELLO" } }
+```
+
+
 
 ### register(protocol : String, callback : Function) : None
 
@@ -113,59 +216,12 @@ Adding filters/actions for external module. see the avaible modules here : https
 > **Warning:** the method has change since v4.0
 
 
-## Variables
-
-Variable can be set using `$` plus a dot notation path.
-The set value can only be a JBJ expression (not a JSON literal).
-
-Input:
-```json
-{
-  "a": {
-    "b": {
-      "c": 1
-    },
-    "d": "Second"
-  }
-}
-```
-
-Stylesheet:
-```json
-{
-    "$x" : {
-        "get": "a.b.c"
-    },
-    "$y.y1.y2" : {
-        "get": "a.d"
-    }
-}
-```
-
-Output:
-```json
-{
-  "a": {
-    "b": {
-      "c": 1
-    },
-    "d": "Second"
-  },
-  "x": 1,
-  "y": {
-    "y1": {
-      "y2": "Second"
-    }
-  }
-}
-```
-
 ## Actions
 
 A stylesheet is a JSON object where each key is an *action*.
 The actions are divided into *modules* (since v4.0):
 
-- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif, [inject](#inject), [compute](#compute))
+- **basics**: all the basic *actions* for JBJ ([debug](#debug), [default](#default), [extend](#extend), [set](#set), [get](#get), [add](#add), [expect](#expect), [foreach](#foreach), [select](#select), [cast](#cast), [mask](#mask), [trim](#trim), [required](#required), [assert](#assert), breakif, [inject](#inject), [render](#render), [compute](#compute))
 - **ejs**: mainly the filters borrowed from [EJS](http://ejs.co/) ([first](#first), [last](#last), [capitalize](#capitalize), [downcase](#downcase), [upcase](#upcase), [slug](#slug), [sort](#sort), [sort_by](#sortby-prop--prop-prop-), [size](#size), [max](#max), [min](#min), [plus](#plus), [minus](#minus), [times](#times), [dividedBy](#dividedBy), [join](#join), [truncate](#truncate), [shift](#shift), [truncateWords](#truncateWords), [replace](#replace), [prepend](#prepend), [append](#append), [reverse](#reverse), [flatten](#flatten), [deduplicate](#deduplicate), [remove](#remove), [sum](#sum), [slug](#slug))
 - [**parse**](https://github.com/Inist-CNRS/node-jbj-parse): file format conversion, through parsing ([csv](https://github.com/Inist-CNRS/node-jbj-parse#csv), [parseCSV](https://github.com/Inist-CNRS/node-jbj-parse#parsecsv), [parseCSVFile](https://github.com/Inist-CNRS/node-jbj-parse#parsecsvfile), [json](https://github.com/Inist-CNRS/node-jbj-parse#json), [parseJSON](https://github.com/Inist-CNRS/node-jbj-parse#parsejson), [xml](https://github.com/Inist-CNRS/node-jbj-parse#xml), [parseXML](https://github.com/Inist-CNRS/node-jbj-parse#parsexml))
 - [**template**](https://github.com/Inist-CNRS/node-jbj-template): [template](https://github.com/Inist-CNRS/node-jbj-template#template), templateURL
@@ -370,25 +426,14 @@ Set default key/values for the *input* object: when a key is not present in the 
 ### inject:
 - *module: basics*
 
-Return a new Object with some injection of JBJ stylesheet. Injections are
-identified by a suffix in the key. The suffix is the less-than sign  `<`
+Return a new Object with [JBJ.inject](#api-inject).
 
-```javascript
-var stylesheet = {
-  "set"    : {
-    key : "hello"
-      },
-  "inject" : {
-    "obj" : {
-      "keyword<" : {
-         get : "key",
-             upcase: true
-          }
-      }
+<a id="render"></a>
+### render:
+- *module: basics*
 
-};
-// output : { obj : { keyword : "HELLO" } }
-```
+Return a new Object with [JBJ.render](#api-render).
+
 
 <a id="compute"></a>
 ### compute:
@@ -1117,6 +1162,7 @@ Return the sum of all the value of an array.
     };
 	// output : 6
 ```
+
 
 ## FAQ
 

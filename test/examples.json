@@ -473,7 +473,7 @@
 			}
 		}
 	},
-	"get cast": {
+	"get cast #1": {
 		"input": {
 			"a" : {
 				"b" : {
@@ -485,6 +485,22 @@
 		"stylesheet": {
 			"$a" : {
 				"get": "a.b.c",
+				"cast" : "number"
+			}
+		}
+	},
+	"get cast #2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : "56789"
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": ["a.b.c", "a.d"],
 				"cast" : "number"
 			}
 		}
@@ -505,7 +521,7 @@
 			}
 		}
 	},
-	"required": {
+	"required #1": {
 		"input": {
 			"a" : {
 				"b" : {
@@ -519,6 +535,43 @@
 				"get": "a.b.d",
 				"required": true
 			}
+		}
+	},
+	"required #2": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a.b.c",
+				"required": true
+			}
+		},
+		"expected" : {
+			"a" : "1234"
+		}
+	},
+	"required #3": {
+		"input": {
+			"a" : {
+				"b" : {
+					"c" : "1234"
+				},
+				"d" : null
+			}
+		},
+		"stylesheet": {
+			"$a" : {
+				"get": "a.b.d"
+			}
+		},
+		"expected" : {
+			"a" : null
 		}
 	},
 	"extend with": {
@@ -823,6 +876,42 @@
 			"tag": "span"
 		}
 	},
+	"trim #1": {
+		"input": { "toto" : " titi\t\n" },
+		"stylesheet": {
+			"trim": true
+		},
+		"expected": { "toto" : " titi\t\n" }
+	},
+	"trim #2": {
+		"input": { "toto" : " titi\t\n" },
+		"stylesheet": {
+			"get" : "toto",
+			"trim": true
+		},
+		"expected": "titi"
+	},
+	"debug #1": {
+		"input": { "toto" : "titi" },
+		"stylesheet": {
+			"debug": true
+		},
+		"expected": { "toto" : "titi" }
+	},
+	"timer#1": {
+		"input": { "toto" : "titi" },
+		"stylesheet": {
+			"timer": 11
+		},
+		"expected": { "toto" : "titi" }
+	},
+	"timer#2": {
+		"input": { "toto" : "titi" },
+		"stylesheet": {
+			"timer":"ok"
+		},
+		"expected": { "toto" : "titi" }
+	},
 	"add a key-value #2": {
 		"input": {
 			"content": "not empty"
@@ -864,5 +953,36 @@
 				"title" : "efedalo"
 			}
 		}
+	},
+	"render actions in stylesheet #1": {
+		"input": {
+			"content": {
+				"name" : "Lorem",
+				"role": "Ipsum"
+			}
+		},
+		"stylesheet": {
+			"get" : "content",
+			"render": {
+				"$login" : {
+					"get" : "name",
+					"upcase" : true
+				},
+				"$passwd" : {
+					"get" : "role",
+					"upcase" : true
+				},
+				"$title" : {
+					"set" : "efedalo"
+				}
+			},
+			"mask": "login,passwd,title"
+		},
+		"expected": {
+			"login" : "LOREM",
+			"passwd" : "IPSUM",
+			"title" : "efedalo"
+		}
 	}
+
 }

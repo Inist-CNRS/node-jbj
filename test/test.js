@@ -8,6 +8,29 @@ var assert = require('assert')
   , examplesAll = require('./examples.json')
   ;
 
+describe('JBJ', function () {
+    it("getActions", function (done) {
+      var actions = JBJ.getActions();
+      assert.ok(Array.isArray(actions));
+      assert.notEqual(actions.indexOf('get'), -1);
+      done();
+    });
+    it("getFilter ok", function (done) {
+      var func = JBJ.getFilter("get");
+      assert.equal(typeof func, 'function');
+      done();
+    });
+    it("getFilter ko", function (done) {
+      assert.throws(function() {
+        JBJ.getFilter("xxxxxxxxxxxxxxxxxxxxxxx");
+      })
+      done();
+    });
+
+});
+
+
+
 describe('slug', function () {
   Object.keys(examples).forEach(function (example) {
     it(example, function (done) {
