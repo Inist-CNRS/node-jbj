@@ -117,9 +117,7 @@ var input = {
 }
 var stylesheet = {
 	"obj" : {
-		"<get" : {
-			get : "key"
-		},
+		"<get" : "key",
 		upcase: true
 	}
 };
