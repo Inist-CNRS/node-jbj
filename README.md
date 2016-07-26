@@ -604,6 +604,26 @@ Selecting specific parts of *input*, hiding the rest, return object
 
 For syntax see [json-mask](https://github.com/nemtsov/json-mask)
 
+<a id="omit"></a>
+### omit: pattern
+- *module: basics*
+
+Unselecting specific parts of *input*, show the rest, return object
+
+```javascript
+    var stylesheet = {
+        "set" : {
+            "a" : 1,
+            "b" : 2,
+            "c" : 3
+        },
+        "omit": "a,c"
+    };
+    // output : { b: 2 }
+```
+
+For syntax see [object.omit](https://github.com/jonschlinkert/object.omit#usage)
+
 <a id="required"></a>
 ### required: none
 - *module: basics*

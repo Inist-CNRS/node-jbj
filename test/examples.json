@@ -473,6 +473,48 @@
 			}
 		}
 	},
+	"omit": {
+		"input": {
+			"a": 1,
+			"b": 2
+		},
+		"stylesheet": {
+			"omit": "a"
+		},
+		"expected": {
+			"b": 2
+		}
+	},
+	"omit array parameters": {
+		"input": {
+			"a": 1,
+			"b": 2,
+			"c": 3,
+			"d": 4
+		},
+		"stylesheet": {
+			"omit": ["b","c"]
+		},
+		"expected": {
+			"a": 1,
+			"d": 4
+		}
+	},
+	"omit string parameters": {
+		"input": {
+			"a": 1,
+			"b": 2,
+			"c": 3,
+			"d": 4
+		},
+		"stylesheet": {
+			"omit": "b,c"
+		},
+		"expected": {
+			"a": 1,
+			"d": 4
+		}
+	},
 	"get cast #1": {
 		"input": {
 			"a" : {
