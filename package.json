@@ -10,7 +10,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
