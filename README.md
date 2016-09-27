@@ -559,7 +559,7 @@ Peck element(s) in *input* with "CSS selector"
 	};
 	// output : [1, 2]
 ```
-for syntax see [JSONSelect](http://jsonselect.org/)
+for syntax see [JSONSelect](https://github.com/lloyd/JSONSelect) and  [JSONSelect Expression Tester](https://jsonselect.curiousconcept.com/)
 
 > **Note:** `select` *always* returns an array (an empty array when nothing was selected).
 
